@@ -37,3 +37,5 @@ physics_material_override = SubResource("PhysicsMaterial_ybm4b")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player/RigidBody2D"]
 position = Vector2(0.000348806, 0.00640917)
 shape = SubResource("RectangleShape2D_24k07")
+
+[node name="Camera2D" type="Camera2D" parent="player"]
