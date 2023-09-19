@@ -11,14 +11,10 @@ config_version=5
 [application]
 
 config/name="AdamsGrapple"
-run/main_scene="res://test-2d.tscn"
+run/main_scene="res://jack-test.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="AdamsGrapple"
-
-[physics]
-
-2d/default_gravity_vector=Vector2(0, -1)
