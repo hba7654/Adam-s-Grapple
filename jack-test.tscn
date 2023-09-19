@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8a3a8je0gtyq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb46l"]
+size = Vector2(745, 64)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rapvn"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_min1m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evy3k"]
+size = Vector2(29, 47)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+lock_rotation = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(374.5, 36)
+shape = SubResource("RectangleShape2D_hb46l")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(375.375, 36.625)
+scale = Vector2(743.25, 64.75)
+texture = SubResource("PlaceholderTexture2D_rapvn")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(20, -215)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(102, -103)
+scale = Vector2(29.5, 47.5)
+texture = SubResource("CanvasTexture_min1m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(102.5, -102.5)
+shape = SubResource("RectangleShape2D_evy3k")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
