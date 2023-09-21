@@ -1,14 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://76pxuptlsuwm"]
+[gd_scene load_steps=4 format=3 uid="uid://c81dd37v2oafi"]
 
 [ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="1_0mb0o"]
 [ext_resource type="PackedScene" uid="uid://152rhfyr7kau" path="res://Prefabs/platform.tscn" id="2_xgvnf"]
+[ext_resource type="PackedScene" uid="uid://bsulm07d8ydse" path="res://Prefabs/hook.tscn" id="3_7hhk4"]
 
 [node name="other-test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_0mb0o")]
+metadata/hookPowerMult = 2.0
+metadata/hook = NodePath("")
+metadata/maxHookPower = 1000.0
 
 [node name="Platform" parent="." instance=ExtResource("2_xgvnf")]
 position = Vector2(571, 508)
 
 [node name="Platform2" parent="." instance=ExtResource("2_xgvnf")]
 position = Vector2(843, 171)
+
+[node name="Hook" parent="." instance=ExtResource("3_7hhk4")]
+position = Vector2(199, 294)

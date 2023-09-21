@@ -9,16 +9,19 @@ public partial class Player : CharacterBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
-	private float hookPower;
 	private Vector2 hookDirVector;
 	private bool shotHook;
+	private Node hook;
+    private float maxHookPower;
 
     public override void _Ready()
     {
         base._Ready();
 
 		shotHook = false;
-        GD.Print(InputMap.GetActions());
+
+		maxHookPower = (float)GetMeta("maxHookPower");
+		//hook = GetNode((NodePath)GetMeta("hook"));
     }
 
     public override void _PhysicsProcess(double delta)
@@ -29,7 +32,7 @@ public partial class Player : CharacterBody2D
 		// Add the gravity.
 		if (!IsOnFloor())
 			velocity.Y += gravity * (float)delta;
-
+/*
 		//// Handle Jump.
 		//if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 		//	velocity.Y = JumpVelocity;
@@ -45,31 +48,51 @@ public partial class Player : CharacterBody2D
 		//{
 		//	velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 		//}
+*/
 
 		Velocity = velocity;
 		MoveAndSlide();
 
 		
 		//Grappling
-		if(Input.IsActionJustPressed("ui_accept"))
-        {
-            //shotHook = true;
-            float mouseDistance = GetViewport().GetMousePosition().DistanceSquaredTo(this.Position);
-            GD.Print("Mouse distance away is: " + mouseDistance);
-        }
-		else if(Input.IsMouseButtonPressed(MouseButton.Left))
+		if(Input.IsMouseButtonPressed(MouseButton.Left))
 		{
-			//if(!shotHook)
-   //         {
+			//The frame the mouse was clicked, shoot the hook
+			if (!shotHook)
+			{
+                shotHook = true;
+				Vector2 mouse = GetLocalMousePosition();
+                float hookPower = mouse.Length();
+                GD.Print("Mouse distance away is: " + hookPower);
 
-			//}
-			//else
-			//{
-			//}
+				hookDirVector = mouse.Normalized();
+                hookPower *= (float)GetMeta("hookPowerMult");
+                GD.Print("Hook power is: " + hookPower);
+
+				if (hookPower > maxHookPower)
+				{
+					hookPower = maxHookPower;
+                    GD.Print("Hook power is now: " + hookPower);
+                }
+
+				//TODO: - Create hook instance at player position
+				//		- add force with magnitude hookPower, direction hookDirVector
+            }
+			//else if hook landed
+				//allow player movement
 		}
-		else if(Input.IsActionJustReleased("ui_accept"))
+		else
 		{
-			//shotHook = false;
+			//The frame the mouse was released
+			if (shotHook)
+			{
+				shotHook = false;
+
+				//Release rope
+					//Detach player from rope
+
+				//Disable movement (no rope to retract/expand)
+			}
 		}
 
 	}
