@@ -11,7 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	seconds += delta;
+	seconds += delta
 	if (seconds >= 60):
 		seconds -= 60
 		minutes += 1
