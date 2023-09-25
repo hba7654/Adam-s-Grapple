@@ -19,6 +19,7 @@ func _physics_process(delta):
 		var colInfo = move_and_collide(velocity.normalized() * delta * speed)
 		if !colInfo: return
 		
+		#bouncing the hook off a wall
 		var normal = colInfo.get_normal()
 		var angle = abs(normal.angle())
 		print("Normal: " + str(normal) + " Angle: " + str(angle) + 
@@ -30,7 +31,7 @@ func _physics_process(delta):
 			landed = true
 		else: if (abs(normal.angle_to(Vector2.DOWN)) < 0.1):
 			print("hit a ceiling")
-			velocity.x = 0.001
+			velocity.x = 0
 			velocity.y = 0
 		else:
 			velocity = velocity.bounce(colInfo.get_normal().normalized())
