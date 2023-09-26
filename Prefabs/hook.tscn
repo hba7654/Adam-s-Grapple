@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsulm07d8ydse"]
+[gd_scene load_steps=6 format=3 uid="uid://bsulm07d8ydse"]
 
 [ext_resource type="Script" path="res://Scripts/hook.gd" id="1_a2pbx"]
+[ext_resource type="PackedScene" uid="uid://dv2ewcsgj5l3c" path="res://Prefabs/Rope/rope_seg.tscn" id="2_kjpcs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lskg2"]
 
@@ -22,3 +23,43 @@ shape = SubResource("CircleShape2D_lskg2")
 position = Vector2(-9.53674e-07, -2.38419e-07)
 scale = Vector2(0.3125, 0.3125)
 texture = SubResource("GradientTexture2D_jvu6o")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, -11)
+node_a = NodePath("..")
+node_b = NodePath("../RopeSeg")
+
+[node name="RopeSeg" parent="." instance=ExtResource("2_kjpcs")]
+position = Vector2(0, -36)
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2(0, -62)
+node_a = NodePath("../RopeSeg")
+node_b = NodePath("../RopeSeg2")
+
+[node name="RopeSeg2" parent="." instance=ExtResource("2_kjpcs")]
+position = Vector2(0, -88)
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2(0, -114)
+node_a = NodePath("../RopeSeg2")
+node_b = NodePath("../RopeSeg3")
+
+[node name="RopeSeg3" parent="." instance=ExtResource("2_kjpcs")]
+position = Vector2(0, -140)
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="."]
+position = Vector2(0, -166)
+node_a = NodePath("../RopeSeg3")
+node_b = NodePath("../RopeSeg4")
+
+[node name="RopeSeg4" parent="." instance=ExtResource("2_kjpcs")]
+position = Vector2(0, -192)
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="."]
+position = Vector2(0, -218)
+node_a = NodePath("../RopeSeg4")
+node_b = NodePath("../RopeSeg5")
+
+[node name="RopeSeg5" parent="." instance=ExtResource("2_kjpcs")]
+position = Vector2(0, -244)
