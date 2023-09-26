@@ -6,6 +6,9 @@ var landed : bool
 @export var bounceDamper : float
 @export var bouncePower : float
 
+@export var timeTillDeletion : float
+var timer = 0.0
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,3 +41,8 @@ func _physics_process(delta):
 			print("here")
 			velocity.x *= bouncePower
 			velocity.y += bouncePower
+	
+	else:
+		timer += delta
+		if(timer >= timeTillDeletion) :
+			queue_free()

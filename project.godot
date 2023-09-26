@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AdamsGrapple"
-run/main_scene="res://other-test.tscn"
+run/main_scene="res://Scenes/other-test.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
