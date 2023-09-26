@@ -11,10 +11,16 @@ config_version=5
 [application]
 
 config/name="AdamsGrapple"
-run/main_scene="res://jack-test.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+run/main_scene="res://other-test.tscn"
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="AdamsGrapple"
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Hook"
+2d_physics/layer_3="Environment"
