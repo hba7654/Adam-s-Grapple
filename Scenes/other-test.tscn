@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=7 format=3 uid="uid://cn34k28j3fipx"]
 
 [ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="1_0mb0o"]
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="2_l033h"]
 [ext_resource type="PackedScene" uid="uid://152rhfyr7kau" path="res://Prefabs/platform.tscn" id="2_xgvnf"]
 [ext_resource type="PackedScene" uid="uid://bsulm07d8ydse" path="res://Prefabs/hook.tscn" id="3_7hhk4"]
+[ext_resource type="Script" path="res://Scripts/Timer.gd" id="3_lsi28"]
+[ext_resource type="Script" path="res://Scripts/Height.gd" id="4_77jtm"]
 
 [node name="other-test" type="Node2D"]
 
@@ -11,6 +14,27 @@ collision_layer = 1
 collision_mask = 4
 maxHookPower = 1000.0
 hookPowerMult = 2.0
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(0, -200)
+script = ExtResource("2_l033h")
+
+[node name="Timer" type="Label" parent="Player/Camera2D"]
+offset_left = -565.0
+offset_top = -518.0
+offset_right = -488.0
+offset_bottom = -492.0
+text = "timer text"
+script = ExtResource("3_lsi28")
+
+[node name="Height" type="Label" parent="Player/Camera2D" node_paths=PackedStringArray("playerNode")]
+offset_left = -565.0
+offset_top = -490.0
+offset_right = -481.0
+offset_bottom = -464.0
+text = "height text"
+script = ExtResource("4_77jtm")
+playerNode = NodePath("../..")
 
 [node name="Platform" parent="." instance=ExtResource("2_xgvnf")]
 position = Vector2(571, 508)
