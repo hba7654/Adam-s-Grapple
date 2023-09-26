@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://PlayerCamera.gd" id="1_5ublp"]
 [ext_resource type="Script" path="res://CharacterBody2DJackTesting.gd" id="1_416vs"]
-[ext_resource type="PackedScene" uid="uid://cgpfqkvh62bab" path="res://Timer.tscn" id="3_geesq"]
+[ext_resource type="Script" path="res://Timer.gd" id="4_pjaxy"]
 [ext_resource type="Script" path="res://Height.gd" id="5_cn8bo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hb46l"]
@@ -46,9 +46,6 @@ shape = SubResource("RectangleShape2D_evy3k")
 offset = Vector2(111.94, -136.66)
 script = ExtResource("1_5ublp")
 
-[node name="Timer" parent="CharacterBody2D/Camera2D" instance=ExtResource("3_geesq")]
-position = Vector2(-441, -440)
-
 [node name="Height" type="Label" parent="CharacterBody2D/Camera2D" node_paths=PackedStringArray("playerNode")]
 offset_left = -440.0
 offset_top = -408.0
@@ -57,3 +54,12 @@ offset_bottom = -382.0
 text = "height text"
 script = ExtResource("5_cn8bo")
 playerNode = NodePath("../..")
+
+[node name="Timer" type="Label" parent="CharacterBody2D/Camera2D"]
+offset_left = -440.0
+offset_top = -437.0
+offset_right = -363.0
+offset_bottom = -411.0
+text = "timer text
+"
+script = ExtResource("4_pjaxy")

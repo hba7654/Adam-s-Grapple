@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://bqemwl6bg44g7"]
-
-[node name="Height" type="Node2D"]
-
-[node name="Label" type="Label" parent="."]
-offset_right = 147.0
-offset_bottom = 63.0
-text = "height text"
