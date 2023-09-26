@@ -1,10 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cenhnnectv0hh"]
-
-[ext_resource type="Script" path="res://Height.gd" id="1_hw4bb"]
+[gd_scene format=3 uid="uid://bqemwl6bg44g7"]
 
 [node name="Height" type="Node2D"]
 
 [node name="Label" type="Label" parent="."]
 offset_right = 147.0
 offset_bottom = 63.0
-script = ExtResource("1_hw4bb")
+text = "height text"
