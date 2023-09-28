@@ -11,6 +11,8 @@
 gradient = SubResource("Gradient_qi2i4")
 
 [node name="Hook" type="RigidBody2D"]
+position = Vector2(2, -530)
+rotation = 3.14159
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_a2pbx")
@@ -18,49 +20,141 @@ bouncePower = 0.05
 timeTillDeletion = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 3.14159
 shape = SubResource("CircleShape2D_lskg2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-9.53674e-07, -2.38419e-07)
+rotation = 3.14159
 scale = Vector2(0.3125, 0.3125)
 texture = SubResource("GradientTexture2D_jvu6o")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2(0, -11)
+rotation = 3.14159
 node_a = NodePath("..")
 node_b = NodePath("../RopeSeg")
+bias = 0.9
 
 [node name="RopeSeg" parent="." instance=ExtResource("2_kjpcs")]
 position = Vector2(0, -36)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 4
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="."]
 position = Vector2(0, -62)
+rotation = 3.14159
 node_a = NodePath("../RopeSeg")
 node_b = NodePath("../RopeSeg2")
+bias = 0.9
 
 [node name="RopeSeg2" parent="." instance=ExtResource("2_kjpcs")]
 position = Vector2(0, -88)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 4
 
 [node name="PinJoint2D3" type="PinJoint2D" parent="."]
 position = Vector2(0, -114)
+rotation = 3.14159
 node_a = NodePath("../RopeSeg2")
 node_b = NodePath("../RopeSeg3")
+bias = 0.9
 
 [node name="RopeSeg3" parent="." instance=ExtResource("2_kjpcs")]
 position = Vector2(0, -140)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 4
 
 [node name="PinJoint2D4" type="PinJoint2D" parent="."]
 position = Vector2(0, -166)
+rotation = 3.14159
 node_a = NodePath("../RopeSeg3")
 node_b = NodePath("../RopeSeg4")
+bias = 0.9
 
 [node name="RopeSeg4" parent="." instance=ExtResource("2_kjpcs")]
 position = Vector2(0, -192)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 4
 
 [node name="PinJoint2D5" type="PinJoint2D" parent="."]
 position = Vector2(0, -218)
+rotation = 3.14159
 node_a = NodePath("../RopeSeg4")
 node_b = NodePath("../RopeSeg5")
+bias = 0.9
 
 [node name="RopeSeg5" parent="." instance=ExtResource("2_kjpcs")]
 position = Vector2(0, -244)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 4
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="."]
+position = Vector2(0, -271)
+rotation = 3.14159
+node_a = NodePath("../RopeSeg5")
+node_b = NodePath("../RopeSeg6")
+bias = 0.9
+
+[node name="RopeSeg6" parent="." instance=ExtResource("2_kjpcs")]
+position = Vector2(0, -296)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 4
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="."]
+position = Vector2(0, -322)
+rotation = 3.14159
+node_a = NodePath("../RopeSeg6")
+node_b = NodePath("../RopeSeg7")
+bias = 0.9
+
+[node name="RopeSeg7" parent="." instance=ExtResource("2_kjpcs")]
+position = Vector2(0, -348)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 4
+
+[node name="PinJoint2D8" type="PinJoint2D" parent="."]
+position = Vector2(0, -374)
+rotation = 3.14159
+node_a = NodePath("../RopeSeg7")
+node_b = NodePath("../RopeSeg8")
+bias = 0.9
+
+[node name="RopeSeg8" parent="." instance=ExtResource("2_kjpcs")]
+position = Vector2(0, -400)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 4
+
+[node name="PinJoint2D9" type="PinJoint2D" parent="."]
+position = Vector2(0, -426)
+rotation = 3.14159
+node_a = NodePath("../RopeSeg8")
+node_b = NodePath("../RopeSeg9")
+bias = 0.9
+
+[node name="RopeSeg9" parent="." instance=ExtResource("2_kjpcs")]
+position = Vector2(0, -452)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 4
+
+[node name="PinJoint2D10" type="PinJoint2D" parent="."]
+position = Vector2(0, -478)
+rotation = 3.14159
+node_a = NodePath("../RopeSeg9")
+node_b = NodePath("../RopeSeg10")
+bias = 0.9
+
+[node name="RopeSeg10" parent="." instance=ExtResource("2_kjpcs")]
+position = Vector2(0, -504)
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 4

@@ -23,3 +23,8 @@ shape = SubResource("RectangleShape2D_7vgdn")
 position = Vector2(-0.124932, -8.0003)
 scale = Vector2(0.3125, 1.32813)
 texture = SubResource("GradientTexture2D_71edv")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(0, -50)
+node_a = NodePath("..")
+bias = 0.9

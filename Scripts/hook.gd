@@ -32,13 +32,14 @@ func _physics_process(delta):
 			print("landed on solid ground")
 			velocity = Vector2.ZERO
 			landed = true
+			freeze = true
 		else: if (abs(normal.angle_to(Vector2.DOWN)) < 0.1):
 			print("hit a ceiling")
 			velocity.x = 0
 			velocity.y = 0
 		else:
 			velocity = velocity.bounce(colInfo.get_normal().normalized())
-			print("here")
+			print("normal bounce")
 			velocity.x *= bouncePower
 			velocity.y += bouncePower
 	

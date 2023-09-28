@@ -28,11 +28,16 @@
 #	move_and_slide()
 extends CharacterBody2D
 
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var hookDirVector : Vector2
 var shotHook : bool
 const hookPath = preload("res://Prefabs/hook.tscn")
+var hookInstance
 @export var maxHookPower : float
 @export var hookPowerMult : float
 
@@ -48,7 +53,14 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	#Velocity = velocity
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction = Input.get_axis("ui_left", "ui_right")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
 	move_and_slide()
 
 	
@@ -57,6 +69,7 @@ func _physics_process(delta):
 		#The frame the mouse was clicked, shoot the hook
 		if (!shotHook):
 			shoot()
+			get_node("PinJoint2D").set_node_b(hookInstance.get_node("RopeSeg10").get_path())
 		#else if hook landed
 			#allow player movement
 	else:
@@ -84,10 +97,10 @@ func shoot():
 		hookPower = maxHookPower
 		print("Hook power is now: " + str(hookPower))
 
-	var hook = hookPath.instantiate()
-	add_child(hook);
-	hook.velocity = hookDirVector
-	hook.speed = hookPower
+	hookInstance = hookPath.instantiate()
+	add_child(hookInstance);
+	hookInstance.velocity = hookDirVector
+	hookInstance.speed = hookPower
 
 	#TODO: - Create hook instance at player position
 	#		- add force with magnitude hookPower, direction hookDirVector
