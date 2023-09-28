@@ -12,6 +12,8 @@
 
 [node name="Rock" type="RigidBody2D"]
 position = Vector2(328, 0)
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_1khqk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
