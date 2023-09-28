@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=3 format=3 uid="uid://cn34k28j3fipx"]
 
 [ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="1_0mb0o"]
 [ext_resource type="PackedScene" uid="uid://152rhfyr7kau" path="res://Prefabs/platform.tscn" id="2_xgvnf"]
-[ext_resource type="PackedScene" uid="uid://bsulm07d8ydse" path="res://Prefabs/hook.tscn" id="3_7hhk4"]
 
 [node name="other-test" type="Node2D"]
 
@@ -21,7 +20,3 @@ freeze = true
 position = Vector2(843, 171)
 collision_layer = 4
 freeze = true
-
-[node name="Hook" parent="." instance=ExtResource("3_7hhk4")]
-position = Vector2(199, 294)
-bouncePower = 0.0

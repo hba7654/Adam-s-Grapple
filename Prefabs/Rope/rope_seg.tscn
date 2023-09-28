@@ -6,6 +6,7 @@
 height = 52.0
 
 [node name="RopeSeg" type="RigidBody2D"]
+mass = 3.03
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)

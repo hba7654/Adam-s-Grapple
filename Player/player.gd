@@ -68,7 +68,7 @@ func _physics_process(delta):
 	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		#The frame the mouse was clicked, shoot the hook
 		if (!shotHook):
-			shoot()
+			#shoot()
 			get_node("PinJoint2D").set_node_b(hookInstance.get_node("RopeSeg10").get_path())
 		#else if hook landed
 			#allow player movement
@@ -82,25 +82,37 @@ func _physics_process(delta):
 
 			#Disable movement (no rope to retract/expand)
 
-func shoot():
-	shotHook = true
-	
-	var mouse = get_local_mouse_position()
-	var hookPower = mouse.length()
-	print("Mouse distance away is: " + str(hookPower))
+#func shoot():
+#	shotHook = true
+#
+#	var mouse = get_local_mouse_position()
+#	var hookPower = mouse.length()
+#	print("Mouse distance away is: " + str(hookPower))
+#
+#	hookDirVector = mouse.normalized()
+#	hookPower *= hookPowerMult
+#	print("Hook power is: " + str(hookPower))
+#
+#	if (hookPower > maxHookPower):
+#		hookPower = maxHookPower
+#		print("Hook power is now: " + str(hookPower))
+#
+#	hookInstance = hookPath.instantiate()
+#	add_child(hookInstance);
+#	hookInstance.velocity = hookDirVector
+#	hookInstance.speed = hookPower
+#
+#	#TODO: - Create hook instance at player position
+#	#		- add force with magnitude hookPower, direction hookDirVector
 
-	hookDirVector = mouse.normalized()
-	hookPower *= hookPowerMult
-	print("Hook power is: " + str(hookPower))
 
-	if (hookPower > maxHookPower):
-		hookPower = maxHookPower
-		print("Hook power is now: " + str(hookPower))
 
-	hookInstance = hookPath.instantiate()
-	add_child(hookInstance);
-	hookInstance.velocity = hookDirVector
-	hookInstance.speed = hookPower
-
-	#TODO: - Create hook instance at player position
-	#		- add force with magnitude hookPower, direction hookDirVector
+#REWORKING GRAPPLING
+#see bottom of hook.gd for more details
+#in _physics_process():
+	#recalculate mouse position and dir vector, pass information to $Hook.calculate_path()
+	#check if hook landed
+		#if so, allow traveling along rope
+#in _input():
+	#handle mouse input, call $Hook.shoot() on mouse press and $Hook.release() on mouse release
+	#handle kb input, if allowed to do so, to travel up and down rope
