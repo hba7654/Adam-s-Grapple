@@ -33,10 +33,11 @@ const JUMP_VELOCITY = -400.0
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+const hookPath = preload("res://Prefabs/Rope/hook.tscn")
+const ropePath = preload("res://Prefabs/Rope/Rope.tscn")
 
 var hookDirVector : Vector2
 var shotHook : bool
-const hookPath = preload("res://Prefabs/Rope/hook.tscn")
 var hookInstance
 @export var maxHookPower : float
 @export var hookPowerMult : float
@@ -53,7 +54,9 @@ func _physics_process(delta):
 	#Gravity!
 	#velocity = Velocity
 
-	#Add the gravity.
+	#=====================
+	#GRAVITY
+	#=====================
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
@@ -67,26 +70,31 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	#aiming
+	#=====================
+	#AIMING
+	#=====================
 	var mouse = get_local_mouse_position()
 	var hookPower = mouse.length()
-	print("Mouse distance away is: " + str(hookPower))
+	#print("Mouse distance away is: " + str(hookPower))
 
 	hookDirVector = mouse.normalized()
 	hookPower *= hookPowerMult
-	print("Hook power is: " + str(hookPower))
+	#print("Hook power is: " + str(hookPower))
 
 	if (hookPower > maxHookPower):
 		hookPower = maxHookPower
-		print("Hook power is now: " + str(hookPower))
+		#print("Hook power is now: " + str(hookPower))
 
-	aim(delta, hookDirVector, hookPower)
+	var num_points = aim(delta, hookDirVector, hookPower)
+	#print("number of points in line is " + str(num_points))
 	
-	#Grappling
+	#=====================
+	#GRAPPLING
+	#=====================
 	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		#The frame the mouse was clicked, shoot the hook
 		if (!shotHook):
-			shoot(hookDirVector, hookPower)
+			shoot(hookDirVector, hookPower, num_points)
 			#get_node("PinJoint2D").set_node_b(hookInstance.get_node("RopeSeg10").get_path())
 		#else if hook landed
 			#allow player movement
@@ -105,38 +113,51 @@ func aim(delta, dirVector, power):
 	line.clear_points()
 	var pos = Vector2.ZERO
 	var vel = dirVector * power
+	var num_points
 	for i in max_points:
 		line.add_point(pos)
 		vel.y += gravity * delta
 		
 		var collision_test = $Line2D/CollisionTest
 		var collision_info = collision_test.move_and_collide(vel*delta, false, true, true)
-		if collision_info:
-			vel = Vector2.ZERO
-		
+		num_points = i
 		
 		pos += vel * delta
 		collision_test.position = pos
+		if collision_info:
+			break
+	
+	#print("number of points in line is " + str(num_points))
+	return num_points
 
-func shoot(dirVector, power):
+func shoot(dirVector, power, points):
 	shotHook = true
+	#	var mouse = get_local_mouse_position()
+	#	var hookPower = mouse.length()
+	#	print("Mouse distance away is: " + str(hookPower))
+	#
+	#	hookDirVector = mouse.normalized()
+	#	hookPower *= hookPowerMult
+	#	print("Hook power is: " + str(hookPower))
+	#
+	#	if (hookPower > maxHookPower):
+	#		hookPower = maxHookPower
+	#		print("Hook power is now: " + str(hookPower))
 
-#	var mouse = get_local_mouse_position()
-#	var hookPower = mouse.length()
-#	print("Mouse distance away is: " + str(hookPower))
-#
-#	hookDirVector = mouse.normalized()
-#	hookPower *= hookPowerMult
-#	print("Hook power is: " + str(hookPower))
-#
-#	if (hookPower > maxHookPower):
-#		hookPower = maxHookPower
-#		print("Hook power is now: " + str(hookPower))
+#	hookInstance = hookPath.instantiate()
+#	add_child(hookInstance);
+#	hookInstance.velocity = dirVector
+#	hookInstance.speed = power
 
-	hookInstance = hookPath.instantiate()
-	add_child(hookInstance);
-	hookInstance.velocity = dirVector
-	hookInstance.speed = power
+	var rope = ropePath.instantiate()
+	add_child(rope)
+	rope.hook.velocity = dirVector
+	rope.hook.speed = power
+	rope.spawn_rope(self, points, dirVector)
+
+
+
+
 
 #	#TODO: - Create hook instance at player position
 #	#		- add force with magnitude hookPower, direction hookDirVector

@@ -1,18 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dv2ewcsgj5l3c"]
+[gd_scene load_steps=4 format=3 uid="uid://dv2ewcsgj5l3c"]
 
 [ext_resource type="Texture2D" uid="uid://cpq0l8jyisn07" path="res://icon.svg" id="1_j5yg1"]
+[ext_resource type="Script" path="res://Scripts/rope_seg.gd" id="1_x7gia"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_llj1k"]
-height = 52.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mj0sq"]
+size = Vector2(2, 2)
 
 [node name="RopeSeg" type="RigidBody2D"]
-mass = 3.03
+collision_layer = 2
+collision_mask = 4
+linear_damp = 1.0
+angular_damp = 1.0
+script = ExtResource("1_x7gia")
 
 [node name="Icon" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(1.90735e-06, -0.5)
-scale = Vector2(0.15625, 0.398438)
+scale = Vector2(0.015, 0.015)
 texture = ExtResource("1_j5yg1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_llj1k")
+[node name="C" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mj0sq")
+
+[node name="J" type="PinJoint2D" parent="C"]
+softness = 0.01

@@ -388,10 +388,8 @@ sources/0 = SubResource("TileSetAtlasSource_es4tg")
 [node name="other-test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_0mb0o")]
-position = Vector2(557, 201)
+position = Vector2(608, -37)
 scale = Vector2(0.5, 0.5)
-collision_layer = 1
-collision_mask = 4
 maxHookPower = 1000.0
 hookPowerMult = 1.0
 

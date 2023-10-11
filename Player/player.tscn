@@ -14,22 +14,22 @@ gradient = SubResource("Gradient_nmxqx")
 size = Vector2(10, 10)
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_5nkeb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="C" type="CollisionShape2D" parent="."]
 position = Vector2(0, -9.50031)
 shape = SubResource("RectangleShape2D_7vgdn")
+
+[node name="J" type="PinJoint2D" parent="C"]
+position = Vector2(0, -40.4997)
+node_a = NodePath("../..")
+softness = 0.01
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.124932, -8.0003)
 scale = Vector2(0.3125, 1.32813)
 texture = SubResource("GradientTexture2D_71edv")
-
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
-position = Vector2(0, -50)
-node_a = NodePath("..")
-bias = 0.9
 
 [node name="Line2D" type="Line2D" parent="."]
 

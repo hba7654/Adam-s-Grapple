@@ -16,7 +16,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	currentHeight = playerNode.get_position().y * -1
-	print (currentHeight)
+	#print (currentHeight)
 	if (currentHeight > maxHeight):
 		maxHeight = currentHeight
 	heightString = heightStringFormat % [currentHeight, maxHeight]

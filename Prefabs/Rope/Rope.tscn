@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://hdj6ey5syuu1"]
+
+[ext_resource type="Script" path="res://Scripts/Rope.gd" id="1_pxeys"]
+[ext_resource type="PackedScene" uid="uid://bsulm07d8ydse" path="res://Prefabs/Rope/hook.tscn" id="2_0fnsh"]
+
+[node name="Rope" type="Node2D"]
+script = ExtResource("1_pxeys")
+rope_close_tolerance = 5.0
+
+[node name="Hook" parent="." instance=ExtResource("2_0fnsh")]
