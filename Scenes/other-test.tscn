@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=11 format=3 uid="uid://cn34k28j3fipx"]
 
 [ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="1_0mb0o"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="2_l033h"]
-[ext_resource type="PackedScene" uid="uid://bsulm07d8ydse" path="res://Prefabs/hook.tscn" id="3_7hhk4"]
 [ext_resource type="Script" path="res://Scripts/Timer.gd" id="3_lsi28"]
 [ext_resource type="Script" path="res://Scripts/Height.gd" id="4_77jtm"]
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="7_0oasb"]
@@ -383,16 +382,18 @@ texture = ExtResource("10_wv7tx")
 
 [sub_resource type="TileSet" id="TileSet_8almh"]
 physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_es4tg")
 
 [node name="other-test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_0mb0o")]
+position = Vector2(557, 201)
 scale = Vector2(0.5, 0.5)
 collision_layer = 1
 collision_mask = 4
 maxHookPower = 1000.0
-hookPowerMult = 2.0
+hookPowerMult = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -200)
@@ -422,10 +423,6 @@ offset_top = -223.0
 offset_right = 95.0
 offset_bottom = -154.0
 text = "PAUSED"
-
-[node name="Hook" parent="." instance=ExtResource("3_7hhk4")]
-position = Vector2(199, 294)
-bouncePower = 0.0
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("pauseMenu")]
 process_mode = 3

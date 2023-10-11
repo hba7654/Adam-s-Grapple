@@ -36,13 +36,17 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var hookDirVector : Vector2
 var shotHook : bool
-const hookPath = preload("res://Prefabs/hook.tscn")
+const hookPath = preload("res://Prefabs/Rope/hook.tscn")
 var hookInstance
 @export var maxHookPower : float
 @export var hookPowerMult : float
 
+var line
+
 func _ready():
 	shotHook = false
+	line = $Line2D
+	line.show()
 
 
 func _physics_process(delta):
@@ -62,14 +66,28 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	#aiming
+	var mouse = get_local_mouse_position()
+	var hookPower = mouse.length()
+	print("Mouse distance away is: " + str(hookPower))
 
+	hookDirVector = mouse.normalized()
+	hookPower *= hookPowerMult
+	print("Hook power is: " + str(hookPower))
+
+	if (hookPower > maxHookPower):
+		hookPower = maxHookPower
+		print("Hook power is now: " + str(hookPower))
+
+	aim(delta, hookDirVector, hookPower)
 	
 	#Grappling
 	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
 		#The frame the mouse was clicked, shoot the hook
 		if (!shotHook):
-			#shoot()
-			get_node("PinJoint2D").set_node_b(hookInstance.get_node("RopeSeg10").get_path())
+			shoot(hookDirVector, hookPower)
+			#get_node("PinJoint2D").set_node_b(hookInstance.get_node("RopeSeg10").get_path())
 		#else if hook landed
 			#allow player movement
 	else:
@@ -82,9 +100,27 @@ func _physics_process(delta):
 
 			#Disable movement (no rope to retract/expand)
 
-#func shoot():
-#	shotHook = true
-#
+func aim(delta, dirVector, power):
+	var max_points = 300
+	line.clear_points()
+	var pos = Vector2.ZERO
+	var vel = dirVector * power
+	for i in max_points:
+		line.add_point(pos)
+		vel.y += gravity * delta
+		
+		var collision_test = $Line2D/CollisionTest
+		var collision_info = collision_test.move_and_collide(vel*delta, false, true, true)
+		if collision_info:
+			vel = Vector2.ZERO
+		
+		
+		pos += vel * delta
+		collision_test.position = pos
+
+func shoot(dirVector, power):
+	shotHook = true
+
 #	var mouse = get_local_mouse_position()
 #	var hookPower = mouse.length()
 #	print("Mouse distance away is: " + str(hookPower))
@@ -96,12 +132,12 @@ func _physics_process(delta):
 #	if (hookPower > maxHookPower):
 #		hookPower = maxHookPower
 #		print("Hook power is now: " + str(hookPower))
-#
-#	hookInstance = hookPath.instantiate()
-#	add_child(hookInstance);
-#	hookInstance.velocity = hookDirVector
-#	hookInstance.speed = hookPower
-#
+
+	hookInstance = hookPath.instantiate()
+	add_child(hookInstance);
+	hookInstance.velocity = dirVector
+	hookInstance.speed = power
+
 #	#TODO: - Create hook instance at player position
 #	#		- add force with magnitude hookPower, direction hookDirVector
 

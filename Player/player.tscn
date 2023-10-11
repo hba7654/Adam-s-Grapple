@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bre5o2y11kobn"]
+[gd_scene load_steps=6 format=3 uid="uid://bre5o2y11kobn"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_5nkeb"]
 
@@ -10,8 +10,10 @@ size = Vector2(20, 82)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_71edv"]
 gradient = SubResource("Gradient_nmxqx")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msdal"]
+size = Vector2(10, 10)
+
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(565, 206)
 collision_layer = 2
 script = ExtResource("1_5nkeb")
 
@@ -28,3 +30,12 @@ texture = SubResource("GradientTexture2D_71edv")
 position = Vector2(0, -50)
 node_a = NodePath("..")
 bias = 0.9
+
+[node name="Line2D" type="Line2D" parent="."]
+
+[node name="CollisionTest" type="CharacterBody2D" parent="Line2D"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/CollisionTest"]
+shape = SubResource("RectangleShape2D_msdal")
