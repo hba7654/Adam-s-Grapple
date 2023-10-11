@@ -50,13 +50,13 @@ func _physics_process(delta):
 			get_parent().queue_free()
 
 #REWORK HOOK COMPLETELY
-	#On mouse hover create parabloic trajectory
-	#On mouse click travel along trajectory
+	#On mouse hover create parabloic trajectory - DONE
+	#On mouse click travel along trajectory - DONE
 	#Rope added to hook in (small) segments until hook lands or max distance reached
 	#Hook and rope have collision with environment but not with the player and not with each other
 	#functions needed:
-		#calculate_path(Vector2 dirVector)
-		#shoot()
-		#add_segment(int index)
+		#calculate_path(Vector2 dirVector) - DONE DIFFERENTLY, see aim() in player.gd
+		#shoot() - DONE
+		#add_segment(int index) - DONE
 		#release()
 		#
