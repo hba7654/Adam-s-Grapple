@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cle441mpmhl02"]
+
+[ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="2_j33vw"]
+
+[sub_resource type="TileSet" id="TileSet_uoe0d"]
+physics_layer_0/collision_layer = 1
+
+[node name="main-game" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_uoe0d")
+format = 2
+layer_0/name = "Platform"
+layer_0/tile_data = PackedInt32Array(65532, 10, 4, 131068, 10, 5, 65533, 65546, 4, 131069, 65546, 5, 65534, 458762, 4, 131070, 458762, 5, 196604, 10, 9, 196605, 65546, 9, 196606, 458762, 9, -262142, 10, 4, -196606, 10, 5, -131070, 10, 9, -262141, 65546, 4, -196605, 65546, 5, -131069, 65546, 9, -262140, 458762, 4, -196604, 458762, 5, -131068, 458762, 9)
+
+[node name="Player" parent="." instance=ExtResource("2_j33vw")]
+position = Vector2(-40, -100)
+collision_layer = 1
+collision_mask = 4
+maxHookPower = 1000.0
+hookPowerMult = 2.0
