@@ -34,8 +34,8 @@ func _physics_process(delta):
 			freeze = true
 			landed = true
 			freeze = true
-		else: if (abs(normal.angle_to(Vector2.DOWN)) < 0.1):
-			print("hit a ceiling")
+#		else: if (abs(normal.angle_to(Vector2.DOWN)) < 0.1):
+#			print("hit a ceiling")
 #			velocity.x = 0
 #			velocity.y = 0
 		else:
@@ -44,10 +44,10 @@ func _physics_process(delta):
 			velocity.x *= bouncePower
 			velocity.y += bouncePower
 
-	else:
-		timer += delta
-		if(timer >= timeTillDeletion) :
-			get_parent().queue_free()
+#	else:
+#		timer += delta
+#		if(timer >= timeTillDeletion) :
+#			queue_free()
 
 #REWORK HOOK COMPLETELY
 	#On mouse hover create parabloic trajectory - DONE

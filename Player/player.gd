@@ -34,13 +34,19 @@ const JUMP_VELOCITY = -400.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const hookPath = preload("res://Prefabs/Rope/hook.tscn")
-const ropePath = preload("res://Prefabs/Rope/Rope.tscn")
 
 var hookDirVector : Vector2
 var shotHook : bool
 var hookInstance
+var hookPos
+var hooked : bool
+var currentRopeLength
+
 @export var maxHookPower : float
 @export var hookPowerMult : float
+@export var maxRopeLength : float
+@export var swingSpeed : float
+
 
 var line
 
@@ -48,9 +54,12 @@ func _ready():
 	shotHook = false
 	line = $Line2D
 	line.show()
+	currentRopeLength = maxRopeLength
 
 
 func _physics_process(delta):
+	#_draw()
+	#print(global_position)
 	#Gravity!
 	#velocity = Velocity
 
@@ -62,18 +71,19 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
+#	var direction = Input.get_axis("ui_left", "ui_right")
+#	if direction:
+#		velocity.x = direction * SPEED
+#	else:
+#		velocity.x = move_toward(velocity.x, 0, SPEED)
+#	move_and_slide()
 	
 	#=====================
 	#AIMING
 	#=====================
 	var mouse = get_local_mouse_position()
+	$HookStart.position.x = 25 * cos((-$HookStart.global_position + get_global_mouse_position()).angle())
+	$HookStart.position.y = 25 * sin((-$HookStart.global_position + get_global_mouse_position()).angle())
 	var hookPower = mouse.length()
 	#print("Mouse distance away is: " + str(hookPower))
 
@@ -91,29 +101,42 @@ func _physics_process(delta):
 	#=====================
 	#GRAPPLING
 	#=====================
-	if(Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+	if(Input.is_action_just_pressed("hook")):
 		#The frame the mouse was clicked, shoot the hook
 		if (!shotHook):
 			shoot(hookDirVector, hookPower, num_points)
-			#get_node("PinJoint2D").set_node_b(hookInstance.get_node("RopeSeg10").get_path())
-		#else if hook landed
-			#allow player movement
-	else:
+		
+	elif(Input.is_action_just_released("hook")):
 		#The frame the mouse was released
 		if (shotHook):
 			shotHook = false
+			hooked = false
+			hookInstance.queue_free()
 
-			#Release rope
-				#Detach player from rope
-
-			#Disable movement (no rope to retract/expand)
+	if shotHook and hookInstance.landed:
+		hooked = true
+		#create rope
+		currentRopeLength = global_position.distance_to(hookInstance.global_position)
+		#handle input
+		if Input.is_action_pressed("retract") and currentRopeLength > 0:
+			print("RETRACT")
+			currentRopeLength-=1
+		elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength:
+			currentRopeLength += 1
+		#do movement
+		swing(delta)
+		velocity.y += gravity * delta
+		velocity *= 0.975 # swing speed
+		move_and_collide(velocity)
+	move_and_collide(velocity)
 
 func aim(delta, dirVector, power):
 	var max_points = 300
 	line.clear_points()
-	var pos = Vector2.ZERO
+	var pos = $HookStart.position
 	var vel = dirVector * power
 	var num_points
+	var passed = 0
 	for i in max_points:
 		line.add_point(pos)
 		vel.y += gravity * delta
@@ -124,8 +147,13 @@ func aim(delta, dirVector, power):
 		
 		pos += vel * delta
 		collision_test.position = pos
+		
 		if collision_info:
-			break
+			if passed < 3:
+				passed+=1
+				pass
+			else:
+				break
 	
 	#print("number of points in line is " + str(num_points))
 	return num_points
@@ -144,16 +172,11 @@ func shoot(dirVector, power, points):
 	#		hookPower = maxHookPower
 	#		print("Hook power is now: " + str(hookPower))
 
-#	hookInstance = hookPath.instantiate()
-#	add_child(hookInstance);
-#	hookInstance.velocity = dirVector
-#	hookInstance.speed = power
-
-	var rope = ropePath.instantiate()
-	add_child(rope)
-	rope.hook.velocity = dirVector
-	rope.hook.speed = power
-	rope.spawn_rope(self, points, dirVector)
+	hookInstance = hookPath.instantiate()
+	hookInstance.global_position = $HookStart.global_position
+	get_parent().add_child(hookInstance);
+	hookInstance.velocity = dirVector
+	hookInstance.speed = power
 
 
 
@@ -173,3 +196,24 @@ func shoot(dirVector, power, points):
 #in _input():
 	#handle mouse input, call $Hook.shoot() on mouse press and $Hook.release() on mouse release
 	#handle kb input, if allowed to do so, to travel up and down rope
+
+func swing(delta):
+	var radius = global_position - hookInstance.global_position
+	var angle = acos(radius.dot(velocity) / (radius.length() * velocity.length()))
+	var rad_vel = cos(angle) * velocity.length()
+	velocity += radius.normalized() * -rad_vel
+	
+	if global_position.distance_to(hookInstance.global_position) > currentRopeLength:
+		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
+	
+	velocity += (hookInstance.global_position - global_position).normalized() * delta
+	
+
+#func _draw():
+#	if hooked:
+#		print("DRAWING ROPE")
+#		draw_line($HookStart.global_position, hookInstance.global_position, Color.CYAN, 10, true)
+#	else:
+#		print("NO LINE")
+#		draw_line($HookStart.global_position, Vector2.ZERO, Color.CYAN, 10, true)
+		
