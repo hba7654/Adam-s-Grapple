@@ -31,9 +31,9 @@ func _physics_process(delta):
 		if(abs(normal.angle_to(Vector2.UP)) < 0.1):
 			print("landed on solid ground")
 			velocity = Vector2.ZERO
+			freeze_mode = RigidBody2D.FREEZE_MODE_STATIC
 			freeze = true
 			landed = true
-			freeze = true
 #		else: if (abs(normal.angle_to(Vector2.DOWN)) < 0.1):
 #			print("hit a ceiling")
 #			velocity.x = 0

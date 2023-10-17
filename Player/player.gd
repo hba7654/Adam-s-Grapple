@@ -67,7 +67,7 @@ func _physics_process(delta):
 	#GRAVITY
 	#=====================
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity/100 * delta
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -111,23 +111,28 @@ func _physics_process(delta):
 		if (shotHook):
 			shotHook = false
 			hooked = false
-			hookInstance.queue_free()
+		#	hookInstance.queue_free()
 
 	if shotHook and hookInstance.landed:
 		hooked = true
 		#create rope
 		currentRopeLength = global_position.distance_to(hookInstance.global_position)
+#		$J.node_a = get_path()
+#		$J.node_b = hookInstance.get_path()
 		#handle input
 		if Input.is_action_pressed("retract") and currentRopeLength > 0:
 			print("RETRACT")
+			velocity += Vector2(0,delta);
+#			print($C)
+#			remove_child($C)
 			currentRopeLength-=1
 		elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength:
 			currentRopeLength += 1
+			velocity -= Vector2(0,delta);
 		#do movement
 		swing(delta)
-		velocity.y += gravity * delta
-		velocity *= 0.975 # swing speed
-		move_and_collide(velocity)
+		#velocity *= 0.975 # swing speed
+		
 	move_and_collide(velocity)
 
 func aim(delta, dirVector, power):
@@ -201,12 +206,17 @@ func swing(delta):
 	var radius = global_position - hookInstance.global_position
 	var angle = acos(radius.dot(velocity) / (radius.length() * velocity.length()))
 	var rad_vel = cos(angle) * velocity.length()
-	velocity += radius.normalized() * -rad_vel
+	if not is_on_floor():
+		velocity += radius.normalized() * -rad_vel
 	
-	if global_position.distance_to(hookInstance.global_position) > currentRopeLength:
+	var distance = global_position.distance_to(hookInstance.global_position)
+	if  distance > currentRopeLength:
+		print("Distance from player to hook: " + str(distance))
+		print("Rope Length: " + str(currentRopeLength))
+		print("Radius" + str(radius))
 		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
 	
-	velocity += (hookInstance.global_position - global_position).normalized() * delta
+	#velocity -= radius.normalized() * delta
 	
 
 #func _draw():
