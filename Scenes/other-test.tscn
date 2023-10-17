@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=14 format=3 uid="uid://cn34k28j3fipx"]
 
 [ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="1_0mb0o"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="2_l033h"]
@@ -9,6 +9,16 @@
 [ext_resource type="Script" path="res://Scenes/RockSpawner.gd" id="8_ac273"]
 [ext_resource type="PackedScene" uid="uid://1sp0dwtp4qxm" path="res://Prefabs/falling_rock.tscn" id="9_xbiro"]
 [ext_resource type="Texture2D" uid="uid://bcxtvndd1845k" path="res://assets/other-rocks/RockTile.png" id="10_wv7tx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ddkwq"]
+font_size = 36
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3fjvl"]
+font_size = 36
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_es4tg"]
 texture = ExtResource("10_wv7tx")
@@ -388,6 +398,7 @@ sources/0 = SubResource("TileSetAtlasSource_es4tg")
 [node name="other-test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_0mb0o")]
+position = Vector2(565, 207)
 scale = Vector2(0.5, 0.5)
 collision_layer = 1
 collision_mask = 4
@@ -395,28 +406,34 @@ maxHookPower = 1000.0
 hookPowerMult = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-offset = Vector2(0, -200)
+offset = Vector2(0, -115.295)
+zoom = Vector2(2.98, 2.98)
 script = ExtResource("2_l033h")
 
 [node name="Timer" type="Label" parent="Player/Camera2D"]
-offset_left = -1064.0
-offset_top = -994.0
-offset_right = -930.0
-offset_bottom = -946.0
+z_index = 2
+offset_left = -620.0
+offset_top = -576.0
+offset_right = -440.0
+offset_bottom = -520.0
 text = "timer text"
+label_settings = SubResource("LabelSettings_ddkwq")
 script = ExtResource("3_lsi28")
 
 [node name="Height" type="Label" parent="Player/Camera2D" node_paths=PackedStringArray("playerNode")]
-offset_left = -1064.0
-offset_top = -926.0
-offset_right = -980.0
-offset_bottom = -900.0
+z_index = 2
+offset_left = -620.0
+offset_top = -524.0
+offset_right = -431.0
+offset_bottom = -471.0
 text = "height text"
+label_settings = SubResource("LabelSettings_3fjvl")
 script = ExtResource("4_77jtm")
 playerNode = NodePath("../..")
 
 [node name="Label" type="Label" parent="Player/Camera2D"]
 visible = false
+z_index = 2
 offset_left = -23.0
 offset_top = -223.0
 offset_right = 95.0
@@ -427,10 +444,11 @@ text = "PAUSED"
 position = Vector2(199, 294)
 bouncePower = 0.0
 
-[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("pauseMenu")]
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("pauseMenu", "playerNode")]
 process_mode = 3
 script = ExtResource("7_0oasb")
 pauseMenu = NodePath("../Player/Camera2D/Label")
+playerNode = NodePath("../Player")
 
 [node name="RockSpawner" type="Node2D" parent="."]
 script = ExtResource("8_ac273")

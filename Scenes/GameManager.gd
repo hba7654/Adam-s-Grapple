@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var pauseMenu : Node
-
+@export var playerNode : Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -13,6 +13,8 @@ func _input(event):
 			pauseMenu.show()
 		else:
 			pauseMenu.hide()
+	#if event.is_action_pressed("up_pressed_debug"):
+	#	playerNode.position.y = playerNode.position.y - 100
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
