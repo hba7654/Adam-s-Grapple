@@ -13,8 +13,8 @@ func _input(event):
 			pauseMenu.show()
 		else:
 			pauseMenu.hide()
-	#if event.is_action_pressed("up_pressed_debug"):
-	#	playerNode.position.y = playerNode.position.y - 100
+	if event.is_action_pressed("up_pressed_debug"):
+		playerNode.position.y = playerNode.position.y - 100
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://1sp0dwtp4qxm"]
 
-[ext_resource type="Script" path="res://Scenes/Rock.gd" id="1_1khqk"]
+[ext_resource type="Script" path="res://Scripts/Rock.gd" id="1_1khqk"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_8y4j4"]
 
