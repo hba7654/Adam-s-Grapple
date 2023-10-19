@@ -46,18 +46,23 @@ var currentRopeLength
 @export var hookPowerMult : float
 @export var maxRopeLength : float
 @export var swingSpeed : float
+@export var pullStrength : float
+@export var shiftStrength : float
 
 
 var line
+var frame_counter
 
 func _ready():
 	shotHook = false
 	line = $Line2D
 	line.show()
 	currentRopeLength = maxRopeLength
+	frame_counter = 0
 
 
 func _physics_process(delta):
+	frame_counter += 1
 	#_draw()
 	#print(global_position)
 	#Gravity!
@@ -67,7 +72,10 @@ func _physics_process(delta):
 	#GRAVITY
 	#=====================
 	if not is_on_floor():
-		velocity.y += gravity/100 * delta
+		velocity.y += gravity * delta
+		#print("adding gravity in frame " + str(frame_counter))
+	elif not hooked:
+		velocity.x = 0
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -117,51 +125,92 @@ func _physics_process(delta):
 		hooked = true
 		#create rope
 		currentRopeLength = global_position.distance_to(hookInstance.global_position)
-#		$J.node_a = get_path()
-#		$J.node_b = hookInstance.get_path()
+		print("Current Rope Length: " + str(currentRopeLength))
+#		print("Hook is at " + str(hookInstance.global_position) + "at frame " + str(frame_counter))
 		#handle input
 		if Input.is_action_pressed("retract") and currentRopeLength > 0:
 			print("RETRACT")
-			velocity += Vector2(0,delta);
-#			print($C)
-#			remove_child($C)
 			currentRopeLength-=1
 		elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength:
+			print("EXTEND")
 			currentRopeLength += 1
-			velocity -= Vector2(0,delta);
+		
+		if Input.is_action_just_pressed("shift_right"):
+			velocity += Vector2(shiftStrength*delta, 0)
+		elif  Input.is_action_just_pressed("shift_left"):
+			velocity -= Vector2(shiftStrength*delta, 0)
 		#do movement
 		swing(delta)
 		#velocity *= 0.975 # swing speed
 		
-	move_and_collide(velocity)
+	move_and_slide()
 
 func aim(delta, dirVector, power):
-	var max_points = 300
-	line.clear_points()
-	var pos = $HookStart.position
-	var vel = dirVector * power
-	var num_points
-	var passed = 0
-	for i in max_points:
-		line.add_point(pos)
-		vel.y += gravity * delta
-		
-		var collision_test = $Line2D/CollisionTest
-		var collision_info = collision_test.move_and_collide(vel*delta, false, true, true)
-		num_points = i
-		
-		pos += vel * delta
-		collision_test.position = pos
-		
-		if collision_info:
-			if passed < 3:
-				passed+=1
-				pass
-			else:
-				break
+	var max_points
+	var temp_mask = $Line2D/CollisionTest.collision_mask
+	var temp_layer = $Line2D/CollisionTest.collision_layer
 	
-	#print("number of points in line is " + str(num_points))
-	return num_points
+	if not hooked:
+		$Line2D/CollisionTest.collision_mask = temp_mask
+		$Line2D/CollisionTest.collision_layer = temp_layer
+		max_points = 5
+		line.clear_points()
+		line.default_color = Color.WHITE
+		var pos = $HookStart.position
+		var vel = dirVector * power
+		var num_points
+		var passed = 0
+		for i in max_points:
+			line.add_point(pos)
+			vel.y += gravity * delta
+			
+			var collision_test = $Line2D/CollisionTest
+			var collision_info = collision_test.move_and_collide(vel*delta, false, true, true)
+			num_points = i
+			
+			pos += vel * delta
+			collision_test.position = pos
+			
+			if collision_info:
+				if passed < 3:
+					passed+=1
+					pass
+				else:
+					break
+		
+		#print("number of points in line is " + str(num_points))
+		return num_points
+	
+	else:
+		$Line2D/CollisionTest.collision_mask = 0
+		$Line2D/CollisionTest.collision_layer = 0
+		max_points = currentRopeLength
+		line.clear_points()
+		line.default_color = Color.BROWN
+		var pos = $Sprite2D.position
+		var vel = (hookInstance.global_position - global_position).normalized()
+		var num_points
+		var passed = 0
+		for i in max_points:
+			line.add_point(pos)
+#			vel.y += gravity * delta
+
+#			var collision_test = $Line2D/CollisionTest
+#			var collision_info = collision_test.move_and_collide(vel*delta, false, true, true)
+			num_points = i
+
+			pos += vel
+#			collision_test.position = pos
+
+#			if collision_info:
+#				if passed < 3:
+#					passed+=1
+#					pass
+#				else:
+#					break
+
+		#print("number of points in line is " + str(num_points))
+		return num_points
 
 func shoot(dirVector, power, points):
 	shotHook = true
@@ -207,16 +256,24 @@ func swing(delta):
 	var angle = acos(radius.dot(velocity) / (radius.length() * velocity.length()))
 	var rad_vel = cos(angle) * velocity.length()
 	if not is_on_floor():
+		print("flyin")
 		velocity += radius.normalized() * -rad_vel
 	
 	var distance = global_position.distance_to(hookInstance.global_position)
 	if  distance > currentRopeLength:
-		print("Distance from player to hook: " + str(distance))
-		print("Rope Length: " + str(currentRopeLength))
-		print("Radius" + str(radius))
+#		print("Distance from player to hook: " + str(distance))
+#		print("Rope Length: " + str(currentRopeLength))
+#		print("Radius" + str(radius))
 		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
+		#velocity -= radius.normalized() * delta * swingSpeed
+		if is_on_floor():
+			velocity -= Vector2(0, pullStrength*delta)
+	elif distance < currentRopeLength and not is_on_floor():
+#		velocity += radius.normalized() * delta * swingSpeed
+		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
+		
 	
-	#velocity -= radius.normalized() * delta
+	#velocity += radius.normalized() * delta * swingSpeed
 	
 
 #func _draw():

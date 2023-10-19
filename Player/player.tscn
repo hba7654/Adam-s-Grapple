@@ -22,10 +22,6 @@ texture = ExtResource("2_u5a2c")
 [node name="C" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7vgdn")
 
-[node name="J" type="PinJoint2D" parent="."]
-bias = 0.9
-softness = 0.01
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("2_u5a2c")

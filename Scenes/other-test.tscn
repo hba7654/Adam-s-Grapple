@@ -389,8 +389,12 @@ sources/0 = SubResource("TileSetAtlasSource_es4tg")
 
 [node name="Player" parent="." instance=ExtResource("1_0mb0o")]
 position = Vector2(557, 122)
-maxHookPower = 1000.0
-hookPowerMult = 1.0
+maxHookPower = 650.0
+hookPowerMult = 3.0
+maxRopeLength = 500.0
+swingSpeed = 5.0
+pullStrength = 1000.0
+shiftStrength = 10000.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -200)
