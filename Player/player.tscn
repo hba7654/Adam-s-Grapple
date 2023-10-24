@@ -10,6 +10,8 @@ size = Vector2(10, 10)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 4
+floor_stop_on_slope = false
+floor_max_angle = 0.165806
 script = ExtResource("1_5nkeb")
 
 [node name="HookStart" type="Node2D" parent="."]
