@@ -1,40 +1,25 @@
 [gd_scene load_steps=5 format=3 uid="uid://bre5o2y11kobn"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_5nkeb"]
-[ext_resource type="Texture2D" uid="uid://cpq0l8jyisn07" path="res://icon.svg" id="2_u5a2c"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_d7r0j"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vgdn"]
+size = Vector2(20, 82)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_msdal"]
-size = Vector2(10, 10)
+[sub_resource type="Gradient" id="Gradient_nmxqx"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_71edv"]
+gradient = SubResource("Gradient_nmxqx")
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 4
-floor_stop_on_slope = false
-floor_max_angle = 0.165806
+position = Vector2(565, 206)
+collision_layer = 2
 script = ExtResource("1_5nkeb")
 
-[node name="HookStart" type="Node2D" parent="."]
-position = Vector2(15, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="HookStart"]
-scale = Vector2(0.02, 0.02)
-texture = ExtResource("2_u5a2c")
-
-[node name="C" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_d7r0j")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9.50031)
+shape = SubResource("RectangleShape2D_7vgdn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.16, 0.16)
-texture = ExtResource("2_u5a2c")
-
-[node name="Line2D" type="Line2D" parent="."]
-z_index = 10
-width = 5.0
-
-[node name="CollisionTest" type="CharacterBody2D" parent="Line2D"]
-collision_layer = 8
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/CollisionTest"]
-shape = SubResource("RectangleShape2D_msdal")
+position = Vector2(-0.124932, -8.0003)
+scale = Vector2(0.3125, 1.32813)
+texture = SubResource("GradientTexture2D_71edv")

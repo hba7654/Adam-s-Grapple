@@ -15,5 +15,7 @@ layer_0/tile_data = PackedInt32Array(65532, 10, 4, 131068, 10, 5, 65533, 65546, 
 
 [node name="Player" parent="." instance=ExtResource("2_j33vw")]
 position = Vector2(-40, -100)
+collision_layer = 1
+collision_mask = 4
 maxHookPower = 1000.0
 hookPowerMult = 2.0
