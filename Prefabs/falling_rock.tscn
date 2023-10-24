@@ -11,32 +11,31 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_8ulco"]
 
 [node name="Rock" type="RigidBody2D"]
-position = Vector2(328, 0)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_1khqk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(634, 0)
-scale = Vector2(15, 15)
-polygon = PackedVector2Array(0, 0, 6, 0, 3, 6)
+position = Vector2(-55.25, 3.1875)
+scale = Vector2(18.75, 16.7708)
+polygon = PackedVector2Array(0, 0, 6, 0, 4.40655, 3.1869, 3, 6)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(679, 10)
+position = Vector2(0, 10)
 scale = Vector2(91.28, 20.68)
 texture = SubResource("CanvasTexture_8y4j4")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(680, 32)
+position = Vector2(0, 32)
 scale = Vector2(71.52, 23.88)
 texture = SubResource("CanvasTexture_6fxo8")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(680, 56)
+position = Vector2(0, 56)
 scale = Vector2(-52.3784, 25.287)
 texture = SubResource("CanvasTexture_466ya")
 
 [node name="Sprite2D4" type="Sprite2D" parent="."]
-position = Vector2(679, 76)
+position = Vector2(0, 76)
 scale = Vector2(23.88, 31.04)
 texture = SubResource("CanvasTexture_8ulco")

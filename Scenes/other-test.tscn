@@ -411,7 +411,7 @@ hookPowerMult = 2.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -115.295)
-zoom = Vector2(2.98, 2.98)
+zoom = Vector2(1.09, 1.09)
 script = ExtResource("2_l033h")
 
 [node name="Timer" type="Label" parent="Player/Camera2D"]
@@ -457,9 +457,12 @@ pauseMenu = NodePath("../Player/Camera2D/Label")
 playerNode = NodePath("../Player")
 
 [node name="RockSpawner" type="Node2D" parent="."]
+position = Vector2(78, -111)
 script = ExtResource("7_6qvpm")
+interval = 3.0
 
 [node name="Rock" parent="." instance=ExtResource("9_xbiro")]
+position = Vector2(958, -104)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_8almh")
