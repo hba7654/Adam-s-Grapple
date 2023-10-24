@@ -5,11 +5,22 @@
 [ext_resource type="Script" path="res://Scripts/Timer.gd" id="3_lsi28"]
 [ext_resource type="Script" path="res://Scripts/Height.gd" id="4_77jtm"]
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="7_0oasb"]
-[ext_resource type="Script" path="res://Scenes/RockSpawner.gd" id="8_ac273"]
+[ext_resource type="Script" path="res://Scripts/RockSpawner.gd" id="8_ac273"]
 [ext_resource type="Texture2D" uid="uid://l2g4uyl628m3" path="res://assets/BarRockPlatforms/RockPack-Brown(vegetation).png" id="9_u7ojr"]
 [ext_resource type="PackedScene" uid="uid://1sp0dwtp4qxm" path="res://Prefabs/falling_rock.tscn" id="9_xbiro"]
 [ext_resource type="Texture2D" uid="uid://di26wqq6k8quk" path="res://assets/BarRockPlatforms/RockPack-Brown.png" id="10_rk636"]
 [ext_resource type="Texture2D" uid="uid://bcxtvndd1845k" path="res://assets/other-rocks/RockTile.png" id="10_wv7tx"]
+[ext_resource type="Script" path="res://Scenes/WindArea.gd" id="10_yl8ob"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ddkwq"]
+font_size = 36
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3fjvl"]
+font_size = 36
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_myow6"]
 tile_data = PackedInt32Array(65536, 262145, 9, 131072, 262145, 10, 196608, 262145, 11, 1, 327681, 8, 65537, 327681, 9, 131073, 327681, 10, 196609, 327681, 11, 65538, 393217, 9, 131074, 393217, 10, 196610, 393217, 11)
@@ -2090,6 +2101,9 @@ pattern_3 = SubResource("TileMapPattern_g0i1k")
 pattern_4 = SubResource("TileMapPattern_kc3pb")
 pattern_5 = SubResource("TileMapPattern_nbhuo")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgaow"]
+size = Vector2(182, 158.5)
+
 [node name="other-test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_0mb0o")]
@@ -2102,28 +2116,36 @@ pullStrength = 1000.0
 shiftStrength = 10000.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-offset = Vector2(0, -200)
+offset = Vector2(0, -115.295)
+zoom = Vector2(1.09, 1.09)
 script = ExtResource("2_l033h")
 
 [node name="Timer" type="Label" parent="Player/Camera2D"]
-offset_left = -1064.0
-offset_top = -994.0
-offset_right = -930.0
-offset_bottom = -946.0
+z_index = 2
+offset_left = -620.0
+offset_top = -576.0
+offset_right = -440.0
+offset_bottom = -520.0
 text = "timer text"
+label_settings = SubResource("LabelSettings_ddkwq")
 script = ExtResource("3_lsi28")
+metadata/_edit_use_anchors_ = true
 
 [node name="Height" type="Label" parent="Player/Camera2D" node_paths=PackedStringArray("playerNode")]
-offset_left = -1064.0
-offset_top = -926.0
-offset_right = -980.0
-offset_bottom = -900.0
+z_index = 2
+offset_left = -620.0
+offset_top = -524.0
+offset_right = -431.0
+offset_bottom = -471.0
 text = "height text"
+label_settings = SubResource("LabelSettings_3fjvl")
 script = ExtResource("4_77jtm")
 playerNode = NodePath("../..")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Player/Camera2D"]
 visible = false
+z_index = 2
 offset_left = -23.0
 offset_top = -223.0
 offset_right = 95.0
@@ -2134,11 +2156,15 @@ text = "PAUSED"
 process_mode = 3
 script = ExtResource("7_0oasb")
 pauseMenu = NodePath("../Player/Camera2D/Label")
+playerNode = NodePath("../Player")
 
 [node name="RockSpawner" type="Node2D" parent="."]
+position = Vector2(78, -111)
 script = ExtResource("8_ac273")
+interval = 3.0
 
 [node name="Rock" parent="." instance=ExtResource("9_xbiro")]
+position = Vector2(958, -104)
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(8, 30)
