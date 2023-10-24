@@ -2160,7 +2160,7 @@ playerNode = NodePath("../Player")
 
 [node name="RockSpawner" type="Node2D" parent="."]
 position = Vector2(78, -111)
-script = ExtResource("7_6qvpm")
+script = ExtResource("8_ac273")
 interval = 3.0
 
 [node name="Rock" parent="." instance=ExtResource("9_xbiro")]
