@@ -28,16 +28,16 @@ func _physics_process(delta):
 		#print("Normal: " + str(normal) + " Angle: " + str(angle) + 
 		#" \nAngle To Up: " + str(abs(normal.angle_to(Vector2.UP))) + " Angle To Down: " + str(abs(normal.angle_to(Vector2.DOWN))))
 		#only bounce the hook off the wall if it hits the sides
-		if(abs(normal.angle_to(Vector2.UP)) < 0.1):
+		if abs(normal.angle_to(Vector2.UP)) < PI/4:
 			print("landed on solid ground")
 			velocity = Vector2.ZERO
 			freeze_mode = RigidBody2D.FREEZE_MODE_STATIC
 			freeze = true
 			landed = true
-#		else: if (abs(normal.angle_to(Vector2.DOWN)) < 0.1):
-#			print("hit a ceiling")
-#			velocity.x = 0
-#			velocity.y = 0
+		elif abs(normal.angle_to(Vector2.DOWN)) < PI/4:
+			print("hit a ceiling")
+			velocity.x = 0
+			velocity.y = 0
 		else:
 			velocity = velocity.bounce(colInfo.get_normal().normalized())
 			print("normal bounce")
