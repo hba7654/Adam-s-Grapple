@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="1_0mb0o"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="2_l033h"]
-[ext_resource type="PackedScene" uid="uid://bsulm07d8ydse" path="res://Prefabs/hook.tscn" id="3_7hhk4"]
+[ext_resource type="PackedScene" path="res://Prefabs/hook.tscn" id="3_7hhk4"]
 [ext_resource type="Script" path="res://Scripts/Timer.gd" id="3_lsi28"]
 [ext_resource type="Script" path="res://Scripts/Height.gd" id="4_77jtm"]
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="7_0oasb"]
