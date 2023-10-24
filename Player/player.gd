@@ -111,15 +111,19 @@ func _physics_process(delta):
 	#=====================
 	if(Input.is_action_just_pressed("hook")):
 		#The frame the mouse was clicked, shoot the hook
-		if (!shotHook):
-			shoot(hookDirVector, hookPower, num_points)
+		if shotHook:
+			shotHook = false
+			hooked = false
+			hookInstance.queue_free()
+			
+		shoot(hookDirVector, hookPower, num_points)
 		
-	elif(Input.is_action_just_released("hook")):
+	elif(Input.is_action_just_pressed("release")):
 		#The frame the mouse was released
 		if (shotHook):
 			shotHook = false
 			hooked = false
-		#	hookInstance.queue_free()
+			hookInstance.queue_free()
 
 	if shotHook and hookInstance.landed:
 		hooked = true
