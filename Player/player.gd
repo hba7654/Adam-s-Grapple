@@ -1,36 +1,4 @@
-#extends CharacterBody2D
-#
-#
-#const SPEED = 300.0
-#const JUMP_VELOCITY = -400.0
-#
-## Get the gravity from the project settings to be synced with RigidBody nodes.
-#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-#
-#
-#func _physics_process(delta):
-#	# Add the gravity.
-#	if not is_on_floor():
-#		velocity.y += gravity * delta
-#
-#	# Handle Jump.
-#	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-#		velocity.y = JUMP_VELOCITY
-#
-#	# Get the input direction and handle the movement/deceleration.
-#	# As good practice, you should replace UI actions with custom gameplay actions.
-#	var direction = Input.get_axis("ui_left", "ui_right")
-#	if direction:
-#		velocity.x = direction * SPEED
-#	else:
-#		velocity.x = move_toward(velocity.x, 0, SPEED)
-#
-#	move_and_slide()
 extends CharacterBody2D
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const hookPath = preload("res://Prefabs/Rope/hook.tscn")
@@ -41,6 +9,9 @@ var hookInstance
 var hookPos
 var hooked : bool
 var currentRopeLength
+var shifted_left : bool
+var shifted_right : bool
+var direction_sign : int #positive = right
 
 @export var maxHookPower : float
 @export var hookPowerMult : float
@@ -59,14 +30,13 @@ func _ready():
 	line.show()
 	currentRopeLength = maxRopeLength
 	frame_counter = 0
+	shifted_left = false
+	shifted_right = false
+	direction_sign = true
 
 
 func _physics_process(delta):
 	frame_counter += 1
-	#_draw()
-	#print(global_position)
-	#Gravity!
-	#velocity = Velocity
 
 	#=====================
 	#GRAVITY
@@ -76,15 +46,14 @@ func _physics_process(delta):
 		#print("adding gravity in frame " + str(frame_counter))
 	elif not hooked:
 		velocity.x = 0
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-#	var direction = Input.get_axis("ui_left", "ui_right")
-#	if direction:
-#		velocity.x = direction * SPEED
-#	else:
-#		velocity.x = move_toward(velocity.x, 0, SPEED)
-#	move_and_slide()
+	
+	#=====================
+	#RESETTING SHIFT VARS
+	#=====================
+	if (direction_sign * velocity.x) < 0:
+		shifted_left = false
+		shifted_right = false
+	direction_sign = sign(velocity.x)
 	
 	#=====================
 	#AIMING
@@ -124,28 +93,30 @@ func _physics_process(delta):
 			shotHook = false
 			hooked = false
 			hookInstance.queue_free()
-
+	
+	#Create Rope
 	if shotHook and hookInstance.landed:
-		hooked = true
-		#create rope
 		currentRopeLength = global_position.distance_to(hookInstance.global_position)
-		print("Current Rope Length: " + str(currentRopeLength))
-#		print("Hook is at " + str(hookInstance.global_position) + "at frame " + str(frame_counter))
-		#handle input
-		if Input.is_action_pressed("retract") and currentRopeLength > 0:
-			print("RETRACT")
-			currentRopeLength-=1
-		elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength:
-			print("EXTEND")
-			currentRopeLength += 1
-		
-		if Input.is_action_just_pressed("shift_right"):
-			velocity += Vector2(shiftStrength*delta, 0)
-		elif  Input.is_action_just_pressed("shift_left"):
-			velocity -= Vector2(shiftStrength*delta, 0)
-		#do movement
-		swing(delta)
-		#velocity *= 0.975 # swing speed
+		if currentRopeLength < maxRopeLength:
+			hooked = true
+			
+			#handle input
+			if Input.is_action_pressed("retract") and currentRopeLength > 0:
+				print("RETRACT")
+				currentRopeLength-=1
+			elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength:
+				print("EXTEND")
+				currentRopeLength += 1
+			
+			if Input.is_action_just_pressed("shift_right") and not shifted_right:
+				shifted_right = true
+				velocity += Vector2(shiftStrength*delta, 0)
+			elif  Input.is_action_just_pressed("shift_left") and not shifted_left:
+				shifted_left = true
+				velocity -= Vector2(shiftStrength*delta, 0)
+				
+			#do movement
+			swing(delta)
 		
 	move_and_slide()
 
@@ -279,12 +250,3 @@ func swing(delta):
 	
 	#velocity += radius.normalized() * delta * swingSpeed
 	
-
-#func _draw():
-#	if hooked:
-#		print("DRAWING ROPE")
-#		draw_line($HookStart.global_position, hookInstance.global_position, Color.CYAN, 10, true)
-#	else:
-#		print("NO LINE")
-#		draw_line($HookStart.global_position, Vector2.ZERO, Color.CYAN, 10, true)
-		

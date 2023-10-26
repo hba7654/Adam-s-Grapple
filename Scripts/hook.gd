@@ -24,17 +24,13 @@ func _physics_process(delta):
 
 		#bouncing the hook off a wall
 		var normal = colInfo.get_normal()
-		#var angle = abs(normal.angle())
-		#print("Normal: " + str(normal) + " Angle: " + str(angle) + 
-		#" \nAngle To Up: " + str(abs(normal.angle_to(Vector2.UP))) + " Angle To Down: " + str(abs(normal.angle_to(Vector2.DOWN))))
-		#only bounce the hook off the wall if it hits the sides
-		if abs(normal.angle_to(Vector2.UP)) < PI/4:
+		if abs(normal.angle_to(Vector2.UP)) < PI/2:
 			print("landed on solid ground")
 			velocity = Vector2.ZERO
 			freeze_mode = RigidBody2D.FREEZE_MODE_STATIC
 			freeze = true
 			landed = true
-		elif abs(normal.angle_to(Vector2.DOWN)) < PI/4:
+		elif abs(normal.angle_to(Vector2.DOWN)) < PI/2:
 			print("hit a ceiling")
 			velocity.x = 0
 			velocity.y = 0
@@ -43,20 +39,3 @@ func _physics_process(delta):
 			print("normal bounce")
 			velocity.x *= bouncePower
 			velocity.y += bouncePower
-
-#	else:
-#		timer += delta
-#		if(timer >= timeTillDeletion) :
-#			queue_free()
-
-#REWORK HOOK COMPLETELY
-	#On mouse hover create parabloic trajectory - DONE
-	#On mouse click travel along trajectory - DONE
-	#Rope added to hook in (small) segments until hook lands or max distance reached
-	#Hook and rope have collision with environment but not with the player and not with each other
-	#functions needed:
-		#calculate_path(Vector2 dirVector) - DONE DIFFERENTLY, see aim() in player.gd
-		#shoot() - DONE
-		#add_segment(int index) - DONE
-		#release()
-		#
