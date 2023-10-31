@@ -28,13 +28,16 @@ shape = SubResource("CircleShape2D_d7r0j")
 scale = Vector2(0.16, 0.16)
 texture = ExtResource("2_u5a2c")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="ArcLine" type="Line2D" parent="."]
 z_index = 10
-width = 5.0
+width = 3.0
 
-[node name="CollisionTest" type="CharacterBody2D" parent="Line2D"]
+[node name="CollisionTest" type="CharacterBody2D" parent="ArcLine"]
 collision_layer = 8
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/CollisionTest"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArcLine/CollisionTest"]
 shape = SubResource("RectangleShape2D_msdal")
+
+[node name="Rope" type="Line2D" parent="."]
+width = 5.0
