@@ -108,13 +108,13 @@ func _physics_process(delta):
 	
 	#Create Rope
 	if shotHook and hookInstance.landed:
-		create_rope()
 		currentRopeLength = global_position.distance_to(hookInstance.global_position)
 		if currentRopeLength < maxRopeLength:
 			hooked = true
+			create_rope()
 			
 			#handle input
-			if Input.is_action_pressed("retract") and currentRopeLength > 50:
+			if Input.is_action_pressed("retract") and currentRopeLength > 10:
 				print("RETRACT")
 				currentRopeLength-=1
 			elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength and not is_on_floor():
