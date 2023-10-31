@@ -19,6 +19,7 @@ var direction_sign : int #positive = right
 @export var swingSpeed : float
 @export var pullStrength : float
 @export var shiftStrength : float
+@export var jump_boost_strength : float
 
 
 var line
@@ -89,6 +90,14 @@ func _physics_process(delta):
 		
 	elif(Input.is_action_just_pressed("release")):
 		#The frame the mouse was released
+		if (shotHook):
+			shotHook = false
+			hooked = false
+			hookInstance.queue_free()
+			
+	elif(Input.is_action_just_pressed("jump")):
+		#The frame the mouse was released
+		velocity *= jump_boost_strength
 		if (shotHook):
 			shotHook = false
 			hooked = false
