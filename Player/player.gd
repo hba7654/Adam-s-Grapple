@@ -19,15 +19,19 @@ var direction_sign : int #positive = right
 @export var swingSpeed : float
 @export var pullStrength : float
 @export var shiftStrength : float
+@export var jump_boost_strength : float
 
 
-var line
+var arc_line
+var rope_line
 var frame_counter
 
 func _ready():
 	shotHook = false
-	line = $Line2D
-	line.show()
+	arc_line = $ArcLine
+	arc_line.show()
+	rope_line = $Rope
+	rope_line.hide()
 	currentRopeLength = maxRopeLength
 	frame_counter = 0
 	shifted_left = false
@@ -93,9 +97,18 @@ func _physics_process(delta):
 			shotHook = false
 			hooked = false
 			hookInstance.queue_free()
+			
+	elif(Input.is_action_just_pressed("jump")):
+		#The frame the mouse was released
+		velocity *= jump_boost_strength
+		if (shotHook):
+			shotHook = false
+			hooked = false
+			hookInstance.queue_free()
 	
 	#Create Rope
 	if shotHook and hookInstance.landed:
+		create_rope()
 		currentRopeLength = global_position.distance_to(hookInstance.global_position)
 		if currentRopeLength < maxRopeLength:
 			hooked = true
@@ -122,70 +135,74 @@ func _physics_process(delta):
 
 func aim(delta, dirVector, power):
 	var max_points
-	var temp_mask = $Line2D/CollisionTest.collision_mask
-	var temp_layer = $Line2D/CollisionTest.collision_layer
+	var temp_mask = $ArcLine/CollisionTest.collision_mask
+	var temp_layer = $ArcLine/CollisionTest.collision_layer
 	
-	if not hooked:
-		$Line2D/CollisionTest.collision_mask = temp_mask
-		$Line2D/CollisionTest.collision_layer = temp_layer
-		max_points = 5
-		line.clear_points()
-		line.default_color = Color.WHITE
-		var pos = $HookStart.position
-		var vel = dirVector * power
-		var num_points
-		var passed = 0
-		for i in max_points:
-			line.add_point(pos)
-			vel.y += gravity * delta
-			
-			var collision_test = $Line2D/CollisionTest
-			var collision_info = collision_test.move_and_collide(vel*delta, false, true, true)
-			num_points = i
-			
-			pos += vel * delta
-			collision_test.position = pos
-			
-			if collision_info:
-				if passed < 3:
-					passed+=1
-					pass
-				else:
-					break
+	#if not hooked:
+	rope_line.hide()
+	$ArcLine/CollisionTest.collision_mask = temp_mask
+	$ArcLine/CollisionTest.collision_layer = temp_layer
+	max_points = 5
+	arc_line.clear_points()
+	arc_line.default_color = Color.WHITE
+	var pos = $HookStart.position
+	var vel = dirVector * power
+	var num_points
+	var passed = 0
+	for i in max_points:
+		arc_line.add_point(pos)
+		vel.y += gravity * delta
 		
-		#print("number of points in line is " + str(num_points))
-		return num_points
+		var collision_test = $ArcLine/CollisionTest
+		var collision_info = collision_test.move_and_collide(vel*delta, false, true, true)
+		num_points = i
+		
+		pos += vel * delta
+		collision_test.position = pos
+		
+		if collision_info:
+			if passed < 3:
+				passed+=1
+				pass
+			else:
+				break
 	
-	else:
-		$Line2D/CollisionTest.collision_mask = 0
-		$Line2D/CollisionTest.collision_layer = 0
-		max_points = currentRopeLength
-		line.clear_points()
-		line.default_color = Color.BROWN
-		var pos = $Sprite2D.position
-		var vel = (hookInstance.global_position - global_position).normalized()
-		var num_points
-		var passed = 0
-		for i in max_points:
-			line.add_point(pos)
-#			vel.y += gravity * delta
+	#print("number of points in line is " + str(num_points))
+	#arc_line.show()
+	return num_points
+	
+#	else:
+#		#arc_line.hide()
+#		max_points = currentRopeLength
+#		rope_line.clear_points()
+#		rope_line.default_color = Color.BROWN
+#		var pos = $Sprite2D.position
+#		var vel = (hookInstance.global_position - global_position).normalized()
+#		var num_points
+#		var passed = 0
+#		for i in max_points:
+#			rope_line.add_point(pos)
+#			num_points = i
+#
+#			pos += vel
+#		rope_line.show()
+#		return num_points
+		
+func create_rope():
+	var max_points = currentRopeLength
+	rope_line.clear_points()
+	rope_line.default_color = Color.BROWN
+	var pos = $Sprite2D.position
+	var vel = (hookInstance.global_position - global_position).normalized()
+	var num_points
+	var passed = 0
+	for i in max_points:
+		rope_line.add_point(pos)
+		num_points = i
 
-#			var collision_test = $Line2D/CollisionTest
-#			var collision_info = collision_test.move_and_collide(vel*delta, false, true, true)
-			num_points = i
-
-			pos += vel
-#			collision_test.position = pos
-
-#			if collision_info:
-#				if passed < 3:
-#					passed+=1
-#					pass
-#				else:
-#					break
-
-		#print("number of points in line is " + str(num_points))
-		return num_points
+		pos += vel
+	rope_line.show()
+	return num_points
 
 func shoot(dirVector, power, points):
 	shotHook = true
