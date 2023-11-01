@@ -22,6 +22,13 @@ func _physics_process(delta):
 			var normal = colInfo.get_normal()
 			var angle = normal.angle_to(Vector2.UP) * 180/PI
 			print("Normal angle: " + str(angle))
+			
+#			print("landed on solid ground")
+#			velocity = Vector2.ZERO
+#			freeze_mode = RigidBody2D.FREEZE_MODE_STATIC
+#			freeze = true
+#			landed = true
+#			return
 			if bounced_last_frame or abs(angle) < 85:
 				print("landed on solid ground")
 				velocity = Vector2.ZERO

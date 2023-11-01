@@ -250,7 +250,8 @@ func swing(delta):
 	if not is_on_floor():
 		print("flyin")
 		velocity += radius.normalized() * -rad_vel
-	
+		currentRopeLength -= delta
+		
 	var distance = global_position.distance_to(hookInstance.global_position)
 	if  distance > currentRopeLength:
 #		print("Distance from player to hook: " + str(distance))
@@ -265,5 +266,5 @@ func swing(delta):
 		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
 		
 	
-	#velocity += radius.normalized() * delta * swingSpeed
+#	velocity += radius.normalized() * delta * swingSpeed
 	
