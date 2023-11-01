@@ -20,6 +20,7 @@ var direction_sign : int #positive = right
 @export var pullStrength : float
 @export var shiftStrength : float
 @export var jump_boost_strength : float
+@export var crawl_speed : float
 
 
 var arc_line
@@ -105,6 +106,12 @@ func _physics_process(delta):
 			shotHook = false
 			hooked = false
 			hookInstance.queue_free()
+			
+	if Input.is_action_pressed("shift_right") and is_on_floor():
+		velocity.x += crawl_speed*delta 
+	elif Input.is_action_pressed("shift_left") and is_on_floor():
+		velocity.x -= crawl_speed*delta 
+		
 	
 	#Create Rope
 	if shotHook and hookInstance.landed:
@@ -123,11 +130,10 @@ func _physics_process(delta):
 			
 			if Input.is_action_just_pressed("shift_right") and not shifted_right and not is_on_floor():
 				shifted_right = true
-				velocity += Vector2(shiftStrength*delta, 0)
+				velocity.x += shiftStrength*delta
 			elif  Input.is_action_just_pressed("shift_left") and not shifted_left and not is_on_floor():
 				shifted_left = true
-				velocity -= Vector2(shiftStrength*delta, 0)
-				
+				velocity.x -= shiftStrength*delta
 			#do movement
 			swing(delta)
 		

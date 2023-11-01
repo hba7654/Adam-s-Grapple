@@ -2205,6 +2205,7 @@ swingSpeed = 5.0
 pullStrength = 1000.0
 shiftStrength = 10000.0
 jump_boost_strength = 1.5
+crawl_speed = 200.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -115.295)
