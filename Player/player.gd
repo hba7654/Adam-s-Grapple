@@ -108,23 +108,23 @@ func _physics_process(delta):
 	
 	#Create Rope
 	if shotHook and hookInstance.landed:
-		create_rope()
 		currentRopeLength = global_position.distance_to(hookInstance.global_position)
 		if currentRopeLength < maxRopeLength:
 			hooked = true
+			create_rope()
 			
 			#handle input
-			if Input.is_action_pressed("retract") and currentRopeLength > 0:
+			if Input.is_action_pressed("retract") and currentRopeLength > 10:
 				print("RETRACT")
 				currentRopeLength-=1
-			elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength:
+			elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength and not is_on_floor():
 				print("EXTEND")
 				currentRopeLength += 1
 			
-			if Input.is_action_just_pressed("shift_right") and not shifted_right:
+			if Input.is_action_just_pressed("shift_right") and not shifted_right and not is_on_floor():
 				shifted_right = true
 				velocity += Vector2(shiftStrength*delta, 0)
-			elif  Input.is_action_just_pressed("shift_left") and not shifted_left:
+			elif  Input.is_action_just_pressed("shift_left") and not shifted_left and not is_on_floor():
 				shifted_left = true
 				velocity -= Vector2(shiftStrength*delta, 0)
 				
@@ -138,7 +138,6 @@ func aim(delta, dirVector, power):
 	var temp_mask = $ArcLine/CollisionTest.collision_mask
 	var temp_layer = $ArcLine/CollisionTest.collision_layer
 	
-	#if not hooked:
 	rope_line.hide()
 	$ArcLine/CollisionTest.collision_mask = temp_mask
 	$ArcLine/CollisionTest.collision_layer = temp_layer
@@ -166,27 +165,7 @@ func aim(delta, dirVector, power):
 				pass
 			else:
 				break
-	
-	#print("number of points in line is " + str(num_points))
-	#arc_line.show()
 	return num_points
-	
-#	else:
-#		#arc_line.hide()
-#		max_points = currentRopeLength
-#		rope_line.clear_points()
-#		rope_line.default_color = Color.BROWN
-#		var pos = $Sprite2D.position
-#		var vel = (hookInstance.global_position - global_position).normalized()
-#		var num_points
-#		var passed = 0
-#		for i in max_points:
-#			rope_line.add_point(pos)
-#			num_points = i
-#
-#			pos += vel
-#		rope_line.show()
-#		return num_points
 		
 func create_rope():
 	var max_points = currentRopeLength
@@ -206,18 +185,6 @@ func create_rope():
 
 func shoot(dirVector, power, points):
 	shotHook = true
-	#	var mouse = get_local_mouse_position()
-	#	var hookPower = mouse.length()
-	#	print("Mouse distance away is: " + str(hookPower))
-	#
-	#	hookDirVector = mouse.normalized()
-	#	hookPower *= hookPowerMult
-	#	print("Hook power is: " + str(hookPower))
-	#
-	#	if (hookPower > maxHookPower):
-	#		hookPower = maxHookPower
-	#		print("Hook power is now: " + str(hookPower))
-
 	hookInstance = hookPath.instantiate()
 	hookInstance.global_position = $HookStart.global_position
 	get_parent().add_child(hookInstance);
@@ -226,33 +193,19 @@ func shoot(dirVector, power, points):
 
 
 
-
-
-#	#TODO: - Create hook instance at player position
-#	#		- add force with magnitude hookPower, direction hookDirVector
-
-
-
-#REWORKING GRAPPLING
-#see bottom of hook.gd for more details
-#in _physics_process():
-	#recalculate mouse position and dir vector, pass information to $Hook.calculate_path()
-	#check if hook landed
-		#if so, allow traveling along rope
-#in _input():
-	#handle mouse input, call $Hook.shoot() on mouse press and $Hook.release() on mouse release
-	#handle kb input, if allowed to do so, to travel up and down rope
-
 func swing(delta):
+	print("Current Rope Length: " + str(currentRopeLength))
 	var radius = global_position - hookInstance.global_position
-	var angle = acos(radius.dot(velocity) / (radius.length() * velocity.length()))
+	var angle = radius.angle_to(velocity)#acos(radius.dot(velocity) / (radius.length() * velocity.length()))
 	var rad_vel = cos(angle) * velocity.length()
-	if not is_on_floor():
-		print("flyin")
+	if abs(angle*180/PI) > 120:
+		velocity.y += gravity * delta
+	elif not is_on_floor():
 		velocity += radius.normalized() * -rad_vel
 		currentRopeLength -= delta
 		
 	var distance = global_position.distance_to(hookInstance.global_position)
+	print("Distance from Rope: " + str(distance))
 	if  distance > currentRopeLength:
 #		print("Distance from player to hook: " + str(distance))
 #		print("Rope Length: " + str(currentRopeLength))
