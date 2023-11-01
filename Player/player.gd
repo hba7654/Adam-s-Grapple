@@ -218,13 +218,8 @@ func swing(delta):
 #		velocity += radius.normalized() * delta * swingSpeed
 		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
 		
-<<<<<<< Updated upstream
-	
-#	velocity += radius.normalized() * delta * swingSpeed
-=======
 	if not is_on_floor():
 		velocity -= radius.normalized() * delta * swingSpeed
 	else:
 		velocity.x *= 0.4
->>>>>>> Stashed changes
 	
