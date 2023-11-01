@@ -17,7 +17,7 @@ func _ready():
 func _physics_process(delta):
 	#velocity.y += gravity*delta
 	if not landed:
-		var colInfo = move_and_collide(velocity.normalized() * delta * speed)
+		var colInfo = move_and_collide(velocity * delta * speed)
 		if colInfo: 
 			var normal = colInfo.get_normal()
 			var angle = normal.angle_to(Vector2.UP) * 180/PI
