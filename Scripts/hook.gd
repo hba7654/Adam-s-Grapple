@@ -1,6 +1,6 @@
-extends RigidBody2D
+extends CharacterBody2D
 
-var velocity : Vector2
+#var velocity : Vector2
 var speed : float
 var landed : bool
 @export var bouncePower : float
@@ -15,9 +15,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	#velocity.y += gravity*delta
+	velocity.y += gravity*delta
 	if not landed:
-		var colInfo = move_and_collide(velocity * delta * speed)
+		#velocity *= delta * speed
+		var colInfo
+		move_and_slide()
+		if(get_slide_collision_count() > 0):
+			colInfo = get_slide_collision(0)
 		if colInfo: 
 			var normal = colInfo.get_normal()
 			var angle = normal.angle_to(Vector2.UP) * 180/PI
@@ -29,16 +33,14 @@ func _physics_process(delta):
 #			freeze = true
 #			landed = true
 #			return
-			if bounced_last_frame or abs(angle) < 85:
+			if abs(angle) < 45:
 				print("landed on solid ground")
 				velocity = Vector2.ZERO
-				freeze_mode = RigidBody2D.FREEZE_MODE_STATIC
-				freeze = true
 				landed = true
 			elif abs(angle) > 130:
 				print("hit a ceiling")
-				velocity.x = 0
-				velocity.y = 0
+				velocity.x *= bouncePower
+#				velocity.y = 0
 			else:
 				velocity = velocity.bounce(colInfo.get_normal().normalized())
 				print("normal bounce")

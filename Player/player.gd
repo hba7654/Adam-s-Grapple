@@ -188,13 +188,13 @@ func shoot(dirVector, power, points):
 	hookInstance = hookPath.instantiate()
 	hookInstance.global_position = $HookStart.global_position
 	get_parent().add_child(hookInstance);
-	hookInstance.velocity = dirVector
+	hookInstance.velocity = dirVector*power
 	hookInstance.speed = power
 
 
 
 func swing(delta):
-	print("Current Rope Length: " + str(currentRopeLength))
+	#print("Current Rope Length: " + str(currentRopeLength))
 	var radius = global_position - hookInstance.global_position
 	var angle = radius.angle_to(velocity)#acos(radius.dot(velocity) / (radius.length() * velocity.length()))
 	var rad_vel = cos(angle) * velocity.length()
@@ -205,7 +205,7 @@ func swing(delta):
 		currentRopeLength -= delta
 		
 	var distance = global_position.distance_to(hookInstance.global_position)
-	print("Distance from Rope: " + str(distance))
+	#print("Distance from Rope: " + str(distance))
 	if  distance > currentRopeLength:
 #		print("Distance from player to hook: " + str(distance))
 #		print("Rope Length: " + str(currentRopeLength))

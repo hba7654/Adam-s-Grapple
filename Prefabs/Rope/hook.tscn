@@ -14,10 +14,13 @@ gradient = SubResource("Gradient_qi2i4")
 width = 6
 height = 6
 
-[node name="Hook" type="RigidBody2D"]
+[node name="Hook" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 4
+slide_on_ceiling = false
+floor_block_on_wall = false
 script = ExtResource("1_xhk7d")
+bouncePower = 0.25
 
 [node name="C" type="CollisionShape2D" parent="."]
 position = Vector2(-1.19209e-07, -1.19209e-07)
