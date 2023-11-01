@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/hook.gd" id="1_xhk7d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_675tb"]
-size = Vector2(10, 10)
+size = Vector2(6, 6)
 
 [sub_resource type="Gradient" id="Gradient_qi2i4"]
 offsets = PackedFloat32Array(0, 0.0021978, 0.993407, 1)
@@ -17,8 +17,6 @@ height = 6
 [node name="Hook" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 4
-slide_on_ceiling = false
-floor_block_on_wall = false
 script = ExtResource("1_xhk7d")
 bouncePower = 0.25
 
