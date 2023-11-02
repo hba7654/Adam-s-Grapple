@@ -88,6 +88,7 @@ func _physics_process(delta):
 		if shotHook:
 			shotHook = false
 			hooked = false
+			hookInstance.set_name("temp")
 			hookInstance.queue_free()
 			
 		shoot(hookDirVector, hookPower, num_points)
