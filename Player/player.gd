@@ -228,4 +228,11 @@ func swing(delta):
 		velocity -= radius.normalized() * delta * swingSpeed
 	else:
 		velocity.x *= 0.4
-	
+
+func _on_rock_delete_hook():
+	print("i was told to delete this hook")
+	if (shotHook == true):
+		shotHook = false
+		hooked = false
+		hookInstance.queue_free()
+	pass # Replace with function body.

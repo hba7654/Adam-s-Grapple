@@ -1,5 +1,6 @@
 extends RigidBody2D
-
+@export var breaksRope : bool
+signal delete_hook
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,3 +16,14 @@ func _process(_delta):
 		print("ROCK DELETED")
 		queue_free()
 	pass
+	
+func _on_body_entered(body):
+	print("collided")
+	#print(body.name)
+	if (body.name == "Player" || body.name == "Hook"):
+		print("Collided with player or hook")
+		delete_hook.emit()
+		if (body.name == "Player"):
+			body._on_rock_delete_hook()
+	if (body.name != "Hook"):
+		queue_free()
