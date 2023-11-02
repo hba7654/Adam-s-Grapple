@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=23 format=3 uid="uid://cn34k28j3fipx"]
 
 [ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="1_0mb0o"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="2_l033h"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://1sp0dwtp4qxm" path="res://Prefabs/falling_rock.tscn" id="9_xbiro"]
 [ext_resource type="Texture2D" uid="uid://di26wqq6k8quk" path="res://assets/BarRockPlatforms/RockPack-Brown.png" id="10_rk636"]
 [ext_resource type="Texture2D" uid="uid://bcxtvndd1845k" path="res://assets/other-rocks/RockTile.png" id="10_wv7tx"]
-[ext_resource type="Script" path="res://Scenes/WindArea.gd" id="10_yl8ob"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ddkwq"]
 font_size = 36
@@ -2101,9 +2100,6 @@ pattern_3 = SubResource("TileMapPattern_g0i1k")
 pattern_4 = SubResource("TileMapPattern_kc3pb")
 pattern_5 = SubResource("TileMapPattern_nbhuo")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgaow"]
-size = Vector2(182, 158.5)
-
 [node name="other-test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_0mb0o")]
@@ -2159,12 +2155,12 @@ pauseMenu = NodePath("../Player/Camera2D/Label")
 playerNode = NodePath("../Player")
 
 [node name="RockSpawner" type="Node2D" parent="."]
-position = Vector2(78, -111)
+position = Vector2(625, -337)
 script = ExtResource("8_ac273")
 interval = 3.0
 
 [node name="Rock" parent="." instance=ExtResource("9_xbiro")]
-position = Vector2(958, -104)
+position = Vector2(816, -533)
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(8, 30)

@@ -11,7 +11,7 @@ func _process(_delta):
 	#replace 508 in this with whatever the appropriate number is. 
 	# alternate option: delete it once it makes contact with a non-player object (this route is better, but there are currently no non-player objects)
 	# only issue with option 2 is that depending on how often they spawn in, there could be a ton on screen 
-	#if get_position().y >= 508:
-		#print("ROCK DELETED")
-		#queue_free()
+	if get_position().y >= 508:
+		print("ROCK DELETED")
+		queue_free()
 	pass
