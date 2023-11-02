@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/hook.gd" id="1_xhk7d"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7fnp2"]
-radius = 2.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_675tb"]
+size = Vector2(6, 6)
 
 [sub_resource type="Gradient" id="Gradient_qi2i4"]
 offsets = PackedFloat32Array(0, 0.0021978, 0.993407, 1)
@@ -11,24 +11,21 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 0.278431, 0.278431, 1, 0.817967, 0, 0.2
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jvu6o"]
 gradient = SubResource("Gradient_qi2i4")
-width = 26
-height = 26
+width = 6
+height = 6
 
-[node name="Hook" type="RigidBody2D"]
+[node name="Hook" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 4
-can_sleep = false
-lock_rotation = true
 script = ExtResource("1_xhk7d")
+bouncePower = 0.25
 
 [node name="C" type="CollisionShape2D" parent="."]
 position = Vector2(-1.19209e-07, -1.19209e-07)
-shape = SubResource("CircleShape2D_7fnp2")
-
-[node name="J" type="PinJoint2D" parent="."]
+shape = SubResource("RectangleShape2D_675tb")
+debug_color = Color(0.964706, 0, 0.486275, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-9.53674e-07, -2.38419e-07)
 rotation = 3.14159
-scale = Vector2(0.153, 0.153)
 texture = SubResource("GradientTexture2D_jvu6o")
