@@ -113,6 +113,8 @@ func _physics_process(delta):
 		velocity.x -= crawl_speed*delta 
 		
 	
+	
+	
 	#Create Rope
 	if shotHook and hookInstance.landed:
 		currentRopeLength = global_position.distance_to(hookInstance.global_position)
