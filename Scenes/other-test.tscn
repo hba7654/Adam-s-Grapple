@@ -3139,7 +3139,7 @@ size = Vector2(181, 175)
 [node name="other-test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_0mb0o")]
-position = Vector2(593, 423)
+position = Vector2(84, 291)
 maxHookPower = 650.0
 hookPowerMult = 2.0
 maxRopeLength = 500.0
