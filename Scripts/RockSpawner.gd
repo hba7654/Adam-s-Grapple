@@ -19,10 +19,10 @@ func _process(delta):
 	currentTime += delta
 	if (currentTime >= interval):
 		#spawn rock
-		print("spawned rock")
 		var newRock = fallingRock.instantiate()
-		newRock.global_position = global_position
-		print(newRock.get_position())
+		print("spawned rock")
 		add_child(newRock)
+		newRock.global_position = get_global_position()
+		print(newRock.get_position())
 		currentTime = 0
 	pass
