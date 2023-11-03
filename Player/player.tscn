@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bre5o2y11kobn"]
+[gd_scene load_steps=7 format=3 uid="uid://bre5o2y11kobn"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_5nkeb"]
 [ext_resource type="Texture2D" uid="uid://cpq0l8jyisn07" path="res://icon.svg" id="2_u5a2c"]
@@ -7,6 +7,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_msdal"]
 size = Vector2(10, 10)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_os0g7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcybh"]
+custom_solver_bias = 1.0
+size = Vector2(3, 15)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 4
@@ -42,3 +48,43 @@ shape = SubResource("RectangleShape2D_msdal")
 
 [node name="Rope" type="Line2D" parent="."]
 width = 5.0
+
+[node name="Leg1" type="RigidBody2D" parent="."]
+position = Vector2(8, 14)
+collision_layer = 16
+collision_mask = 21
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Leg1"]
+position = Vector2(0, -4)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Leg1"]
+modulate = Color(0, 0.623529, 1, 1)
+position = Vector2(0, 3.5)
+scale = Vector2(3, 15)
+texture = SubResource("CanvasTexture_os0g7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Leg1"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_hcybh")
+
+[node name="Leg2" type="RigidBody2D" parent="."]
+position = Vector2(-8, 14)
+collision_layer = 16
+collision_mask = 21
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Leg2"]
+position = Vector2(0, -4)
+node_a = NodePath("..")
+node_b = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="Leg2"]
+modulate = Color(0, 0.623529, 1, 1)
+position = Vector2(0, 3.5)
+scale = Vector2(3, 15)
+texture = SubResource("CanvasTexture_os0g7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Leg2"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_hcybh")

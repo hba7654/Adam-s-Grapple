@@ -88,6 +88,7 @@ func _physics_process(delta):
 		if shotHook:
 			shotHook = false
 			hooked = false
+			hookInstance.set_name("temp")
 			hookInstance.queue_free()
 			
 		shoot(hookDirVector, hookPower, num_points)
@@ -112,6 +113,8 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("shift_left") and is_on_floor():
 		velocity.x -= crawl_speed*delta 
 		
+	
+	
 	
 	#Create Rope
 	if shotHook and hookInstance.landed:
