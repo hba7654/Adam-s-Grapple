@@ -228,6 +228,10 @@ func swing(delta):
 		velocity -= radius.normalized() * delta * swingSpeed
 	else:
 		velocity.x *= 0.4
+		
+func apply_force(force : Vector2):
+	velocity += force
+	pass
 
 func _on_rock_delete_hook():
 	print("i was told to delete this hook")

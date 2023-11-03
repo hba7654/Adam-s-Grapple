@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=28 format=3 uid="uid://cn34k28j3fipx"]
 
 [ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="1_0mb0o"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="2_l033h"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://1sp0dwtp4qxm" path="res://Prefabs/falling_rock.tscn" id="9_xbiro"]
 [ext_resource type="Texture2D" uid="uid://di26wqq6k8quk" path="res://assets/BarRockPlatforms/RockPack-Brown.png" id="10_rk636"]
 [ext_resource type="Texture2D" uid="uid://bcxtvndd1845k" path="res://assets/other-rocks/RockTile.png" id="10_wv7tx"]
+[ext_resource type="Script" path="res://Scripts/WindArea.gd" id="11_b6fxo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ddkwq"]
 font_size = 36
@@ -2194,6 +2195,9 @@ pattern_7 = SubResource("TileMapPattern_icby8")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_iakn5"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gr6tg"]
+size = Vector2(181, 175)
+
 [node name="other-test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_0mb0o")]
@@ -2290,4 +2294,17 @@ rotation = 1.5708
 scale = Vector2(3490.86, 39.4707)
 texture = SubResource("CanvasTexture_iakn5")
 
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(597, 404)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("11_b6fxo")
+windForceX = -5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-11.5, -1.5)
+shape = SubResource("RectangleShape2D_gr6tg")
+
 [connection signal="delete_hook" from="Rock" to="Player" method="_on_rock_delete_hook"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
