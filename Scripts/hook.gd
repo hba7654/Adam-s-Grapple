@@ -51,3 +51,7 @@ func _physics_process(delta):
 		
 		else:
 			bounced_last_frame = false
+
+func apply_force(force : Vector2):
+	velocity += force
+	pass

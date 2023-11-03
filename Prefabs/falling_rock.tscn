@@ -1,41 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://1sp0dwtp4qxm"]
+[gd_scene load_steps=3 format=3 uid="uid://1sp0dwtp4qxm"]
 
-[ext_resource type="Script" path="res://Scripts/Rock.gd" id="1_1khqk"]
+[ext_resource type="Script" path="res://Scripts/Rock.gd" id="1_7fw8c"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_8y4j4"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_6fxo8"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_466ya"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_8ulco"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_uet2g"]
 
 [node name="Rock" type="RigidBody2D"]
 collision_layer = 4
 collision_mask = 7
-script = ExtResource("1_1khqk")
+mass = 426.64
+max_contacts_reported = 5
+contact_monitor = true
+script = ExtResource("1_7fw8c")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-55.25, 3.1875)
-scale = Vector2(18.75, 16.7708)
-polygon = PackedVector2Array(0, 0, 6, 0, 4.40655, 3.1869, 3, 6)
+position = Vector2(-15, 0)
+scale = Vector2(5, 5)
+polygon = PackedVector2Array(0, 0, 6, 0, 3, 6)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 10)
-scale = Vector2(91.28, 20.68)
-texture = SubResource("CanvasTexture_8y4j4")
+position = Vector2(-0.195, 10.25)
+scale = Vector2(10.5, 21.5)
+texture = SubResource("CanvasTexture_uet2g")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(0, 32)
-scale = Vector2(71.52, 23.88)
-texture = SubResource("CanvasTexture_6fxo8")
-
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(0, 56)
-scale = Vector2(-52.3784, 25.287)
-texture = SubResource("CanvasTexture_466ya")
-
-[node name="Sprite2D4" type="Sprite2D" parent="."]
-position = Vector2(0, 76)
-scale = Vector2(23.88, 31.04)
-texture = SubResource("CanvasTexture_8ulco")
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
