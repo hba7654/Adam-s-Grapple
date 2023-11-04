@@ -5,7 +5,7 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_uet2g"]
 
 [node name="Rock" type="RigidBody2D"]
-collision_layer = 4
+collision_layer = 32
 collision_mask = 7
 mass = 426.64
 max_contacts_reported = 5
