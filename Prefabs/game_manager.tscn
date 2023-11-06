@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Scenes/GameManager.gd" id="1_vh0na"]
 
-[node name="GameManager" type="Node2D" node_paths=PackedStringArray("pauseMenu")]
+[node name="GameManager" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_vh0na")
-pauseMenu = NodePath("")

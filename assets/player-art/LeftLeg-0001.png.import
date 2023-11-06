@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqiehv674idrf"
-path="res://.godot/imported/croppedrock.png-631d793253b217f5fd0c5ab928c8179a.ctex"
+uid="uid://4elq3r4wq2kv"
+path="res://.godot/imported/LeftLeg-0001.png-c76cdb5ac4e47ea69773c2d8e27d9d3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://croppedrock.png"
-dest_files=["res://.godot/imported/croppedrock.png-631d793253b217f5fd0c5ab928c8179a.ctex"]
+source_file="res://assets/player-art/LeftLeg-0001.png"
+dest_files=["res://.godot/imported/LeftLeg-0001.png-c76cdb5ac4e47ea69773c2d8e27d9d3c.ctex"]
 
 [params]
 
