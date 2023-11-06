@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by0qyr2sk5fe6"
-path="res://.godot/imported/carlos-garcia-scythe.png-41ac5ce1d89c88077350c39f6eadf05e.ctex"
+uid="uid://pp75yvlo1otq"
+path="res://.godot/imported/caveRemasteredV7.png-b28c3220efe3e3f1e4a8589b5e5c8df5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/carlos-garcia-scythe.png"
-dest_files=["res://.godot/imported/carlos-garcia-scythe.png-41ac5ce1d89c88077350c39f6eadf05e.ctex"]
+source_file="res://assets/Background/caveRemasteredV7.png"
+dest_files=["res://.godot/imported/caveRemasteredV7.png-b28c3220efe3e3f1e4a8589b5e5c8df5.ctex"]
 
 [params]
 
