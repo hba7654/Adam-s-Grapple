@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-const hookPath = preload("res://Prefabs/Rope/hook.tscn")
+const hookPath = preload("res://Prefabs/hook.tscn")
 
 var hookDirVector : Vector2
 var shotHook : bool

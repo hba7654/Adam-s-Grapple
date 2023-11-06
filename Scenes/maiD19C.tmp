@@ -1,19 +1,19 @@
 [gd_scene load_steps=36 format=3 uid="uid://cn34k28j3fipx"]
 
-[ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="1_0mb0o"]
-[ext_resource type="Texture2D" uid="uid://cgihudmeorwkr" path="res://assets/Background/6d13119ec35d038c0649f6f4d5f2b9ad.png" id="1_bokvu"]
-[ext_resource type="Texture2D" uid="uid://yj7ff3un7b66" path="res://assets/Background/9c779ba1dcb98ed867bbaa5630ea245c.jpg" id="2_a677u"]
-[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="2_l033h"]
-[ext_resource type="Script" path="res://Scripts/Timer.gd" id="3_lsi28"]
-[ext_resource type="Script" path="res://Scripts/Height.gd" id="4_77jtm"]
-[ext_resource type="Script" path="res://Scenes/GameManager.gd" id="7_0oasb"]
-[ext_resource type="Script" path="res://Scripts/RockSpawner.gd" id="8_ac273"]
-[ext_resource type="Texture2D" uid="uid://l2g4uyl628m3" path="res://assets/BarRockPlatforms/RockPack-Brown(vegetation).png" id="9_u7ojr"]
-[ext_resource type="PackedScene" uid="uid://1sp0dwtp4qxm" path="res://Prefabs/falling_rock.tscn" id="9_xbiro"]
-[ext_resource type="Texture2D" uid="uid://cfhv4jr1f8ej7" path="res://assets/BarRockPlatforms/RockPack-Grey(vegetation).png" id="10_neds5"]
-[ext_resource type="Texture2D" uid="uid://di26wqq6k8quk" path="res://assets/BarRockPlatforms/RockPack-Brown.png" id="10_rk636"]
-[ext_resource type="Texture2D" uid="uid://bcxtvndd1845k" path="res://assets/other-rocks/RockTile.png" id="10_wv7tx"]
-[ext_resource type="Script" path="res://Scripts/WindArea.gd" id="11_b6fxo"]
+[ext_resource type="Texture2D" uid="uid://cgihudmeorwkr" path="res://assets/Background/6d13119ec35d038c0649f6f4d5f2b9ad.png" id="1_y0n4k"]
+[ext_resource type="Texture2D" uid="uid://yj7ff3un7b66" path="res://assets/Background/9c779ba1dcb98ed867bbaa5630ea245c.jpg" id="2_ahd60"]
+[ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="2_j33vw"]
+[ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="4_yjydx"]
+[ext_resource type="Script" path="res://Scripts/Timer.gd" id="5_oe376"]
+[ext_resource type="Script" path="res://Scripts/Height.gd" id="6_klsow"]
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="7_0b7au"]
+[ext_resource type="Script" path="res://Scripts/RockSpawner.gd" id="8_m8wvo"]
+[ext_resource type="PackedScene" uid="uid://1sp0dwtp4qxm" path="res://Prefabs/falling_rock.tscn" id="9_nr7jw"]
+[ext_resource type="Texture2D" uid="uid://bcxtvndd1845k" path="res://assets/other-rocks/RockTile.png" id="10_acrp5"]
+[ext_resource type="Texture2D" uid="uid://l2g4uyl628m3" path="res://assets/BarRockPlatforms/RockPack-Brown(vegetation).png" id="11_rljev"]
+[ext_resource type="Texture2D" uid="uid://cfhv4jr1f8ej7" path="res://assets/BarRockPlatforms/RockPack-Grey(vegetation).png" id="12_6gwur"]
+[ext_resource type="Texture2D" uid="uid://di26wqq6k8quk" path="res://assets/BarRockPlatforms/RockPack-Brown.png" id="13_m2yvd"]
+[ext_resource type="Script" path="res://Scripts/WindArea.gd" id="14_woe84"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ddkwq"]
 font_size = 36
@@ -62,7 +62,7 @@ tile_data = PackedInt32Array(65536, 262146, 9, 131072, 262146, 10, 196608, 26214
 tile_data = PackedInt32Array(0, 458754, 65547, 65536, 458754, 65546, 1, 393218, 65547, 65537, 393218, 65546, 131073, 393218, 65545, 2, 327682, 65547, 65538, 327682, 65546, 131074, 327682, 65545, 196610, 327682, 65544, 3, 262146, 65547, 65539, 262146, 65546, 131075, 262146, 65545)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_es4tg"]
-texture = ExtResource("10_wv7tx")
+texture = ExtResource("10_acrp5")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -433,7 +433,7 @@ texture = ExtResource("10_wv7tx")
 9:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m1x3h"]
-texture = ExtResource("9_u7ojr")
+texture = ExtResource("11_rljev")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -1407,7 +1407,7 @@ texture = ExtResource("9_u7ojr")
 11:10/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x65c7"]
-texture = ExtResource("10_neds5")
+texture = ExtResource("12_6gwur")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -2327,7 +2327,7 @@ texture = ExtResource("10_neds5")
 4:8/4/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x72ch"]
-texture = ExtResource("10_rk636")
+texture = ExtResource("13_m2yvd")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -3138,19 +3138,19 @@ pattern_11 = SubResource("TileMapPattern_5byqv")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gr6tg"]
 size = Vector2(181, 175)
 
-[node name="other-test" type="Node2D"]
+[node name="main-game" type="Node2D"]
 
 [node name="Background Area 2" type="Sprite2D" parent="."]
 position = Vector2(726, -1986)
 scale = Vector2(1.65942, 4.7514)
-texture = ExtResource("1_bokvu")
+texture = ExtResource("1_y0n4k")
 
 [node name="Background Area 1" type="Sprite2D" parent="."]
 position = Vector2(566, -280.5)
 scale = Vector2(1.69936, 4.02941)
-texture = ExtResource("2_a677u")
+texture = ExtResource("2_ahd60")
 
-[node name="Player" parent="." instance=ExtResource("1_0mb0o")]
+[node name="Player" parent="." instance=ExtResource("2_j33vw")]
 position = Vector2(77, 291)
 maxHookPower = 650.0
 hookPowerMult = 2.0
@@ -3164,7 +3164,7 @@ crawl_speed = 300.0
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -115.295)
 zoom = Vector2(1.09, 1.09)
-script = ExtResource("2_l033h")
+script = ExtResource("4_yjydx")
 
 [node name="Timer" type="Label" parent="Player/Camera2D"]
 z_index = 2
@@ -3174,7 +3174,7 @@ offset_right = -440.0
 offset_bottom = -520.0
 text = "timer text"
 label_settings = SubResource("LabelSettings_ddkwq")
-script = ExtResource("3_lsi28")
+script = ExtResource("5_oe376")
 metadata/_edit_use_anchors_ = true
 
 [node name="Height" type="Label" parent="Player/Camera2D" node_paths=PackedStringArray("playerNode")]
@@ -3185,7 +3185,7 @@ offset_right = -431.0
 offset_bottom = -471.0
 text = "height text"
 label_settings = SubResource("LabelSettings_3fjvl")
-script = ExtResource("4_77jtm")
+script = ExtResource("6_klsow")
 playerNode = NodePath("../..")
 metadata/_edit_use_anchors_ = true
 
@@ -3213,15 +3213,15 @@ Space --- \"Lunge\""
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("pauseMenu")]
 process_mode = 3
-script = ExtResource("7_0oasb")
+script = ExtResource("7_0b7au")
 pauseMenu = NodePath("../Player/Camera2D/Label")
 
 [node name="RockSpawner" type="Node2D" parent="."]
 position = Vector2(967, -848)
-script = ExtResource("8_ac273")
+script = ExtResource("8_m8wvo")
 interval = 3.0
 
-[node name="Rock" parent="." instance=ExtResource("9_xbiro")]
+[node name="Rock" parent="." instance=ExtResource("9_nr7jw")]
 position = Vector2(974, -853)
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -3250,7 +3250,7 @@ texture = SubResource("CanvasTexture_iakn5")
 position = Vector2(1274, 415)
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("11_b6fxo")
+script = ExtResource("14_woe84")
 windForceX = -5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Wind"]
