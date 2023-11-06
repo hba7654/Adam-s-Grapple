@@ -32,7 +32,7 @@ texture = ExtResource("2_u5a2c")
 [node name="C" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d7r0j")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="DudeSprite" type="Sprite2D" parent="."]
 position = Vector2(4.76837e-07, -2.38419e-07)
 scale = Vector2(1.2, 1.11)
 texture = ExtResource("3_cifyy")
