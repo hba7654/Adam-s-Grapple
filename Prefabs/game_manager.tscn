@@ -1,8 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://cfh2rdo23fyhx"]
 
-[ext_resource type="Script" path="res://Scenes/GameManager.gd" id="1_vh0na"]
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_e65sg"]
 
-[node name="GameManager" type="Node2D" node_paths=PackedStringArray("pauseMenu")]
+[node name="GameManager" type="Node2D"]
 process_mode = 3
-script = ExtResource("1_vh0na")
-pauseMenu = NodePath("")
+script = ExtResource("1_e65sg")

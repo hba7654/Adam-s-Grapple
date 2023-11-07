@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-const hookPath = preload("res://Prefabs/Rope/hook.tscn")
+const hookPath = preload("res://Prefabs/hook.tscn")
 
 var hookDirVector : Vector2
 var shotHook : bool
@@ -59,6 +59,10 @@ func _physics_process(delta):
 		shifted_left = false
 		shifted_right = false
 	direction_sign = sign(velocity.x)
+	if direction_sign > 0:
+		$DudeSprite.flip_h = false
+	elif direction_sign < 0:
+		$DudeSprite.flip_h = true
 	
 	#=====================
 	#AIMING
@@ -180,7 +184,7 @@ func create_rope():
 	var max_points = currentRopeLength
 	rope_line.clear_points()
 	rope_line.default_color = Color.BROWN
-	var pos = $Sprite2D.position
+	var pos = $HookStart/Sprite2D.position
 	var vel = (hookInstance.global_position - global_position).normalized()
 	var num_points
 	var passed = 0
@@ -207,7 +211,8 @@ func swing(delta):
 	var radius = global_position - hookInstance.global_position
 	var angle = radius.angle_to(velocity)#acos(radius.dot(velocity) / (radius.length() * velocity.length()))
 	var rad_vel = cos(angle) * velocity.length()
-	if abs(angle*180/PI) > 120:
+	#If player stays spinning around a block in the air for a while, pull them down a bit
+	if abs(angle*180/PI) > 150:
 		velocity.y += gravity * delta
 	elif not is_on_floor():
 		velocity += radius.normalized() * -rad_vel
