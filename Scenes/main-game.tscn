@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=37 format=3 uid="uid://cn34k28j3fipx"]
 
 [ext_resource type="Texture2D" uid="uid://cgihudmeorwkr" path="res://assets/Background/6d13119ec35d038c0649f6f4d5f2b9ad.png" id="1_y0n4k"]
 [ext_resource type="Texture2D" uid="uid://yj7ff3un7b66" path="res://assets/Background/9c779ba1dcb98ed867bbaa5630ea245c.jpg" id="2_ahd60"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Timer.gd" id="5_oe376"]
 [ext_resource type="Script" path="res://Scripts/Height.gd" id="6_klsow"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="7_0b7au"]
+[ext_resource type="PackedScene" uid="uid://d0kr7756f1bt" path="res://Scenes/pause_menu.tscn" id="7_ebeis"]
 [ext_resource type="Script" path="res://Scripts/RockSpawner.gd" id="8_m8wvo"]
 [ext_resource type="PackedScene" uid="uid://1sp0dwtp4qxm" path="res://Prefabs/falling_rock.tscn" id="9_nr7jw"]
 [ext_resource type="Texture2D" uid="uid://bcxtvndd1845k" path="res://assets/other-rocks/RockTile.png" id="10_acrp5"]
@@ -3189,32 +3190,19 @@ script = ExtResource("6_klsow")
 playerNode = NodePath("../..")
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="Player/Camera2D"]
+[node name="pause_menu" parent="Player/Camera2D" instance=ExtResource("7_ebeis")]
 visible = false
-z_index = 2
-offset_left = -23.0
-offset_top = -223.0
-offset_right = 95.0
-offset_bottom = -154.0
-text = "PAUSED"
-
-[node name="Controls" type="Label" parent="Player/Camera2D"]
 z_index = 10
-offset_left = 451.0
-offset_top = 198.0
-offset_right = 811.0
-offset_bottom = 328.0
-text = "Controls:
-Left click --- shoot hook
-Right click --- unhook
-AD (or left/right arrows) ---  swing or crawl
-WS (or up/down arrows) --- change rope length
-Space --- \"Lunge\""
+offset_left = -15.0
+offset_top = -187.0
+offset_right = -15.0
+offset_bottom = -187.0
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("pauseMenu")]
 process_mode = 3
+modulate = Color(0, 0, 0, 1)
 script = ExtResource("7_0b7au")
-pauseMenu = NodePath("../Player/Camera2D/Label")
+pauseMenu = NodePath("../Player/Camera2D/pause_menu")
 
 [node name="RockSpawner" type="Node2D" parent="."]
 position = Vector2(967, -848)

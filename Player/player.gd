@@ -248,3 +248,6 @@ func _on_rock_delete_hook():
 		hooked = false
 		hookInstance.queue_free()
 	pass # Replace with function body.
+
+
+
