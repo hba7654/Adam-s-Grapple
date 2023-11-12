@@ -6,20 +6,14 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 
-func _input(event):
-	if event.is_action_pressed("esc_pressed"):
-		get_tree().paused = !get_tree().paused
-		if get_tree().paused == true:
-			pauseMenu.show()
-		else:
-			pauseMenu.hide()
-#	if event.is_action_pressed("up_pressed_debug"):
-#		playerNode.position.y = playerNode.position.y - 100
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	if Input.is_action_just_pressed("esc_pressed"):
+		if get_tree().paused == true:
+			pauseMenu.close_pause_menu()
+		else:
+			pauseMenu.open_pause_menu()
 
 
 

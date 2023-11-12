@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="AdamsGrapple"
-run/main_scene="res://Scenes/MainMenu.tscn"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+EasyMenus="*res://addons/EasyMenus/Nodes/menu_template_manager.tscn"
+EzTransitions="*res://addons/ez_transitions/objects/plugin_singleton/plugin_singleton_script.gd"
 
 [display]
 
@@ -25,6 +30,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="AdamsGrapple"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ez_transitions/plugin.cfg")
 
 [input]
 
