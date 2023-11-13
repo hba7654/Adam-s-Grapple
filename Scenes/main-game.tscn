@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=38 format=3 uid="uid://cn34k28j3fipx"]
 
 [ext_resource type="Texture2D" uid="uid://cgihudmeorwkr" path="res://assets/Background/6d13119ec35d038c0649f6f4d5f2b9ad.png" id="1_y0n4k"]
 [ext_resource type="Texture2D" uid="uid://yj7ff3un7b66" path="res://assets/Background/9c779ba1dcb98ed867bbaa5630ea245c.jpg" id="2_ahd60"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cfhv4jr1f8ej7" path="res://assets/BarRockPlatforms/RockPack-Grey(vegetation).png" id="12_6gwur"]
 [ext_resource type="Texture2D" uid="uid://di26wqq6k8quk" path="res://assets/BarRockPlatforms/RockPack-Brown.png" id="13_m2yvd"]
 [ext_resource type="Script" path="res://Scripts/WindArea.gd" id="14_woe84"]
+[ext_resource type="PackedScene" uid="uid://baobqja3t2a1k" path="res://Prefabs/breakable_platform.tscn" id="16_f1a04"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ddkwq"]
 font_size = 36
@@ -3152,6 +3153,7 @@ scale = Vector2(1.69936, 4.02941)
 texture = ExtResource("2_ahd60")
 
 [node name="Player" parent="." instance=ExtResource("2_j33vw")]
+unique_name_in_owner = true
 position = Vector2(77, 291)
 maxHookPower = 650.0
 hookPowerMult = 2.0
@@ -3244,6 +3246,11 @@ windForceX = -5.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Wind"]
 position = Vector2(-11.5, -1.5)
 shape = SubResource("RectangleShape2D_gr6tg")
+
+[node name="Platform" parent="." instance=ExtResource("16_f1a04")]
+position = Vector2(598, 442)
+gravity_scale = 0.0
+freeze = true
 
 [connection signal="delete_hook" from="Rock" to="Player" method="_on_rock_delete_hook"]
 [connection signal="body_entered" from="Area2D - Wind" to="Area2D - Wind" method="_on_body_entered"]
