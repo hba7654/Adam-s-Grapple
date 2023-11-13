@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/options_menu_controller.gd" id="1_h6k46"]
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/follow_focus_center.gd" id="2_l3n3h"]
-[ext_resource type="PackedScene" path="res://addons/EasyMenus/Nodes/slider_w_labels.tscn" id="3_xghjq"]
+[ext_resource type="PackedScene" uid="uid://dyfwp0vhgfjd7" path="res://addons/EasyMenus/Nodes/slider_w_labels.tscn" id="3_xghjq"]
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/option_button_input_propagator.gd" id="4_02jwa"]
-[ext_resource type="PackedScene" path="res://addons/EasyMenus/Nodes/gamepad_closable.tscn" id="5_k4nlh"]
+[ext_resource type="PackedScene" uid="uid://cqniig2ks0xs2" path="res://addons/EasyMenus/Nodes/gamepad_closable.tscn" id="5_k4nlh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x77mt"]
 
@@ -167,6 +167,7 @@ script = ExtResource("4_02jwa")
 [node name="GamepadClosable" parent="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3/VBoxContainer/AntiAliasing2DOptionButton" instance=ExtResource("5_k4nlh")]
 
 [node name="AntiAliasing3DLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "3D Anti Aliasing"
@@ -174,6 +175,7 @@ horizontal_alignment = 1
 
 [node name="AntiAliasing3DOptionButton" type="OptionButton" parent="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer3/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 tooltip_text = "Smooths out edges of 3D objects"
 item_count = 4
