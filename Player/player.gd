@@ -129,10 +129,10 @@ func _physics_process(delta):
 			
 			#handle input
 			if Input.is_action_pressed("retract") and currentRopeLength > 10:
-				print("RETRACT")
+				#print("RETRACT")
 				currentRopeLength-=1
 			elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength and not is_on_floor():
-				print("EXTEND")
+				#print("EXTEND")
 				currentRopeLength += 1
 			
 			if Input.is_action_just_pressed("shift_right") and not shifted_right and not is_on_floor():

@@ -13,15 +13,15 @@ func _process(_delta):
 	# alternate option: delete it once it makes contact with a non-player object (this route is better, but there are currently no non-player objects)
 	# only issue with option 2 is that depending on how often they spawn in, there could be a ton on screen 
 	if get_position().y >= 508:
-		print("ROCK DELETED")
+		#print("ROCK DELETED")
 		queue_free()
 	pass
 	
 func _on_body_entered(body):
-	print("collided")
+	#print("collided with ")
 	#print(body.name)
 	if (body.name == "Player" || body.name == "Hook"):
-		print("Collided with player or hook")
+		#print("Collided with player or hook")
 		delete_hook.emit()
 		if (body.name == "Player"):
 			body._on_rock_delete_hook()

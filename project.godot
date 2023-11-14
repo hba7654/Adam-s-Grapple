@@ -95,3 +95,4 @@ jump={
 2d_physics/layer_4="Trajectory"
 2d_physics/layer_5="Legs"
 2d_physics/layer_6="Hazard"
+2d_physics/layer_32="TestLayer"

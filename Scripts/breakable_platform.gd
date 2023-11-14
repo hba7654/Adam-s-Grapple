@@ -17,11 +17,15 @@ func _process(delta):
 		timer += delta
 	
 	if timer >= break_time:
-		queue_free()
+		visible = false
+		#Disable collision
+		#after a bit reenable layers and masks and visible = true
+
+
 
 func _on_body_entered(body):
 	print("collided w breakable")
-	#print(body.name)
-	if (body.name == "Player" || body.name == "Hook"):
+	print(body.name)
+	if (body.name == "Player" || body.name == "Hook" || body.name == "Leg1" || body.name == "Leg2"):
 		print(str(body.name) + "Collided")
 		start_to_break = true
