@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=37 format=3 uid="uid://cle441mpmhl02"]
 
 [ext_resource type="Texture2D" uid="uid://cgihudmeorwkr" path="res://assets/Background/6d13119ec35d038c0649f6f4d5f2b9ad.png" id="1_y0n4k"]
 [ext_resource type="Texture2D" uid="uid://yj7ff3un7b66" path="res://assets/Background/9c779ba1dcb98ed867bbaa5630ea245c.jpg" id="2_ahd60"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Timer.gd" id="5_oe376"]
 [ext_resource type="Script" path="res://Scripts/Height.gd" id="6_klsow"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="7_0b7au"]
-[ext_resource type="PackedScene" uid="uid://rw7gdui8lu3n" path="res://Scenes/pause_menu.tscn" id="7_ebeis"]
+[ext_resource type="PackedScene" path="res://Scenes/pause_menu.tscn" id="7_ebeis"]
 [ext_resource type="Script" path="res://Scripts/RockSpawner.gd" id="8_m8wvo"]
 [ext_resource type="PackedScene" uid="uid://1sp0dwtp4qxm" path="res://Prefabs/falling_rock.tscn" id="9_nr7jw"]
 [ext_resource type="Texture2D" uid="uid://bcxtvndd1845k" path="res://assets/other-rocks/RockTile.png" id="10_acrp5"]
@@ -3178,7 +3178,7 @@ label_settings = SubResource("LabelSettings_ddkwq")
 script = ExtResource("5_oe376")
 metadata/_edit_use_anchors_ = true
 
-[node name="Height" type="Label" parent="Player/Camera2D" node_paths=PackedStringArray("playerNode")]
+[node name="Height" type="Label" parent="Player/Camera2D" node_paths=PackedStringArray("startHeightMarker", "playerNode")]
 z_index = 2
 offset_left = -620.0
 offset_top = -524.0
@@ -3187,6 +3187,7 @@ offset_bottom = -471.0
 text = "height text"
 label_settings = SubResource("LabelSettings_3fjvl")
 script = ExtResource("6_klsow")
+startHeightMarker = NodePath("../../../StartHeightMarker")
 playerNode = NodePath("../..")
 metadata/_edit_use_anchors_ = true
 
@@ -3244,6 +3245,9 @@ windForceX = -5.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - Wind"]
 position = Vector2(-11.5, -1.5)
 shape = SubResource("RectangleShape2D_gr6tg")
+
+[node name="StartHeightMarker" type="Node2D" parent="."]
+position = Vector2(43, 515.94)
 
 [connection signal="delete_hook" from="Rock" to="Player" method="_on_rock_delete_hook"]
 [connection signal="body_entered" from="Area2D - Wind" to="Area2D - Wind" method="_on_body_entered"]
