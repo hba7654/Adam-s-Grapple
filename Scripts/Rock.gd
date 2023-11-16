@@ -19,11 +19,14 @@ func _process(_delta):
 	
 func _on_body_entered(body):
 	#print("collided with ")
-	#print(body.name)
-	if (body.name == "Player" || body.name == "Hook"):
+	print(body.name)
+	if (body.name == "Player" || body.name == "Hook" || body.name == "RopeCollision"):
 		#print("Collided with player or hook")
 		delete_hook.emit()
+#		get_tree().get_root().get_node("Player")._on_rock_delete_hook()
 		if (body.name == "Player"):
 			body._on_rock_delete_hook()
+		elif (body.name == "RopeCollision"):
+			body.get_parent().get_parent()._on_rock_delete_hook()
 	if (body.name != "Hook"):
 		queue_free()

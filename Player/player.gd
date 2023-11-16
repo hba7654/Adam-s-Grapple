@@ -39,6 +39,13 @@ func _ready():
 	shifted_right = false
 	direction_sign = true
 
+func _process(delta):
+	##BREAKABLE PLATFORMS
+	var col_info = get_last_slide_collision()
+	if col_info and col_info.get_collider().name.substr(0, 8) == "Platform":
+		#print(col_info.get_collider().name)
+		print("HEWWO NEMO")
+		col_info.get_collider().break_platform()
 
 func _physics_process(delta):
 	frame_counter += 1
@@ -191,9 +198,11 @@ func create_rope():
 	for i in max_points:
 		rope_line.add_point(pos)
 		num_points = i
-
 		pos += vel
 	rope_line.show()
+	$Rope/RopeCollision.scale.x = abs(vel.x * num_points)/10
+	$Rope/RopeCollision.global_position = (global_position + hookInstance.global_position)/2
+	$Rope/RopeCollision.rotation = vel.angle()
 	return num_points
 
 func shoot(dirVector, power, points):

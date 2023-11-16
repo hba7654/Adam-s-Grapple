@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://41sr2oo0i8uw"]
+[gd_scene load_steps=4 format=3 uid="uid://bto7qy3m7p0lu"]
 
 [ext_resource type="Script" path="res://Scripts/breakable_platform.gd" id="1_8rerx"]
 
@@ -17,6 +17,7 @@ contact_monitor = true
 lock_rotation = true
 script = ExtResource("1_8rerx")
 break_time = 3.0
+regrow_time = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_i61jp")
