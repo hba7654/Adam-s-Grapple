@@ -21,6 +21,7 @@ var direction_sign : int #positive = right
 @export var shiftStrength : float
 @export var jump_boost_strength : float
 @export var crawl_speed : float
+@export var swing_dampener : float
 
 
 var arc_line
@@ -150,6 +151,7 @@ func _physics_process(delta):
 				velocity.x -= shiftStrength*delta
 			#do movement
 			swing(delta)
+			velocity *= swing_dampener
 		
 	move_and_slide()
 
@@ -219,7 +221,7 @@ func swing(delta):
 	#print("Current Rope Length: " + str(currentRopeLength))
 	var radius = global_position - hookInstance.global_position
 	var angle = radius.angle_to(velocity)#acos(radius.dot(velocity) / (radius.length() * velocity.length()))
-	#print(angle*180/PI)
+	print(angle*180/PI)
 	var rad_vel = cos(angle) * velocity.length()
 	#If player stays spinning around a block in the air for a while, pull them down a bit
 	if abs(angle*180/PI) < 90 and not is_on_floor():
@@ -240,7 +242,7 @@ func swing(delta):
 #		velocity += radius.normalized() * delta * swingSpeed
 		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
 		
-	if abs(angle*180/PI) < 150 and not is_on_floor():
+	if abs(angle*180/PI) > 60 and not is_on_floor():
 		velocity -= radius.normalized() * delta * swingSpeed
 	else:
 		velocity.x *= 0.4
