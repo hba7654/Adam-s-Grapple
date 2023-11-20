@@ -23,11 +23,11 @@ func close_options():
 
 
 func _on_start_game_button_pressed():
-	EzTransitions.set_easing(2, 0)
-	EzTransitions.set_trans(0, 2)
-	EzTransitions.set_timers(2, 0.5, 2)
+	EzTransitions.set_easing(0, 0)
+	EzTransitions.set_trans(2, 2)
+	EzTransitions.set_timers(1, 0, 2)
 	EzTransitions.set_reverse(false, true)
 	EzTransitions.set_textures("res://addons/ez_transitions/images/black_texture.png", "res://addons/ez_transitions/images/black_texture.png")
-	EzTransitions.set_types(1, 1)
+	EzTransitions.set_types(4, 4)
 	EzTransitions.change_scene("res://Scenes/main-game.tscn")
 	emit_signal("start_game_pressed")

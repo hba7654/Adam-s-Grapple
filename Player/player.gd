@@ -42,8 +42,8 @@ func _ready():
 func _process(delta):
 	##BREAKABLE PLATFORMS
 	var col_info = get_last_slide_collision()
-	if col_info and col_info.get_collider().name.substr(0, 8) == "Platform":
-		#print(col_info.get_collider().name)
+	if col_info and col_info.get_collider().name.substr(0, 18) == "Breakable_Platform":
+		print(col_info.get_collider().name.substr(0, 18))
 		print("HEWWO NEMO")
 		col_info.get_collider().break_platform()
 
@@ -219,7 +219,7 @@ func swing(delta):
 	#print("Current Rope Length: " + str(currentRopeLength))
 	var radius = global_position - hookInstance.global_position
 	var angle = radius.angle_to(velocity)#acos(radius.dot(velocity) / (radius.length() * velocity.length()))
-	print(angle*180/PI)
+	#print(angle*180/PI)
 	var rad_vel = cos(angle) * velocity.length()
 	#If player stays spinning around a block in the air for a while, pull them down a bit
 	if abs(angle*180/PI) < 90 and not is_on_floor():
