@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://qlskttl1wjr7"]
+[gd_scene load_steps=7 format=3 uid="uid://bvsunfb7nyk6f"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/options_menu_controller.gd" id="1_h6k46"]
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/follow_focus_center.gd" id="2_l3n3h"]
@@ -204,6 +204,20 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 25
 text = "Back"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 834.0
+offset_right = 926.0
+offset_bottom = 990.0
+text = "Controls:                                                                      
+Left Click - shoot hook                                                        W/S - Retract rope up (W) or Extend rope down (S)
+Right click - release hook                                                   A/D (While on the ground) - to crawl 
+Space - Jump off your rope                                                A/D (While on rope) - to swing left (A) or right (D)
+
+Playtest Secrets: Press \"1\" to teleport to Area 1 and Press \"2\" to teleport to Area 2
+"
 
 [connection signal="value_changed" from="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
