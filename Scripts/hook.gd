@@ -23,9 +23,13 @@ func _physics_process(delta):
 		if(get_slide_collision_count() > 0):
 			colInfo = get_slide_collision(0)
 		if colInfo: 
+			if colInfo.get_collider().name.substr(0, 8) == "Platform":
+				#print(col_info.get_collider().name)
+				print("HEWWO NEMO")
+				colInfo.get_collider().break_platform()
 			var normal = colInfo.get_normal()
 			var angle = normal.angle_to(Vector2.UP) * 180/PI
-			print("Normal angle: " + str(angle))
+			#print("Normal angle: " + str(angle))
 			
 #			print("landed on solid ground")
 #			velocity = Vector2.ZERO
@@ -34,16 +38,16 @@ func _physics_process(delta):
 #			landed = true
 #			return
 			if abs(angle) < 75:
-				print("landed on solid ground")
+				#print("landed on solid ground")
 				velocity = Vector2.ZERO
 				landed = true
 			elif abs(angle) > 130:
-				print("hit a ceiling")
+				#print("hit a ceiling")
 				velocity.x *= bouncePower
 #				velocity.y = 0
 			else:
 				velocity = velocity.bounce(colInfo.get_normal().normalized())
-				print("normal bounce")
+				#print("normal bounce")
 				velocity.x *= bouncePower
 				velocity.y += bouncePower
 				

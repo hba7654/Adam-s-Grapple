@@ -33,7 +33,7 @@ project/assembly_name="AdamsGrapple"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ez_transitions/plugin.cfg", "res://addons/nklbdev.tile_set_polygon_snapper/plugin.cfg")
+enabled=PackedStringArray("res://addons/ez_transitions/plugin.cfg", "res://addons/nklbdev.tile_set_polygon_snapper/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [input]
 
@@ -95,3 +95,5 @@ jump={
 2d_physics/layer_4="Trajectory"
 2d_physics/layer_5="Legs"
 2d_physics/layer_6="Hazard"
+2d_physics/layer_7="Rope"
+2d_physics/layer_32="TestLayer"

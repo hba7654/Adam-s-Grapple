@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bto7qy3m7p0lu"]
+
+[ext_resource type="Script" path="res://Scripts/breakable_platform.gd" id="1_8rerx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i61jp"]
+size = Vector2(35, 5)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_70dxm"]
+
+[node name="Platform" type="RigidBody2D"]
+collision_layer = 32
+collision_mask = 2147483655
+mass = 1000.0
+gravity_scale = 0.0
+max_contacts_reported = 1000
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_8rerx")
+break_time = 3.0
+regrow_time = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i61jp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(35, 5)
+texture = SubResource("CanvasTexture_70dxm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
