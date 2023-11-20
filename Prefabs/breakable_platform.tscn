@@ -1,13 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bto7qy3m7p0lu"]
+[gd_scene load_steps=4 format=3 uid="uid://c5wjhh1vctsjl"]
 
 [ext_resource type="Script" path="res://Scripts/breakable_platform.gd" id="1_8rerx"]
+[ext_resource type="Texture2D" uid="uid://b8ewal44h0qsu" path="res://assets/other-rocks/Rock-Grey.png" id="2_uiu4p"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i61jp"]
-size = Vector2(35, 5)
+[sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_uory1"]
+segments = PackedVector2Array(-19, -29, 2, -29, 3, 10, 30, 10, 31, 29, -29, 29, -29, 21, -20, 20)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_70dxm"]
-
-[node name="Platform" type="RigidBody2D"]
+[node name="BreakablePlatform" type="RigidBody2D"]
 collision_layer = 32
 collision_mask = 2147483655
 mass = 1000.0
@@ -20,10 +19,41 @@ break_time = 3.0
 regrow_time = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_i61jp")
+shape = SubResource("ConcavePolygonShape2D_uory1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(35, 5)
-texture = SubResource("CanvasTexture_70dxm")
+texture = ExtResource("2_uiu4p")
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+position = Vector2(-19, -29)
+
+[node name="Node2D2" type="Node2D" parent="."]
+visible = false
+position = Vector2(2, -29)
+
+[node name="Node2D3" type="Node2D" parent="."]
+visible = false
+position = Vector2(3, 10)
+
+[node name="Node2D4" type="Node2D" parent="."]
+visible = false
+position = Vector2(30, 10)
+
+[node name="Node2D5" type="Node2D" parent="."]
+visible = false
+position = Vector2(31, 29)
+
+[node name="Node2D6" type="Node2D" parent="."]
+visible = false
+position = Vector2(-29, 29)
+
+[node name="Node2D7" type="Node2D" parent="."]
+visible = false
+position = Vector2(-29, 21)
+
+[node name="Node2D8" type="Node2D" parent="."]
+visible = false
+position = Vector2(-20, 20)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
