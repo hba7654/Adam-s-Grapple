@@ -42,8 +42,8 @@ func _ready():
 func _process(delta):
 	##BREAKABLE PLATFORMS
 	var col_info = get_last_slide_collision()
-	if col_info and col_info.get_collider().name.substr(0, 18) == "Breakable_Platform":
-		print(col_info.get_collider().name.substr(0, 18))
+	if col_info and col_info.get_collider().name.substr(0, 8) == "Platform":
+		print(col_info.get_collider().name.substr(0, 8))
 		print("HEWWO NEMO")
 		col_info.get_collider().break_platform()
 
