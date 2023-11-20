@@ -3170,7 +3170,7 @@ texture = ExtResource("1_y0n4k")
 
 [node name="Player" parent="." instance=ExtResource("2_j33vw")]
 unique_name_in_owner = true
-position = Vector2(694, -1687)
+position = Vector2(63, -1426)
 maxHookPower = 650.0
 hookPowerMult = 2.0
 maxRopeLength = 500.0

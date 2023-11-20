@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq6tvhqcy2aps"]
+[gd_scene load_steps=4 format=3 uid="uid://b33xoqxkccloh"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/main_menu_controller.gd" id="1_lbw7r"]
-[ext_resource type="PackedScene" uid="uid://qlskttl1wjr7" path="res://Scenes/options_menu.tscn" id="2_pwqpr"]
+[ext_resource type="Texture2D" uid="uid://cmh1esv52qlgm" path="res://assets/Background/awesomeCavePixelArt.png" id="2_c6yqn"]
+[ext_resource type="PackedScene" path="res://Scenes/options_menu.tscn" id="2_pwqpr"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,16 +13,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lbw7r")
 
+[node name="AwesomeCavePixelArt" type="Sprite2D" parent="."]
+position = Vector2(957.5, 543)
+scale = Vector2(1.53516, 1.55556)
+texture = ExtResource("2_c6yqn")
+
 [node name="Content" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -117.5
-offset_top = 67.0
-offset_right = 117.5
-offset_bottom = 328.0
+offset_left = -167.0
+offset_top = 305.0
+offset_right = 183.0
+offset_bottom = 601.0
 grow_horizontal = 2
 theme_override_constants/separation = 15
 metadata/_edit_group_ = true
@@ -29,7 +35,7 @@ metadata/_edit_group_ = true
 [node name="Title" type="Label" parent="Content"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 45
-text = "Game Title"
+text = "Adam's Grapple"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="Content"]
