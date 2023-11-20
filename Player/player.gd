@@ -219,11 +219,10 @@ func swing(delta):
 	#print("Current Rope Length: " + str(currentRopeLength))
 	var radius = global_position - hookInstance.global_position
 	var angle = radius.angle_to(velocity)#acos(radius.dot(velocity) / (radius.length() * velocity.length()))
+	print(angle*180/PI)
 	var rad_vel = cos(angle) * velocity.length()
 	#If player stays spinning around a block in the air for a while, pull them down a bit
-	if abs(angle*180/PI) > 150:
-		velocity.y += gravity * delta
-	elif not is_on_floor():
+	if abs(angle*180/PI) < 90 and not is_on_floor():
 		velocity += radius.normalized() * -rad_vel
 		currentRopeLength -= delta
 		
@@ -241,7 +240,7 @@ func swing(delta):
 #		velocity += radius.normalized() * delta * swingSpeed
 		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
 		
-	if not is_on_floor():
+	if abs(angle*180/PI) < 150 and not is_on_floor():
 		velocity -= radius.normalized() * delta * swingSpeed
 	else:
 		velocity.x *= 0.4
