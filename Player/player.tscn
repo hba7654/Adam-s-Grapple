@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_5nkeb"]
 [ext_resource type="Texture2D" uid="uid://cpq0l8jyisn07" path="res://icon.svg" id="2_u5a2c"]
-[ext_resource type="Texture2D" uid="uid://c110se5b1om1p" path="res://assets/Sprite-AdamBody-Outline.png" id="3_ioeet"]
-[ext_resource type="Texture2D" uid="uid://cmb0lu43tqugk" path="res://assets/Sprite-RightLeg-Outline.png" id="4_bl6ha"]
-[ext_resource type="Texture2D" uid="uid://c802snl6qarfq" path="res://assets/Sprite-LeftLeg-Outline.png" id="5_0dc5v"]
+[ext_resource type="Texture2D" uid="uid://c110se5b1om1p" path="res://assets/player-art/Sprite-AdamBody-Outline.png" id="4_2npmx"]
+[ext_resource type="Texture2D" uid="uid://cmb0lu43tqugk" path="res://assets/player-art/Sprite-RightLeg-Outline.png" id="6_bpn4f"]
+[ext_resource type="Texture2D" uid="uid://c802snl6qarfq" path="res://assets/player-art/Sprite-LeftLeg-Outline.png" id="8_7jx5p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d7r0j"]
 
@@ -38,7 +38,7 @@ shape = SubResource("CircleShape2D_d7r0j")
 [node name="DudeSprite" type="Sprite2D" parent="."]
 position = Vector2(4.76837e-07, -2.38419e-07)
 scale = Vector2(1.2, 1.11)
-texture = ExtResource("3_ioeet")
+texture = ExtResource("4_2npmx")
 
 [node name="ArcLine" type="Line2D" parent="."]
 z_index = 10
@@ -75,7 +75,7 @@ node_b = NodePath("../..")
 [node name="Sprite2D" type="Sprite2D" parent="Leg1"]
 position = Vector2(-5.75, 2.875)
 scale = Vector2(1.3, 1.425)
-texture = ExtResource("4_bl6ha")
+texture = ExtResource("6_bpn4f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Leg1"]
 visible = false
@@ -96,7 +96,7 @@ node_b = NodePath("../..")
 [node name="Sprite2D" type="Sprite2D" parent="Leg2"]
 position = Vector2(5.75, 2.75)
 scale = Vector2(1.3, 1.45)
-texture = ExtResource("5_0dc5v")
+texture = ExtResource("8_7jx5p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Leg2"]
 visible = false

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c110se5b1om1p"
-path="res://.godot/imported/Sprite-AdamBody-Outline.png-3c0dff7b56e9349d8476467658fb50f0.ctex"
+path="res://.godot/imported/Sprite-AdamBody-Outline.png-0b2f46e0a74971f4231b90320c631603.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprite-AdamBody-Outline.png"
-dest_files=["res://.godot/imported/Sprite-AdamBody-Outline.png-3c0dff7b56e9349d8476467658fb50f0.ctex"]
+source_file="res://assets/player-art/Sprite-AdamBody-Outline.png"
+dest_files=["res://.godot/imported/Sprite-AdamBody-Outline.png-0b2f46e0a74971f4231b90320c631603.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c802snl6qarfq"
-path="res://.godot/imported/Sprite-LeftLeg-Outline.png-3023b027a8bb3635b1a11e5ac63db0b4.ctex"
+uid="uid://cmb0lu43tqugk"
+path="res://.godot/imported/Sprite-RightLeg-Outline.png-9cb34b8e27895f88a30858c94bef8800.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprite-LeftLeg-Outline.png"
-dest_files=["res://.godot/imported/Sprite-LeftLeg-Outline.png-3023b027a8bb3635b1a11e5ac63db0b4.ctex"]
+source_file="res://assets/player-art/Sprite-RightLeg-Outline.png"
+dest_files=["res://.godot/imported/Sprite-RightLeg-Outline.png-9cb34b8e27895f88a30858c94bef8800.ctex"]
 
 [params]
 
