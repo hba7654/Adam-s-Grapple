@@ -40,15 +40,22 @@ func _ready():
 	shifted_right = false
 	direction_sign = true
 
-func _process(delta):
+#func _process(delta):
 	##BREAKABLE PLATFORMS
-	var col_info = get_last_slide_collision()
-	if col_info and col_info.get_collider().name.substr(0, 8) == "Platform":
-		print(col_info.get_collider().name.substr(0, 8))
-		print("HEWWO NEMO")
-		col_info.get_collider().break_platform()
+#	var col_info = get_last_slide_collision()
+#	if col_info:
+#		print(col_info.get_collider())
+#		if col_info.get_collider().name.substr(0, 8) == "Platform":
+#			print(col_info.get_collider().name.substr(0, 8))
+#			print("HEWWO NEMO")
+#			col_info.get_collider().break_platform()
 
 func _physics_process(delta):
+	if Input.is_action_pressed("area1"):
+		global_position = Vector2(528,456)
+	elif Input.is_action_pressed("area2"):
+		global_position = Vector2(654, -1171)
+	
 	frame_counter += 1
 
 	#=====================
@@ -151,7 +158,7 @@ func _physics_process(delta):
 				velocity.x -= shiftStrength*delta
 			#do movement
 			swing(delta)
-			velocity *= swing_dampener
+			#velocity *= swing_dampener
 		
 	move_and_slide()
 
@@ -221,12 +228,15 @@ func swing(delta):
 	#print("Current Rope Length: " + str(currentRopeLength))
 	var radius = global_position - hookInstance.global_position
 	var angle = radius.angle_to(velocity)#acos(radius.dot(velocity) / (radius.length() * velocity.length()))
-	#print(angle*180/PI)
+	#print(angle)
 	var rad_vel = cos(angle) * velocity.length()
+#	print(velocity.length())
 	#If player stays spinning around a block in the air for a while, pull them down a bit
-	if abs(angle*180/PI) < 90 and not is_on_floor():
+	if abs(angle*180/PI) < 90 and not is_on_floor() or velocity.length() > 200:
 		velocity += radius.normalized() * -rad_vel
 		currentRopeLength -= delta
+#		if abs(angle) <= PI/3:
+#			velocity.x*=swing_dampener 
 		
 	var distance = global_position.distance_to(hookInstance.global_position)
 	#print("Distance from Rope: " + str(distance))
@@ -242,7 +252,7 @@ func swing(delta):
 #		velocity += radius.normalized() * delta * swingSpeed
 		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
 		
-	if abs(angle*180/PI) > 60 and not is_on_floor():
+	if not is_on_floor():
 		velocity -= radius.normalized() * delta * swingSpeed
 	else:
 		velocity.x *= 0.4

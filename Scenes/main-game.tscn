@@ -3170,7 +3170,7 @@ texture = ExtResource("1_y0n4k")
 
 [node name="Player" parent="." instance=ExtResource("2_j33vw")]
 unique_name_in_owner = true
-position = Vector2(69, -1419)
+position = Vector2(676, -1705)
 maxHookPower = 650.0
 hookPowerMult = 2.0
 maxRopeLength = 500.0
@@ -3179,6 +3179,7 @@ pullStrength = 1000.0
 shiftStrength = 10000.0
 jump_boost_strength = 1.5
 crawl_speed = 300.0
+swing_dampener = 0.9
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -115.295)

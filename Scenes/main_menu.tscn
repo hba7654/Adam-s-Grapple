@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b33xoqxkccloh"]
+[gd_scene load_steps=4 format=3 uid="uid://dq6tvhqcy2aps"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/main_menu_controller.gd" id="1_lbw7r"]
 [ext_resource type="Texture2D" uid="uid://cmh1esv52qlgm" path="res://assets/Background/awesomeCavePixelArt.png" id="2_c6yqn"]
-[ext_resource type="PackedScene" uid="uid://bvsunfb7nyk6f" path="res://Scenes/options_menu.tscn" id="2_pwqpr"]
+[ext_resource type="PackedScene" uid="uid://qlskttl1wjr7" path="res://Scenes/options_menu.tscn" id="2_pwqpr"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3

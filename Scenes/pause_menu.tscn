@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://rw7gdui8lu3n"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/pause_menu_controller.gd" id="1_5etq0"]
-[ext_resource type="PackedScene" uid="uid://bvsunfb7nyk6f" path="res://Scenes/options_menu.tscn" id="2_ejh0f"]
+[ext_resource type="PackedScene" uid="uid://qlskttl1wjr7" path="res://Scenes/options_menu.tscn" id="2_ejh0f"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -23,6 +23,7 @@ grow_vertical = 2
 
 [node name="Content" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,14 +73,15 @@ text = "Quit"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("2_ejh0f")]
 unique_name_in_owner = true
-visible = false
 top_level = true
 z_index = 5
 layout_mode = 1
-offset_left = -900.0
-offset_top = -250.0
-offset_right = -900.0
-offset_bottom = -250.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="pressed" from="Content/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
 [connection signal="pressed" from="Content/OptionsButton" to="." method="_on_options_button_pressed"]

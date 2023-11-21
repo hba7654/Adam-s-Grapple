@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5wjhh1vctsjl"]
+[gd_scene load_steps=4 format=3 uid="uid://bto7qy3m7p0lu"]
 
 [ext_resource type="Script" path="res://Scripts/breakable_platform.gd" id="1_8rerx"]
 [ext_resource type="Texture2D" uid="uid://b8ewal44h0qsu" path="res://assets/other-rocks/Rock-Grey.png" id="2_uiu4p"]

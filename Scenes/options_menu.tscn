@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvsunfb7nyk6f"]
+[gd_scene load_steps=7 format=3 uid="uid://qlskttl1wjr7"]
 
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/options_menu_controller.gd" id="1_h6k46"]
 [ext_resource type="Script" path="res://addons/EasyMenus/Scripts/follow_focus_center.gd" id="2_l3n3h"]
@@ -10,9 +10,14 @@
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.125
+anchor_top = 0.125
+anchor_right = 0.875
+anchor_bottom = 0.875
+offset_left = -240.0
+offset_top = -135.0
+offset_right = -240.0
+offset_bottom = -135.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h6k46")
@@ -205,12 +210,8 @@ size_flags_vertical = 8
 theme_override_font_sizes/font_size = 25
 text = "Back"
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 140.0
-offset_top = 834.0
-offset_right = 926.0
-offset_bottom = 990.0
+[node name="Label" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
 text = "Controls:                                                                      
 Left Click - shoot hook                                                        W/S - Retract rope up (W) or Extend rope down (S)
 Right click - release hook                                                   A/D (While on the ground) - to crawl 

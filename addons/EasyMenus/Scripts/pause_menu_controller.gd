@@ -5,7 +5,16 @@ signal back_to_main_pressed
 @onready var content : VBoxContainer = $%Content
 @onready var options_menu : Control = $%OptionsMenu
 @onready var resume_game_button: Button = $%ResumeGameButton
-	
+
+var cam_width
+var cam_height
+
+func _ready():
+#	cam_width = ProjectSettings.get_setting("display/window/size/viewport_width")
+#	cam_height = ProjectSettings.get_setting("display/window/size/viewport_height")
+	cam_width = get_viewport().get_visible_rect().size.x
+	cam_height = get_viewport().get_visible_rect().size.y
+
 func open_pause_menu():
 	#Stops game and shows pause menu
 	get_tree().paused = true
@@ -24,6 +33,7 @@ func _on_resume_game_button_pressed():
 func _on_options_button_pressed():
 	content.hide()
 	options_menu.show()
+	options_menu.position = get_parent().get_parent().global_position + Vector2(-cam_width/2 + 225, -cam_height/2)
 	options_menu.on_open()
 
 
