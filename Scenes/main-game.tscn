@@ -3170,7 +3170,7 @@ texture = ExtResource("1_y0n4k")
 
 [node name="Player" parent="." instance=ExtResource("2_j33vw")]
 unique_name_in_owner = true
-position = Vector2(676, -1705)
+position = Vector2(76, -1407)
 maxHookPower = 650.0
 hookPowerMult = 2.0
 maxRopeLength = 500.0
@@ -3270,6 +3270,7 @@ position = Vector2(-11.5, -1.5)
 shape = SubResource("RectangleShape2D_gr6tg")
 
 [node name="Fall line" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(764.904, -2445.97)
 rotation = 1.5708
 scale = Vector2(6193.17, 39.4707)
