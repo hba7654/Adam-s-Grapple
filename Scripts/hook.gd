@@ -5,13 +5,14 @@ var speed : float
 var landed : bool
 @export var bouncePower : float
 var bounced_last_frame
-signal hook_landed
+var rng = RandomNumberGenerator.new()
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	landed = false
 	bounced_last_frame = false
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,7 +43,10 @@ func _physics_process(delta):
 				#print("landed on solid ground")
 				velocity = Vector2.ZERO
 				landed = true
-				$GrappleHitAudio.play()
+				if (rng.randi_range(0,1) == 0):
+					$GrappleHitAudio1.play()
+				else:
+					$GrappleHitAudio2.play()
 				
 			elif abs(angle) > 130:
 				#print("hit a ceiling")

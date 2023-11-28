@@ -1,7 +1,8 @@
 @tool
+@icon("random_audio_player.svg") 
 extends Node2D
 class_name RandomAudioPlayer
-@icon("random_audio_player.svg") 
+
 
 ## Assigns the value to all the children as an overwrite.
 @export var volume_Db_overwrite = 0.0:
