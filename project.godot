@@ -33,7 +33,7 @@ project/assembly_name="AdamsGrapple"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ez_transitions/plugin.cfg", "res://addons/nklbdev.tile_set_polygon_snapper/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/ez_transitions/plugin.cfg", "res://addons/nklbdev.tile_set_polygon_snapper/plugin.cfg", "res://addons/random_audio_player/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [input]
 
