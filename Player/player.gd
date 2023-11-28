@@ -12,6 +12,8 @@ var currentRopeLength
 var shifted_left : bool
 var shifted_right : bool
 var direction_sign : int #positive = right
+var on_land : bool
+var above : bool
 
 @export var maxHookPower : float
 @export var hookPowerMult : float
@@ -39,6 +41,8 @@ func _ready():
 	shifted_left = false
 	shifted_right = false
 	direction_sign = true
+	on_land = false
+	above = false
 
 #func _process(delta):
 	##BREAKABLE PLATFORMS
@@ -110,6 +114,7 @@ func _physics_process(delta):
 			hooked = false
 			hookInstance.set_name("temp")
 			hookInstance.queue_free()
+			on_land = false
 		shoot(hookDirVector, hookPower, num_points)
 		
 	elif(Input.is_action_just_pressed("release")):
@@ -118,6 +123,7 @@ func _physics_process(delta):
 			shotHook = false
 			hooked = false
 			hookInstance.queue_free()
+			on_land = false
 			
 	elif(Input.is_action_just_pressed("jump")):
 		#The frame the mouse was released
@@ -126,6 +132,7 @@ func _physics_process(delta):
 			shotHook = false
 			hooked = false
 			hookInstance.queue_free()
+			on_land = false
 			
 	if Input.is_action_pressed("shift_right") and is_on_floor():
 		velocity.x += crawl_speed*delta 
@@ -141,8 +148,11 @@ func _physics_process(delta):
 	
 	#Create Rope
 	if shotHook and hookInstance.landed:
-		currentRopeLength = global_position.distance_to(hookInstance.global_position)
+		if not on_land:
+			currentRopeLength = global_position.distance_to(hookInstance.global_position)
+			on_land = true
 		if currentRopeLength < maxRopeLength:
+			var radius = global_position - hookInstance.global_position
 			hooked = true
 			create_rope()
 			
@@ -150,11 +160,16 @@ func _physics_process(delta):
 			if Input.is_action_pressed("retract") and currentRopeLength > 10:
 				#print("RETRACT")
 				currentRopeLength-=1
+				global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
 				if !$AudioNodes/GrappleRetract.playing:
 					$AudioNodes/GrappleRetract.play()
 			elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength and not is_on_floor():
 				#print("EXTEND")
 				currentRopeLength += 1
+				global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
+				#velocity -= radius.normalized() * delta * swingSpeed
+				if is_on_floor():
+					velocity -= Vector2(0, pullStrength*delta)
 			if Input.is_action_just_released("retract"):
 				if $AudioNodes/GrappleRetract.playing:
 					$AudioNodes/GrappleRetract.stop()
@@ -243,22 +258,25 @@ func swing(delta):
 	if abs(angle*180/PI) < 90 and not is_on_floor() or velocity.length() > 200:
 		velocity += radius.normalized() * -rad_vel
 		currentRopeLength -= delta
+		above = true
 #		if abs(angle) <= PI/3:
 #			velocity.x*=swing_dampener 
+	else:
+		above = false
 		
-	var distance = global_position.distance_to(hookInstance.global_position)
-	#print("Distance from Rope: " + str(distance))
-	if  distance > currentRopeLength:
-#		print("Distance from player to hook: " + str(distance))
-#		print("Rope Length: " + str(currentRopeLength))
-#		print("Radius" + str(radius))
-		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
-		#velocity -= radius.normalized() * delta * swingSpeed
-		if is_on_floor():
-			velocity -= Vector2(0, pullStrength*delta)
-	elif distance < currentRopeLength and not is_on_floor():
-#		velocity += radius.normalized() * delta * swingSpeed
-		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
+#	var distance = global_position.distance_to(hookInstance.global_position)
+#	#print("Distance from Rope: " + str(distance))
+#	if  distance > currentRopeLength:
+##		print("Distance from player to hook: " + str(distance))
+##		print("Rope Length: " + str(currentRopeLength))
+##		print("Radius" + str(radius))
+#		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
+#		#velocity -= radius.normalized() * delta * swingSpeed
+#		if is_on_floor():
+#			velocity -= Vector2(0, pullStrength*delta)
+#	elif distance < currentRopeLength and not is_on_floor() and  above:
+##		velocity += radius.normalized() * delta * swingSpeed
+#		global_position = hookInstance.global_position + radius.normalized() * currentRopeLength
 		
 	if not is_on_floor():
 		velocity -= radius.normalized() * delta * swingSpeed
