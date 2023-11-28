@@ -104,12 +104,12 @@ func _physics_process(delta):
 	#=====================
 	if(Input.is_action_just_pressed("hook")):
 		#The frame the mouse was clicked, shoot the hook
+		$AudioNodes/GrappleLaunchAudio.play()
 		if shotHook:
 			shotHook = false
 			hooked = false
 			hookInstance.set_name("temp")
 			hookInstance.queue_free()
-			
 		shoot(hookDirVector, hookPower, num_points)
 		
 	elif(Input.is_action_just_pressed("release")):
@@ -129,8 +129,12 @@ func _physics_process(delta):
 			
 	if Input.is_action_pressed("shift_right") and is_on_floor():
 		velocity.x += crawl_speed*delta 
+		if !$AudioNodes/DragAudio.playing:
+			$AudioNodes/DragAudio.play()
 	elif Input.is_action_pressed("shift_left") and is_on_floor():
 		velocity.x -= crawl_speed*delta 
+		if !$AudioNodes/DragAudio.playing:
+			$AudioNodes/DragAudio.play()
 		
 	
 	
@@ -146,10 +150,14 @@ func _physics_process(delta):
 			if Input.is_action_pressed("retract") and currentRopeLength > 10:
 				#print("RETRACT")
 				currentRopeLength-=1
+				if !$AudioNodes/GrappleRetract.playing:
+					$AudioNodes/GrappleRetract.play()
 			elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength and not is_on_floor():
 				#print("EXTEND")
 				currentRopeLength += 1
-			
+			if Input.is_action_just_released("retract"):
+				if $AudioNodes/GrappleRetract.playing:
+					$AudioNodes/GrappleRetract.stop()
 			if Input.is_action_just_pressed("shift_right") and not shifted_right and not is_on_floor():
 				shifted_right = true
 				velocity.x += shiftStrength*delta

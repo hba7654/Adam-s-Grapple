@@ -5,6 +5,7 @@ var speed : float
 var landed : bool
 @export var bouncePower : float
 var bounced_last_frame
+signal hook_landed
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Called when the node enters the scene tree for the first time.
@@ -41,6 +42,8 @@ func _physics_process(delta):
 				#print("landed on solid ground")
 				velocity = Vector2.ZERO
 				landed = true
+				$GrappleHitAudio.play()
+				
 			elif abs(angle) > 130:
 				#print("hit a ceiling")
 				velocity.x *= bouncePower
