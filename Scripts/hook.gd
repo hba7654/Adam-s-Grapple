@@ -39,7 +39,7 @@ func _physics_process(delta):
 #			freeze = true
 #			landed = true
 #			return
-			if abs(angle) < 75:
+			if abs(angle) < 75 or velocity.length() < 1:
 				#print("landed on solid ground")
 				velocity = Vector2.ZERO
 				landed = true
