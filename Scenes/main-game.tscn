@@ -5917,7 +5917,7 @@ texture = ExtResource("1_y0n4k")
 
 [node name="Player" parent="." instance=ExtResource("2_j33vw")]
 unique_name_in_owner = true
-position = Vector2(667, -1084)
+position = Vector2(617, 426)
 maxHookPower = 650.0
 hookPowerMult = 2.0
 maxRopeLength = 500.0
@@ -6038,6 +6038,7 @@ offset_bottom = -1456.0
 text = "ICE "
 
 [node name="Label" type="Label" parent="ICE labels"]
+layout_mode = 0
 offset_left = -16.0
 offset_top = 175.0
 offset_right = 24.0

@@ -55,25 +55,24 @@ func _ready():
 #			col_info.get_collider().break_platform()
 
 func _physics_process(delta):
+	frame_counter += 1
+	
+#region Area Shortcuts
 	if Input.is_action_pressed("area1"):
 		global_position = Vector2(528,456)
 	elif Input.is_action_pressed("area2"):
 		global_position = Vector2(654, -1171)
+#endregion
 	
-	frame_counter += 1
-
-	#=====================
-	#GRAVITY
-	#=====================
+#region Gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		#print("adding gravity in frame " + str(frame_counter))
 	elif not hooked:
 		velocity.x = 0
+#endregion
 	
-	#=====================
-	#RESETTING SHIFT VARS
-	#=====================
+#region Resetting Shifting Variables
 	if (direction_sign * velocity.x) < 0:
 		shifted_left = false
 		shifted_right = false
@@ -82,10 +81,9 @@ func _physics_process(delta):
 		$DudeSprite.flip_h = false
 	elif direction_sign < 0:
 		$DudeSprite.flip_h = true
+#endregion
 	
-	#=====================
-	#AIMING
-	#=====================
+#region Aiming
 	var mouse = get_local_mouse_position()
 	$HookStart.position.x = 25 * cos((-$HookStart.global_position + get_global_mouse_position()).angle())
 	$HookStart.position.y = 25 * sin((-$HookStart.global_position + get_global_mouse_position()).angle())
@@ -102,14 +100,14 @@ func _physics_process(delta):
 
 	var num_points = aim(delta, hookDirVector, hookPower)
 	#print("number of points in line is " + str(num_points))
+#endregion
 	
-	#=====================
-	#GRAPPLING
-	#=====================
+#region Input Management when not swinging
 	if(Input.is_action_just_pressed("hook")):
-		#The frame the mouse was clicked, shoot the hook
 		$AudioNodes/GrappleLaunchAudio.play()
-		if shotHook:
+		
+		#If another hook already exists, temporarily rename it to avoid double-naming hook then delete it
+		if shotHook: 
 			shotHook = false
 			hooked = false
 			hookInstance.set_name("temp")
@@ -118,7 +116,6 @@ func _physics_process(delta):
 		shoot(hookDirVector, hookPower, num_points)
 		
 	elif(Input.is_action_just_pressed("release")):
-		#The frame the mouse was released
 		if (shotHook):
 			shotHook = false
 			hooked = false
@@ -126,7 +123,6 @@ func _physics_process(delta):
 			on_land = false
 			
 	elif(Input.is_action_just_pressed("jump")):
-		#The frame the mouse was released
 		velocity *= jump_boost_strength
 		if (shotHook):
 			shotHook = false
@@ -142,9 +138,7 @@ func _physics_process(delta):
 		velocity.x -= crawl_speed*delta 
 		if !$AudioNodes/DragAudio.playing:
 			$AudioNodes/DragAudio.play()
-		
-	
-	
+#endregion
 	
 	#Create Rope
 	if shotHook and hookInstance.landed:
