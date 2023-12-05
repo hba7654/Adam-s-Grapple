@@ -12,6 +12,7 @@ var currentRopeLength
 var shifted_left : bool
 var shifted_right : bool
 var direction_sign : int #positive = right
+var on_ice : bool
 
 @export var maxHookPower : float
 @export var hookPowerMult : float
@@ -39,6 +40,7 @@ func _ready():
 	shifted_left = false
 	shifted_right = false
 	direction_sign = true
+	on_ice = false
 
 #func _process(delta):
 	##BREAKABLE PLATFORMS
@@ -64,7 +66,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		#print("adding gravity in frame " + str(frame_counter))
-	elif not hooked:
+	elif not hooked and not on_ice:
 		velocity.x = 0
 	
 	#=====================
@@ -127,11 +129,11 @@ func _physics_process(delta):
 			hooked = false
 			hookInstance.queue_free()
 			
-	if Input.is_action_pressed("shift_right") and is_on_floor():
+	if Input.is_action_pressed("shift_right") and is_on_floor() and not on_ice:
 		velocity.x += crawl_speed*delta 
 		if !$AudioNodes/DragAudio.playing:
 			$AudioNodes/DragAudio.play()
-	elif Input.is_action_pressed("shift_left") and is_on_floor():
+	elif Input.is_action_pressed("shift_left") and is_on_floor() and not on_ice:
 		velocity.x -= crawl_speed*delta 
 		if !$AudioNodes/DragAudio.playing:
 			$AudioNodes/DragAudio.play()
@@ -140,33 +142,33 @@ func _physics_process(delta):
 	
 	
 	#Create Rope
-	if shotHook and hookInstance.landed:
+	if shotHook:
 		currentRopeLength = global_position.distance_to(hookInstance.global_position)
 		if currentRopeLength < maxRopeLength:
 			hooked = true
 			create_rope()
-			
-			#handle input
-			if Input.is_action_pressed("retract") and currentRopeLength > 10:
-				#print("RETRACT")
-				currentRopeLength-=1
-				if !$AudioNodes/GrappleRetract.playing:
-					$AudioNodes/GrappleRetract.play()
-			elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength and not is_on_floor():
-				#print("EXTEND")
-				currentRopeLength += 1
-			if Input.is_action_just_released("retract"):
-				if $AudioNodes/GrappleRetract.playing:
-					$AudioNodes/GrappleRetract.stop()
-			if Input.is_action_just_pressed("shift_right") and not shifted_right and not is_on_floor():
-				shifted_right = true
-				velocity.x += shiftStrength*delta
-			elif  Input.is_action_just_pressed("shift_left") and not shifted_left and not is_on_floor():
-				shifted_left = true
-				velocity.x -= shiftStrength*delta
-			#do movement
-			swing(delta)
-			#velocity *= swing_dampener
+			if hookInstance.landed:
+				#handle input
+				if Input.is_action_pressed("retract") and currentRopeLength > 10:
+					#print("RETRACT")
+					currentRopeLength-=1
+					if !$AudioNodes/GrappleRetract.playing:
+						$AudioNodes/GrappleRetract.play()
+				elif Input.is_action_pressed("expand") and currentRopeLength < maxRopeLength and not is_on_floor():
+					#print("EXTEND")
+					currentRopeLength += 1
+				if Input.is_action_just_released("retract"):
+					if $AudioNodes/GrappleRetract.playing:
+						$AudioNodes/GrappleRetract.stop()
+				if Input.is_action_just_pressed("shift_right") and not shifted_right and not is_on_floor():
+					shifted_right = true
+					velocity.x += shiftStrength*delta
+				elif  Input.is_action_just_pressed("shift_left") and not shifted_left and not is_on_floor():
+					shifted_left = true
+					velocity.x -= shiftStrength*delta
+				#do movement
+				swing(delta)
+				#velocity *= swing_dampener
 		
 	move_and_slide()
 
