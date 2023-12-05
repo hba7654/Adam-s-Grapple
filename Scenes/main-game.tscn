@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=67 format=3 uid="uid://cn34k28j3fipx"]
 
 [ext_resource type="Texture2D" uid="uid://cgihudmeorwkr" path="res://assets/Background/6d13119ec35d038c0649f6f4d5f2b9ad.png" id="1_y0n4k"]
 [ext_resource type="Texture2D" uid="uid://cccsmsjbjhskx" path="res://assets/Background/ice-cave-background-environment-platform-game_398492-535.png" id="2_28ack"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://csq0bavfpm7c5" path="res://assets/BarRockPlatforms/RockPack-Teal(vegetation).png" id="17_s6272"]
 [ext_resource type="Texture2D" uid="uid://cyrko31p5frux" path="res://assets/BarRockPlatforms/RockPack-Teal.png" id="18_tu4w5"]
 [ext_resource type="Texture2D" uid="uid://dv1gsxw76kv7t" path="res://assets/Background/2142473c68dab5e4358009b5a76340b9.jpg" id="24_x3xt1"]
+[ext_resource type="Script" path="res://Scripts/Ice.gd" id="25_0a7ck"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ddkwq"]
 font_size = 36
@@ -6028,6 +6029,15 @@ size = Vector2(181, 175)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_iakn5"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6eub"]
+size = Vector2(221, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qsi3r"]
+size = Vector2(156, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo6ks"]
+size = Vector2(110, 20)
+
 [node name="main-game" type="Node2D"]
 
 [node name="Background Area 1 (spawn fall)" type="Sprite2D" parent="."]
@@ -6057,7 +6067,7 @@ texture = ExtResource("24_x3xt1")
 
 [node name="Player" parent="." instance=ExtResource("2_j33vw")]
 unique_name_in_owner = true
-position = Vector2(1112, -6055)
+position = Vector2(435, -2073)
 maxHookPower = 650.0
 hookPowerMult = 2.0
 maxRopeLength = 500.0
@@ -6201,22 +6211,13 @@ offset_bottom = -1456.0
 text = "ICE "
 
 [node name="Label" type="Label" parent="ICE labels"]
-layout_mode = 0
-offset_left = -16.0
-offset_top = 175.0
-offset_right = 24.0
-offset_bottom = 201.0
+offset_left = 586.0
+offset_top = 107.0
+offset_right = 626.0
+offset_bottom = 133.0
 text = "ICE "
 
 [node name="Label" type="Label" parent="ICE labels/Label"]
-layout_mode = 0
-offset_left = 602.0
-offset_top = -60.0
-offset_right = 642.0
-offset_bottom = -34.0
-text = "ICE "
-
-[node name="Label" type="Label" parent="ICE labels/Label/Label"]
 layout_mode = 0
 offset_left = 7.0
 offset_top = -353.0
@@ -6224,7 +6225,7 @@ offset_right = 47.0
 offset_bottom = -327.0
 text = "ICE "
 
-[node name="Label" type="Label" parent="ICE labels/Label/Label/Label"]
+[node name="Label" type="Label" parent="ICE labels/Label/Label"]
 layout_mode = 0
 offset_left = 287.0
 offset_top = -50.0
@@ -6232,7 +6233,7 @@ offset_right = 327.0
 offset_bottom = -24.0
 text = "ICE "
 
-[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label"]
+[node name="Label" type="Label" parent="ICE labels/Label/Label/Label"]
 layout_mode = 0
 offset_left = -753.0
 offset_top = -269.0
@@ -6240,7 +6241,7 @@ offset_right = -713.0
 offset_bottom = -243.0
 text = "ICE "
 
-[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label"]
+[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label"]
 layout_mode = 0
 offset_left = -316.0
 offset_top = 115.0
@@ -6248,7 +6249,7 @@ offset_right = -276.0
 offset_bottom = 141.0
 text = "ICE "
 
-[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label/Label"]
+[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label"]
 layout_mode = 0
 offset_left = 273.0
 offset_top = 197.0
@@ -6256,7 +6257,7 @@ offset_right = 313.0
 offset_bottom = 223.0
 text = "ICE "
 
-[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label/Label/Label"]
+[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label/Label"]
 layout_mode = 0
 offset_left = 797.0
 offset_top = -193.0
@@ -6264,7 +6265,7 @@ offset_right = 837.0
 offset_bottom = -167.0
 text = "ICE "
 
-[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label/Label/Label/Label"]
+[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label/Label/Label"]
 layout_mode = 0
 offset_left = -1096.0
 offset_top = -279.0
@@ -6272,7 +6273,7 @@ offset_right = -1056.0
 offset_bottom = -253.0
 text = "ICE "
 
-[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label/Label/Label/Label/Label"]
+[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label/Label/Label/Label"]
 layout_mode = 0
 offset_left = -6.0
 offset_top = 437.0
@@ -6280,7 +6281,7 @@ offset_right = 34.0
 offset_bottom = 463.0
 text = "ICE "
 
-[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label/Label/Label/Label/Label/Label"]
+[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label/Label/Label/Label/Label"]
 layout_mode = 0
 offset_left = 1056.0
 offset_top = -370.0
@@ -6288,7 +6289,7 @@ offset_right = 1096.0
 offset_bottom = -344.0
 text = "ICE "
 
-[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label/Label/Label/Label/Label/Label/Label"]
+[node name="Label" type="Label" parent="ICE labels/Label/Label/Label/Label/Label/Label/Label/Label/Label/Label"]
 layout_mode = 0
 offset_left = -881.0
 offset_top = -767.0
@@ -6296,8 +6297,32 @@ offset_right = -841.0
 offset_bottom = -741.0
 text = "ICE "
 
+[node name="Area2D - ICE" type="Area2D" parent="."]
+position = Vector2(477, -1276)
+collision_layer = 32
+collision_mask = 3
+script = ExtResource("25_0a7ck")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D - ICE"]
+position = Vector2(-182.5, -884.5)
+shape = SubResource("RectangleShape2D_o6eub")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D - ICE"]
+position = Vector2(3, -2.5)
+shape = SubResource("RectangleShape2D_qsi3r")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D - ICE"]
+position = Vector2(21, -174)
+shape = SubResource("RectangleShape2D_uo6ks")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D - ICE"]
+position = Vector2(-147, -624)
+shape = SubResource("RectangleShape2D_qsi3r")
+
 [connection signal="delete_hook" from="Rock" to="Player" method="_on_rock_delete_hook"]
 [connection signal="body_entered" from="Area2D - Wind2" to="Area2D - Wind2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D - Wind2" to="Area2D - Wind2" method="_on_body_exited"]
 [connection signal="body_entered" from="TESTArea2D - Wind" to="TESTArea2D - Wind" method="_on_body_entered"]
 [connection signal="body_exited" from="TESTArea2D - Wind" to="TESTArea2D - Wind" method="_on_body_exited"]
+[connection signal="body_entered" from="Area2D - ICE" to="Area2D - ICE" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D - ICE" to="Area2D - ICE" method="_on_body_exited"]
