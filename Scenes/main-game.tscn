@@ -6565,11 +6565,6 @@ offset_top = -2158.0
 offset_right = 400.0
 offset_bottom = -2152.0
 
-[node name="TestNode" type="Node2D" parent="."]
-position = Vector2(-251, -8997)
-
-[node name="Polygon2D" type="Polygon2D" parent="TestNode"]
-
 [connection signal="delete_hook" from="Rock" to="Player" method="_on_rock_delete_hook"]
 [connection signal="body_entered" from="Area2D - Wind2" to="Area2D - Wind2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D - Wind2" to="Area2D - Wind2" method="_on_body_exited"]

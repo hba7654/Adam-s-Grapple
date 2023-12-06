@@ -76,8 +76,15 @@ func _physics_process(delta):
 	#=====================
 	#BACKGROUNDS
 	#=====================
+	#Area 1
+	if global_position.y >= 0:
+		bgs[0].modulate = Color(1, 1, 1, 1)
+		bgs[1].modulate = Color(1, 1, 1, 0)
+		bgs[2].modulate = Color (1,1,1,0)
+		bgs[3].modulate = Color (1,1,1,0)
+		bgs[4].modulate = Color (1,1,1,0)
 	#Area 1/2
-	if global_position.y <= area_1_fade_start and global_position.y >= area_1_fade_end:
+	elif global_position.y <= area_1_fade_start and global_position.y >= area_1_fade_end:
 		bgs[0].modulate = Color(1, 1, 1, ((global_position.y - area_1_fade_end) / (area_1_fade_start - area_1_fade_end)))
 		bgs[1].modulate = Color(1, 1, 1, 1-((global_position.y - area_1_fade_end) / (area_1_fade_start - area_1_fade_end)))
 		bgs[2].modulate = Color (1,1,1,0)
