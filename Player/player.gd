@@ -13,6 +13,7 @@ var shifted_left : bool
 var shifted_right : bool
 var direction_sign : int #positive = right
 var on_ice : bool
+#var area : int
 
 @export var maxHookPower : float
 @export var hookPowerMult : float
@@ -23,6 +24,15 @@ var on_ice : bool
 @export var jump_boost_strength : float
 @export var crawl_speed : float
 @export var swing_dampener : float
+@export var bgs : Array[Sprite2D]
+@export var area_1_fade_start : int
+@export var area_1_fade_end : int
+@export var area_2_fade_start : int
+@export var area_2_fade_end : int
+@export var area_3_fade_start : int
+@export var area_3_fade_end : int
+@export var area_4_fade_start : int
+@export var area_4_fade_end : int
 
 
 var arc_line
@@ -59,7 +69,27 @@ func _physics_process(delta):
 		global_position = Vector2(654, -1171)
 	
 	frame_counter += 1
-
+	
+	#=====================
+	#BACKGROUNDS
+	#=====================
+	#Area 1/2
+	if global_position.y <= area_1_fade_start and global_position.y >= area_1_fade_end:
+		bgs[0].modulate = Color(1, 1, 1, ((global_position.y - area_1_fade_end) / (area_1_fade_start - area_1_fade_end)))
+		bgs[1].modulate = Color(1, 1, 1, 1-((global_position.y - area_1_fade_end) / (area_1_fade_start - area_1_fade_end)))
+	#Area 2/3
+	elif global_position.y <= area_2_fade_start and global_position.y >= area_2_fade_end:
+		bgs[1].modulate = Color(1, 1, 1, ((global_position.y - area_2_fade_end) / (area_2_fade_start - area_2_fade_end)))
+		bgs[2].modulate = Color(1, 1, 1, 1-((global_position.y - area_2_fade_end) / (area_2_fade_start - area_2_fade_end)))
+	#Area 3/4
+	elif global_position.y <= area_3_fade_start and global_position.y >= area_3_fade_end:
+		bgs[2].modulate = Color(1, 1, 1, ((global_position.y - area_3_fade_end) / (area_3_fade_start - area_3_fade_end)))
+		bgs[3].modulate = Color(1, 1, 1, 1-((global_position.y - area_3_fade_end) / (area_3_fade_start - area_3_fade_end)))
+	#Area 4/5
+	elif global_position.y <= area_4_fade_start and global_position.y >= area_4_fade_end:
+		bgs[2].modulate = Color(1, 1, 1, ((global_position.y - area_4_fade_end) / (area_4_fade_start - area_4_fade_end)))
+		bgs[3].modulate = Color(1, 1, 1, 1-((global_position.y - area_4_fade_end) / (area_4_fade_start - area_4_fade_end)))
+	
 	#=====================
 	#GRAVITY
 	#=====================
@@ -138,8 +168,6 @@ func _physics_process(delta):
 		if !$AudioNodes/DragAudio.playing:
 			$AudioNodes/DragAudio.play()
 		
-	
-	
 	
 	#Create Rope
 	if shotHook and hookInstance.landed:
@@ -278,6 +306,13 @@ func _on_rock_delete_hook():
 		hooked = false
 		hookInstance.queue_free()
 	pass # Replace with function body.
+
+func change_area(area_num):
+	for i in bgs.size():
+		if i == area_num-1:
+			bgs[i].modulate = Color(1, 1, 1, 1)
+		else:
+			bgs[i].modulate = Color(1, 1, 1, 0)
 
 
 

@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://cyrko31p5frux" path="res://assets/BarRockPlatforms/RockPack-Teal.png" id="18_tu4w5"]
 [ext_resource type="Texture2D" uid="uid://dv1gsxw76kv7t" path="res://assets/Background/2142473c68dab5e4358009b5a76340b9.jpg" id="24_x3xt1"]
 [ext_resource type="Script" path="res://Scripts/Ice.gd" id="25_0a7ck"]
+[ext_resource type="Script" path="res://Scripts/Area.gd" id="26_mxsok"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ddkwq"]
 font_size = 36
@@ -6129,34 +6130,15 @@ size = Vector2(116, 25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pu324"]
 size = Vector2(103, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dn8n"]
+size = Vector2(3040, 2178)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lws86"]
+size = Vector2(3580, 1764)
+
 [node name="main-game" type="Node2D"]
 
-[node name="Background Area 1" type="Sprite2D" parent="."]
-position = Vector2(420.499, -299)
-scale = Vector2(3.04586, 4.02941)
-texture = ExtResource("2_ahd60")
-
-[node name="Background Area 2" type="Sprite2D" parent="."]
-position = Vector2(792.5, -2068.75)
-scale = Vector2(4.53195, 5.06285)
-texture = ExtResource("2_28ack")
-
-[node name="Background Area 3" type="Sprite2D" parent="."]
-position = Vector2(800, -4359)
-scale = Vector2(3.20048, 7.8338)
-texture = ExtResource("1_y0n4k")
-
-[node name="YOURE OUTTTTTT" type="Sprite2D" parent="."]
-position = Vector2(79, -9840)
-scale = Vector2(1.98917, 2.03875)
-texture = ExtResource("4_4mb00")
-
-[node name="Background Area 4" type="Sprite2D" parent="."]
-position = Vector2(554.5, -7288.81)
-scale = Vector2(4.75151, 8.6882)
-texture = ExtResource("24_x3xt1")
-
-[node name="Player" parent="." instance=ExtResource("2_j33vw")]
+[node name="Player" parent="." node_paths=PackedStringArray("bgs") instance=ExtResource("2_j33vw")]
 unique_name_in_owner = true
 position = Vector2(-1319, -8654)
 maxHookPower = 650.0
@@ -6168,6 +6150,9 @@ shiftStrength = 10000.0
 jump_boost_strength = 1.5
 crawl_speed = 300.0
 swing_dampener = 0.9
+bgs = [NodePath("Camera2D/Background Area 1"), NodePath("Camera2D/Background Area 2"), NodePath("Camera2D/Background Area 3"), NodePath("Camera2D/Background Area 4")]
+area_1_fade_start = -835
+area_1_fade_end = -1165
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -115.295)
@@ -6204,6 +6189,32 @@ offset_left = -15.0
 offset_top = -187.0
 offset_right = -15.0
 offset_bottom = -187.0
+
+[node name="Background Area 1" type="Sprite2D" parent="Player/Camera2D"]
+z_index = -5
+position = Vector2(0, -113.18)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("2_ahd60")
+
+[node name="Background Area 2" type="Sprite2D" parent="Player/Camera2D"]
+z_index = -5
+position = Vector2(0, -115.795)
+scale = Vector2(2.825, 2.825)
+texture = ExtResource("2_28ack")
+
+[node name="Background Area 3" type="Sprite2D" parent="Player/Camera2D"]
+visible = false
+z_index = -5
+position = Vector2(0, -116.805)
+scale = Vector2(2.125, 2.825)
+texture = ExtResource("1_y0n4k")
+
+[node name="Background Area 4" type="Sprite2D" parent="Player/Camera2D"]
+visible = false
+z_index = -5
+position = Vector2(0, -115.68)
+scale = Vector2(2.675, 2.8)
+texture = ExtResource("24_x3xt1")
 
 [node name="AudioNodes" type="Node2D" parent="Player"]
 
@@ -6551,6 +6562,30 @@ offset_top = -2158.0
 offset_right = 400.0
 offset_bottom = -2152.0
 
+[node name="Area 1" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+script = ExtResource("26_mxsok")
+area_number = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area 1"]
+position = Vector2(588, -70)
+shape = SubResource("RectangleShape2D_2dn8n")
+
+[node name="Area 2" type="Area2D" parent="."]
+visible = false
+position = Vector2(180, -2173)
+collision_layer = 16
+script = ExtResource("26_mxsok")
+area_number = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area 2"]
+position = Vector2(557, 127)
+shape = SubResource("RectangleShape2D_lws86")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(617, -2702)
+
 [connection signal="delete_hook" from="Rock" to="Player" method="_on_rock_delete_hook"]
 [connection signal="body_entered" from="Area2D - Wind2" to="Area2D - Wind2" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D - Wind2" to="Area2D - Wind2" method="_on_body_exited"]
@@ -6572,3 +6607,5 @@ offset_bottom = -2152.0
 [connection signal="body_exited" from="TESTArea2D - Wind" to="TESTArea2D - Wind" method="_on_body_exited"]
 [connection signal="body_entered" from="Area2D - ICE Platforms" to="Area2D - ICE Platforms" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D - ICE Platforms" to="Area2D - ICE Platforms" method="_on_body_exited"]
+[connection signal="body_entered" from="Area 1" to="Area 1" method="_on_body_entered"]
+[connection signal="body_entered" from="Area 2" to="Area 2" method="_on_body_entered"]
