@@ -1,9 +1,10 @@
-[gd_scene load_steps=81 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=82 format=3 uid="uid://cn34k28j3fipx"]
 
 [ext_resource type="Texture2D" uid="uid://cgihudmeorwkr" path="res://assets/Background/6d13119ec35d038c0649f6f4d5f2b9ad.png" id="1_y0n4k"]
 [ext_resource type="Texture2D" uid="uid://cccsmsjbjhskx" path="res://assets/Background/ice-cave-background-environment-platform-game_398492-535.png" id="2_28ack"]
 [ext_resource type="Texture2D" uid="uid://yj7ff3un7b66" path="res://assets/Background/9c779ba1dcb98ed867bbaa5630ea245c.jpg" id="2_ahd60"]
 [ext_resource type="PackedScene" uid="uid://bre5o2y11kobn" path="res://Player/player.tscn" id="2_j33vw"]
+[ext_resource type="Texture2D" uid="uid://biv8e7561pdbk" path="res://assets/Background/Ocean-and-Clouds-Free-Pixel-Art-Backgrounds9.png" id="4_4mb00"]
 [ext_resource type="Script" path="res://Scripts/PlayerCamera.gd" id="4_yjydx"]
 [ext_resource type="Script" path="res://Scripts/Timer.gd" id="5_oe376"]
 [ext_resource type="Script" path="res://Scripts/Height.gd" id="6_klsow"]
@@ -6132,7 +6133,7 @@ size = Vector2(103, 30)
 
 [node name="Player" parent="." node_paths=PackedStringArray("bgs") instance=ExtResource("2_j33vw")]
 unique_name_in_owner = true
-position = Vector2(-1319, -8654)
+position = Vector2(-1235, -11023)
 maxHookPower = 650.0
 hookPowerMult = 2.0
 maxRopeLength = 500.0
@@ -6142,9 +6143,15 @@ shiftStrength = 10000.0
 jump_boost_strength = 1.5
 crawl_speed = 300.0
 swing_dampener = 0.9
-bgs = [NodePath("Camera2D/Background Area 1"), NodePath("Camera2D/Background Area 2"), NodePath("Camera2D/Background Area 3"), NodePath("Camera2D/Background Area 4")]
+bgs = [NodePath("Camera2D/Background Area 1"), NodePath("Camera2D/Background Area 2"), NodePath("Camera2D/Background Area 3"), NodePath("Camera2D/Background Area 4"), NodePath("Camera2D/AREA HEAVEN")]
 area_1_fade_start = -835
 area_1_fade_end = -1165
+area_2_fade_start = -2731
+area_2_fade_end = -3054
+area_3_fade_start = -5310
+area_3_fade_end = -5665
+area_4_fade_start = -8306
+area_4_fade_end = -8997
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -115.295)
@@ -6205,6 +6212,12 @@ z_index = -5
 position = Vector2(0, -115.68)
 scale = Vector2(2.675, 2.8)
 texture = ExtResource("24_x3xt1")
+
+[node name="AREA HEAVEN" type="Sprite2D" parent="Player/Camera2D"]
+z_index = -5
+position = Vector2(2.00003, -149)
+scale = Vector2(1.07889, 1.11)
+texture = ExtResource("4_4mb00")
 
 [node name="AudioNodes" type="Node2D" parent="Player"]
 
@@ -6551,6 +6564,11 @@ offset_left = 194.0
 offset_top = -2158.0
 offset_right = 400.0
 offset_bottom = -2152.0
+
+[node name="TestNode" type="Node2D" parent="."]
+position = Vector2(-251, -8997)
+
+[node name="Polygon2D" type="Polygon2D" parent="TestNode"]
 
 [connection signal="delete_hook" from="Rock" to="Player" method="_on_rock_delete_hook"]
 [connection signal="body_entered" from="Area2D - Wind2" to="Area2D - Wind2" method="_on_body_entered"]
