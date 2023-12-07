@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bre5o2y11kobn"]
+[gd_scene load_steps=9 format=3 uid="uid://bre5o2y11kobn"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_5nkeb"]
 [ext_resource type="Texture2D" uid="uid://cpq0l8jyisn07" path="res://icon.svg" id="2_u5a2c"]
@@ -14,9 +14,6 @@ size = Vector2(10, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hcybh"]
 custom_solver_bias = 1.0
 size = Vector2(3, 12.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pk6tl"]
-size = Vector2(25, 29)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 36
@@ -102,12 +99,3 @@ texture = ExtResource("8_7jx5p")
 visible = false
 position = Vector2(5, 2)
 shape = SubResource("RectangleShape2D_hcybh")
-
-[node name="TheOtherCollider" type="Area2D" parent="."]
-visible = false
-collision_layer = 2147483648
-collision_mask = 36
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TheOtherCollider"]
-position = Vector2(-0.5, -0.5)
-shape = SubResource("RectangleShape2D_pk6tl")

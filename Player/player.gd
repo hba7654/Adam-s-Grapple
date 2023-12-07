@@ -13,6 +13,8 @@ var shifted_left : bool
 var shifted_right : bool
 var direction_sign : int #positive = right
 var heightAtStartOfFall : float
+var on_ice : bool
+#var area : int
 
 @export var maxHookPower : float
 @export var hookPowerMult : float
@@ -23,6 +25,15 @@ var heightAtStartOfFall : float
 @export var jump_boost_strength : float
 @export var crawl_speed : float
 @export var swing_dampener : float
+@export var bgs : Array[Sprite2D]
+@export var area_1_fade_start : int
+@export var area_1_fade_end : int
+@export var area_2_fade_start : int
+@export var area_2_fade_end : int
+@export var area_3_fade_start : int
+@export var area_3_fade_end : int
+@export var area_4_fade_start : int
+@export var area_4_fade_end : int
 
 
 var arc_line
@@ -41,6 +52,10 @@ func _ready():
 	shifted_right = false
 	direction_sign = true
 	heightAtStartOfFall = 0.0
+	on_ice = false
+	
+		
+	
 
 #func _process(delta):
 	##BREAKABLE PLATFORMS
@@ -59,7 +74,46 @@ func _physics_process(delta):
 		global_position = Vector2(654, -1171)
 	
 	frame_counter += 1
-
+	
+	#=====================
+	#BACKGROUNDS
+	#=====================
+	#Area 1
+	if global_position.y >= 0:
+		bgs[0].modulate = Color(1, 1, 1, 1)
+		bgs[1].modulate = Color(1, 1, 1, 0)
+		bgs[2].modulate = Color (1,1,1,0)
+		bgs[3].modulate = Color (1,1,1,0)
+		bgs[4].modulate = Color (1,1,1,0)
+	#Area 1/2
+	elif global_position.y <= area_1_fade_start and global_position.y >= area_1_fade_end:
+		bgs[0].modulate = Color(1, 1, 1, ((global_position.y - area_1_fade_end) / (area_1_fade_start - area_1_fade_end)))
+		bgs[1].modulate = Color(1, 1, 1, 1-((global_position.y - area_1_fade_end) / (area_1_fade_start - area_1_fade_end)))
+		bgs[2].modulate = Color (1,1,1,0)
+		bgs[3].modulate = Color (1,1,1,0)
+		bgs[4].modulate = Color (1,1,1,0)
+	#Area 2/3
+	elif global_position.y <= area_2_fade_start and global_position.y >= area_2_fade_end:
+		bgs[1].modulate = Color(1, 1, 1, ((global_position.y - area_2_fade_end) / (area_2_fade_start - area_2_fade_end)))
+		bgs[2].modulate = Color(1, 1, 1, 1-((global_position.y - area_2_fade_end) / (area_2_fade_start - area_2_fade_end)))
+		bgs[0].modulate = Color (1,1,1,0)
+		bgs[3].modulate = Color (1,1,1,0)
+		bgs[4].modulate = Color (1,1,1,0)
+	#Area 3/4
+	elif global_position.y <= area_3_fade_start and global_position.y >= area_3_fade_end:
+		bgs[2].modulate = Color(1, 1, 1, ((global_position.y - area_3_fade_end) / (area_3_fade_start - area_3_fade_end)))
+		bgs[3].modulate = Color(1, 1, 1, 1-((global_position.y - area_3_fade_end) / (area_3_fade_start - area_3_fade_end)))
+		bgs[0].modulate = Color (1,1,1,0)
+		bgs[1].modulate = Color (1,1,1,0)
+		bgs[4].modulate = Color (1,1,1,0)
+	#Area 4/5
+	elif global_position.y <= area_4_fade_start and global_position.y >= area_4_fade_end:
+		bgs[3].modulate = Color(1, 1, 1, ((global_position.y - area_4_fade_end) / (area_4_fade_start - area_4_fade_end)))
+		bgs[4].modulate = Color(1, 1, 1, 1-((global_position.y - area_4_fade_end) / (area_4_fade_start - area_4_fade_end)))
+		bgs[0].modulate = Color (1,1,1,0)
+		bgs[1].modulate = Color (1,1,1,0)
+		bgs[2].modulate = Color (1,1,1,0)
+	
 	#=====================
 	#GRAVITY
 	#=====================
@@ -69,7 +123,7 @@ func _physics_process(delta):
 			heightAtStartOfFall = get_position().y * -1
 			print(heightAtStartOfFall)
 		#print("adding gravity in frame " + str(frame_counter))
-	elif not hooked:
+	elif not hooked and not on_ice:
 		velocity.x = 0
 	if is_on_floor():
 		if (get_position.y*-1 < heightAtStartOfFall - 1000):
@@ -137,17 +191,15 @@ func _physics_process(delta):
 			hooked = false
 			hookInstance.queue_free()
 			
-	if Input.is_action_pressed("shift_right") and is_on_floor():
+	if Input.is_action_pressed("shift_right") and is_on_floor() and not on_ice:
 		velocity.x += crawl_speed*delta 
 		if !$AudioNodes/DragAudio.playing:
 			$AudioNodes/DragAudio.play()
-	elif Input.is_action_pressed("shift_left") and is_on_floor():
+	elif Input.is_action_pressed("shift_left") and is_on_floor() and not on_ice:
 		velocity.x -= crawl_speed*delta 
 		if !$AudioNodes/DragAudio.playing:
 			$AudioNodes/DragAudio.play()
 		
-	
-	
 	
 	#Create Rope
 	if shotHook and hookInstance.landed:
@@ -155,7 +207,7 @@ func _physics_process(delta):
 		if currentRopeLength < maxRopeLength:
 			hooked = true
 			create_rope()
-			
+			#if hookInstance.landed:
 			#handle input
 			if Input.is_action_pressed("retract") and currentRopeLength > 10:
 				#print("RETRACT")
@@ -246,7 +298,7 @@ func swing(delta):
 	#print("Current Rope Length: " + str(currentRopeLength))
 	var radius = global_position - hookInstance.global_position
 	var angle = radius.angle_to(velocity)#acos(radius.dot(velocity) / (radius.length() * velocity.length()))
-	#print(angle)
+	print(angle * (180/PI))
 	var rad_vel = cos(angle) * velocity.length()
 #	print(velocity.length())
 	#If player stays spinning around a block in the air for a while, pull them down a bit
@@ -286,6 +338,13 @@ func _on_rock_delete_hook():
 		hooked = false
 		hookInstance.queue_free()
 	pass # Replace with function body.
+
+func change_area(area_num):
+	for i in bgs.size():
+		if i == area_num-1:
+			bgs[i].modulate = Color(1, 1, 1, 1)
+		else:
+			bgs[i].modulate = Color(1, 1, 1, 0)
 
 
 

@@ -27,6 +27,6 @@ func _on_body_exited(body):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for body in bodiesInside:
-		print(bodiesInside)
+		# print(bodiesInside)
 		body.apply_force(Vector2(windForceX,windForceY))
 	pass
