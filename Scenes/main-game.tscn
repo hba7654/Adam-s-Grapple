@@ -6289,7 +6289,7 @@ size = Vector2(116, 25)
 size = Vector2(103, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjnbq"]
-size = Vector2(276, 4)
+size = Vector2(276, 8)
 
 [node name="main-game" type="Node2D"]
 
@@ -6805,7 +6805,7 @@ collision_mask = 3
 script = ExtResource("25_0a7ck")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="Area2D - ICE Platforms"]
-position = Vector2(-29, -1585.5)
+position = Vector2(-29, -1589)
 shape = SubResource("RectangleShape2D_3afjg")
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Area2D - ICE Platforms"]
@@ -6825,7 +6825,7 @@ position = Vector2(2, -12)
 shape = SubResource("RectangleShape2D_esc8b")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D - ICE Platforms"]
-position = Vector2(21, -174)
+position = Vector2(21, -184)
 shape = SubResource("RectangleShape2D_uo6ks")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D - ICE Platforms"]
@@ -6950,10 +6950,10 @@ offset_right = 400.0
 offset_bottom = -2152.0
 
 [node name="StartTrackingHeightArea" type="Area2D" parent="."]
-position = Vector2(-1, 518)
+position = Vector2(-2, 506)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StartTrackingHeightArea"]
-position = Vector2(80, 8)
+position = Vector2(80, 16)
 shape = SubResource("RectangleShape2D_wjnbq")
 
 [connection signal="delete_hook" from="Rock" to="Player" method="_on_rock_delete_hook"]
@@ -6977,3 +6977,4 @@ shape = SubResource("RectangleShape2D_wjnbq")
 [connection signal="body_exited" from="TESTArea2D - Wind" to="TESTArea2D - Wind" method="_on_body_exited"]
 [connection signal="body_entered" from="Area2D - ICE Platforms" to="Area2D - ICE Platforms" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D - ICE Platforms" to="Area2D - ICE Platforms" method="_on_body_exited"]
+[connection signal="body_entered" from="StartTrackingHeightArea" to="Player/Camera2D/Height" method="_on_start_tracking_height_area_body_entered"]
