@@ -6399,44 +6399,58 @@ stream = ExtResource("14_nucet")
 [node name="VoiceLines" type="Node" parent="Player/AudioNodes"]
 
 [node name="VL0" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("15_un7b5")
 
 [node name="VL1" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("16_ve4tp")
 
 [node name="VL2" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("17_jw4lh")
 
 [node name="VL3" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("18_mo45g")
 
 [node name="VL4" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("19_c6hfp")
 
 [node name="VL5" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("20_30y6e")
 
 [node name="VL6" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 
 [node name="VL7" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("21_fkv1y")
 
 [node name="VL8" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("22_cgobg")
 
 [node name="VL9" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("23_arpqs")
 
 [node name="VL10" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("24_01758")
 
 [node name="VL11" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("25_lrbds")
 
 [node name="VL12" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("26_wbl7a")
 
 [node name="VL13" type="AudioStreamPlayer2D" parent="Player/AudioNodes/VoiceLines"]
+position = Vector2(-1319, -10054)
 stream = ExtResource("27_dxysm")
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("pauseMenu")]
