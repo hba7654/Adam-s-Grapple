@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cn34k28j3fipx"]
+[gd_scene load_steps=62 format=3 uid="uid://cn34k28j3fipx"]
 
 [ext_resource type="Texture2D" uid="uid://cgihudmeorwkr" path="res://assets/Background/6d13119ec35d038c0649f6f4d5f2b9ad.png" id="1_y0n4k"]
 [ext_resource type="Texture2D" uid="uid://cccsmsjbjhskx" path="res://assets/Background/ice-cave-background-environment-platform-game_398492-535.png" id="2_28ack"]
@@ -5900,13 +5900,6 @@ pattern_20 = SubResource("TileMapPattern_a0tau")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gr6tg"]
 size = Vector2(181, 175)
 
-[sub_resource type="Curve" id="Curve_yp0k0"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.48951, 0), 0.0, 0.0, 0, 0, Vector2(0.534965, 1), 0.0, 0.0, 0, 0, Vector2(0.888112, 1), 0.0, 0.0, 0, 0, Vector2(0.98951, 1), 0.0, 0.0, 0, 0]
-point_count = 5
-
-[sub_resource type="CurveTexture" id="CurveTexture_h12vu"]
-curve = SubResource("Curve_yp0k0")
-
 [sub_resource type="Curve" id="Curve_8lkp3"]
 max_value = 1.01
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.483444, 1), 0.0, 0.0, 0, 0, Vector2(0.811258, 0.797368), 0.0, 0.0, 0, 0, Vector2(0.990323, 0.357895), 0.0, 0.0, 0, 0]
@@ -5932,16 +5925,12 @@ orbit_velocity_max = 0.0
 scale_min = 2.0
 scale_max = 4.0
 scale_curve = SubResource("CurveTexture_2br5r")
-alpha_curve = SubResource("CurveTexture_h12vu")
 turbulence_enabled = true
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.12
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_iakn5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjnbq"]
-size = Vector2(276, 4)
 
 [node name="main-game" type="Node2D"]
 
@@ -6032,10 +6021,8 @@ stream = ExtResource("10_al0u3")
 volume_db = -2.81
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("pauseMenu")]
-unique_name_in_owner = true
 process_mode = 3
 modulate = Color(0, 0, 0, 1)
-position = Vector2(-1, 516)
 script = ExtResource("7_0b7au")
 pauseMenu = NodePath("../Player/Camera2D/pause_menu")
 
@@ -6224,14 +6211,6 @@ offset_right = -841.0
 offset_bottom = -741.0
 text = "ICE "
 
-[node name="StartTrackingHeightArea" type="Area2D" parent="."]
-position = Vector2(-1, 518)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StartTrackingHeightArea"]
-position = Vector2(80, 8)
-shape = SubResource("RectangleShape2D_wjnbq")
-
 [connection signal="delete_hook" from="Rock" to="Player" method="_on_rock_delete_hook"]
 [connection signal="body_entered" from="Area2D - Wind" to="Area2D - Wind" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D - Wind" to="Area2D - Wind" method="_on_body_exited"]
-[connection signal="body_entered" from="StartTrackingHeightArea" to="Player/Camera2D/Height" method="_on_start_tracking_height_area_body_entered"]
