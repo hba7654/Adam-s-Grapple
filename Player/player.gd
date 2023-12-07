@@ -126,10 +126,13 @@ func _physics_process(delta):
 	elif not hooked and not on_ice:
 		velocity.x = 0
 	if is_on_floor():
-		if (get_position.y*-1 < heightAtStartOfFall - 1000):
+		if (get_position().y*-1 < heightAtStartOfFall - 1000):
 			print("play sound")
 		heightAtStartOfFall = get_position().y * -1
 		print("on floor", heightAtStartOfFall)
+	if on_ice:
+		if !$AudioNodes/IceAudio.playing:
+			$AudioNodes/IceAudio.play()
 	
 	#=====================
 	#RESETTING SHIFT VARS
