@@ -72,6 +72,12 @@ func _physics_process(delta):
 		global_position = Vector2(528,456)
 	elif Input.is_action_pressed("area2"):
 		global_position = Vector2(654, -1171)
+	elif Input.is_action_pressed("area3"):
+		global_position = Vector2(606, -2999)
+	elif Input.is_action_pressed("area4"):
+		global_position = Vector2(501, -5814)
+	elif Input.is_action_pressed("End"):
+		global_position = Vector2(-95, -8176)
 	
 	frame_counter += 1
 	
@@ -301,7 +307,7 @@ func swing(delta):
 	#print("Current Rope Length: " + str(currentRopeLength))
 	var radius = global_position - hookInstance.global_position
 	var angle = radius.angle_to(velocity)#acos(radius.dot(velocity) / (radius.length() * velocity.length()))
-	print(angle * (180/PI))
+	#print(angle * (180/PI))
 	var rad_vel = cos(angle) * velocity.length()
 #	print(velocity.length())
 	#If player stays spinning around a block in the air for a while, pull them down a bit
