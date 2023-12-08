@@ -12,6 +12,7 @@ var currentRopeLength
 var shifted_left : bool
 var shifted_right : bool
 var direction_sign : int #positive = right
+var heightAtStartOfFall : float
 var on_ice : bool
 #var area : int
 
@@ -50,6 +51,7 @@ func _ready():
 	shifted_left = false
 	shifted_right = false
 	direction_sign = true
+	heightAtStartOfFall = 0.0
 	on_ice = false
 	
 		
@@ -117,9 +119,20 @@ func _physics_process(delta):
 	#=====================
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		if (get_position().y * -1 > heightAtStartOfFall || heightAtStartOfFall == 0.0):
+			heightAtStartOfFall = get_position().y * -1
+			print(heightAtStartOfFall)
 		#print("adding gravity in frame " + str(frame_counter))
 	elif not hooked and not on_ice:
 		velocity.x = 0
+	if is_on_floor():
+		if (get_position().y*-1 < heightAtStartOfFall - 1000):
+			print("play sound")
+		heightAtStartOfFall = get_position().y * -1
+		print("on floor", heightAtStartOfFall)
+	if on_ice:
+		if !$AudioNodes/IceAudio.playing:
+			$AudioNodes/IceAudio.play()
 	
 	#=====================
 	#RESETTING SHIFT VARS

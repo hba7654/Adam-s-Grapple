@@ -23,6 +23,7 @@ func _process(delta):
 		#print("spawned rock")
 		add_child(newRock)
 		newRock.global_position = get_global_position()
+		$RockAudio.play()
 		#print(newRock.get_position())
 		currentTime = 0
 	pass
