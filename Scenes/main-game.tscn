@@ -6295,7 +6295,7 @@ size = Vector2(276, 8)
 
 [node name="Player" parent="." node_paths=PackedStringArray("bgs") instance=ExtResource("2_j33vw")]
 unique_name_in_owner = true
-position = Vector2(-95, -8176)
+position = Vector2(-1212, -9179)
 maxHookPower = 650.0
 hookPowerMult = 2.0
 maxRopeLength = 500.0
