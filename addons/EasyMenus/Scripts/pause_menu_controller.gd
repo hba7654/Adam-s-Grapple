@@ -33,7 +33,7 @@ func _on_resume_game_button_pressed():
 func _on_options_button_pressed():
 	content.hide()
 	options_menu.show()
-	options_menu.position = get_parent().get_parent().global_position + Vector2(-cam_width/2 + 225, -cam_height/2)
+	options_menu.position = get_parent().get_parent().global_position + Vector2(-cam_width/2 + 482, -cam_height/2 +200)
 	options_menu.on_open()
 
 

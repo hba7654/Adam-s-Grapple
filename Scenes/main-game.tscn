@@ -6317,15 +6317,16 @@ area_4_fade_end = -8997
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -115.295)
-zoom = Vector2(1.09, 1.09)
+zoom = Vector2(2, 2)
 script = ExtResource("4_yjydx")
 
 [node name="Timer" type="Label" parent="Player/Camera2D"]
 z_index = 2
-offset_left = -620.0
-offset_top = -576.0
-offset_right = -440.0
-offset_bottom = -520.0
+offset_left = -439.0
+offset_top = -358.0
+offset_right = -259.0
+offset_bottom = -302.0
+scale = Vector2(0.5, 0.5)
 text = "timer text"
 label_settings = SubResource("LabelSettings_ddkwq")
 script = ExtResource("5_oe376")
@@ -6333,10 +6334,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Height" type="Label" parent="Player/Camera2D" node_paths=PackedStringArray("playerNode")]
 z_index = 2
-offset_left = -620.0
-offset_top = -524.0
-offset_right = -431.0
-offset_bottom = -471.0
+offset_left = -439.0
+offset_top = -306.0
+offset_right = -250.0
+offset_bottom = -253.0
+scale = Vector2(0.5, 0.5)
 text = "height text"
 label_settings = SubResource("LabelSettings_3fjvl")
 script = ExtResource("6_klsow")
@@ -6350,35 +6352,36 @@ offset_left = -15.0
 offset_top = -187.0
 offset_right = -15.0
 offset_bottom = -187.0
+scale = Vector2(0.5, 0.5)
 
 [node name="Background Area 1" type="Sprite2D" parent="Player/Camera2D"]
 z_index = -5
 position = Vector2(0, -113.18)
-scale = Vector2(2.25, 2.25)
+scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_ahd60")
 
 [node name="Background Area 2" type="Sprite2D" parent="Player/Camera2D"]
 z_index = -5
 position = Vector2(0, -115.795)
-scale = Vector2(2.825, 2.825)
+scale = Vector2(1.6, 1.6)
 texture = ExtResource("2_28ack")
 
 [node name="Background Area 3" type="Sprite2D" parent="Player/Camera2D"]
 z_index = -5
 position = Vector2(0, -116.805)
-scale = Vector2(2.125, 2.825)
+scale = Vector2(1.2, 1.595)
 texture = ExtResource("1_y0n4k")
 
 [node name="Background Area 4" type="Sprite2D" parent="Player/Camera2D"]
 z_index = -5
 position = Vector2(0, -115.68)
-scale = Vector2(2.675, 2.8)
+scale = Vector2(1.475, 1.543)
 texture = ExtResource("24_x3xt1")
 
 [node name="AREA HEAVEN" type="Sprite2D" parent="Player/Camera2D"]
 z_index = -5
-position = Vector2(2.00003, -149)
-scale = Vector2(1.07889, 1.11)
+position = Vector2(0, -118.345)
+scale = Vector2(0.575, 0.592)
 texture = ExtResource("4_4mb00")
 
 [node name="AudioNodes" type="Node2D" parent="Player"]
