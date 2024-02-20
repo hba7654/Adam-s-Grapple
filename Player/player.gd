@@ -98,10 +98,24 @@ func _physics_process(delta):
 		bgs[2].modulate = Color (1,1,1,0)
 		bgs[3].modulate = Color (1,1,1,0)
 		bgs[4].modulate = Color (1,1,1,0)
+	#Area 2
+	elif global_position.y <= area_1_fade_end and global_position.y >= area_2_fade_start:
+		bgs[0].modulate = Color(1, 1, 1, 0)
+		bgs[1].modulate = Color(1, 1, 1, 1)
+		bgs[2].modulate = Color (1,1,1,0)
+		bgs[3].modulate = Color (1,1,1,0)
+		bgs[4].modulate = Color (1,1,1,0)
 	#Area 2/3
 	elif global_position.y <= area_2_fade_start and global_position.y >= area_2_fade_end:
 		bgs[1].modulate = Color(1, 1, 1, ((global_position.y - area_2_fade_end) / (area_2_fade_start - area_2_fade_end)))
 		bgs[2].modulate = Color(1, 1, 1, 1-((global_position.y - area_2_fade_end) / (area_2_fade_start - area_2_fade_end)))
+		bgs[0].modulate = Color (1,1,1,0)
+		bgs[3].modulate = Color (1,1,1,0)
+		bgs[4].modulate = Color (1,1,1,0)
+	#Area 3
+	elif global_position.y <= area_2_fade_end and global_position.y >= area_3_fade_start:
+		bgs[1].modulate = Color(1, 1, 1, 0)
+		bgs[2].modulate = Color(1, 1, 1, 1)
 		bgs[0].modulate = Color (1,1,1,0)
 		bgs[3].modulate = Color (1,1,1,0)
 		bgs[4].modulate = Color (1,1,1,0)
@@ -112,10 +126,24 @@ func _physics_process(delta):
 		bgs[0].modulate = Color (1,1,1,0)
 		bgs[1].modulate = Color (1,1,1,0)
 		bgs[4].modulate = Color (1,1,1,0)
+	#Area 4
+	elif global_position.y <= area_3_fade_end and global_position.y >= area_4_fade_start:
+		bgs[2].modulate = Color(1, 1, 1, 0)
+		bgs[3].modulate = Color(1, 1, 1, 1)
+		bgs[0].modulate = Color (1,1,1,0)
+		bgs[1].modulate = Color (1,1,1,0)
+		bgs[4].modulate = Color (1,1,1,0)
 	#Area 4/5
 	elif global_position.y <= area_4_fade_start and global_position.y >= area_4_fade_end:
 		bgs[3].modulate = Color(1, 1, 1, ((global_position.y - area_4_fade_end) / (area_4_fade_start - area_4_fade_end)))
 		bgs[4].modulate = Color(1, 1, 1, 1-((global_position.y - area_4_fade_end) / (area_4_fade_start - area_4_fade_end)))
+		bgs[0].modulate = Color (1,1,1,0)
+		bgs[1].modulate = Color (1,1,1,0)
+		bgs[2].modulate = Color (1,1,1,0)
+	#Area 5
+	elif global_position.y <= area_4_fade_end:
+		bgs[3].modulate = Color(1, 1, 1, 0)
+		bgs[4].modulate = Color(1, 1, 1, 1)
 		bgs[0].modulate = Color (1,1,1,0)
 		bgs[1].modulate = Color (1,1,1,0)
 		bgs[2].modulate = Color (1,1,1,0)
