@@ -5,18 +5,20 @@
 [ext_resource type="AudioStream" uid="uid://vd6jofg2pgmy" path="res://Sounds/GrappleHit1.wav" id="3_rybx7"]
 [ext_resource type="AudioStream" uid="uid://dt0kvqjrvt80p" path="res://Sounds/GrappleHit2.wav" id="4_oghg1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_675tb"]
-size = Vector2(6, 6)
+[sub_resource type="CircleShape2D" id="CircleShape2D_8acks"]
+radius = 5.0
 
 [node name="Hook" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 36
+floor_stop_on_slope = false
+floor_max_angle = 0.174533
 script = ExtResource("1_xhk7d")
 bouncePower = 0.25
 
 [node name="C" type="CollisionShape2D" parent="."]
 position = Vector2(-1.19209e-07, -1.19209e-07)
-shape = SubResource("RectangleShape2D_675tb")
+shape = SubResource("CircleShape2D_8acks")
 debug_color = Color(0.964706, 0, 0.486275, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

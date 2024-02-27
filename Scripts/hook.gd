@@ -38,7 +38,7 @@ func _physics_process(delta):
 		var angle = normal.angle_to(Vector2.UP) * 180/PI
 		#print("Normal angle: " + str(angle))
 		
-		if abs(angle) < 75:
+		if abs(angle) < 30:
 			#print("landed on solid ground")
 			#velocity = Vector2.ZERO
 			landed = true
@@ -53,6 +53,12 @@ func _physics_process(delta):
 			#print("hit a ceiling")
 			velocity.x *= bouncePower
 #				velocity.y = 0
+		
+		#elif abs(angle) > 40 and abs(angle) < 50:
+			#print("slidin")
+			##velocity.x *= 5
+			#velocity.y = 100
+			#landed = false
 		else:
 			velocity = velocity.bounce(colInfo.get_normal().normalized())
 			#print("normal bounce")
