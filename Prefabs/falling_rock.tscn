@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://1sp0dwtp4qxm"]
 
-[ext_resource type="Script" path="res://Scripts/Rock.gd" id="1_7fw8c"]
+[ext_resource type="Script" uid="uid://db71bipiptff" path="res://Scripts/Rock.gd" id="1_7fw8c"]
 [ext_resource type="Texture2D" uid="uid://b86jips8qx78b" path="res://assets/BarRockPlatforms/croppedrock.png" id="2_b2vka"]
 
 [node name="Rock" type="RigidBody2D"]

@@ -1,14 +1,14 @@
 [gd_scene load_steps=26 format=3 uid="uid://dk1x64ujkuto4"]
 
-[ext_resource type="Shader" path="res://addons/ez_transitions/shaders/scroll_shader.gdshader" id="1_4v1lf"]
+[ext_resource type="Shader" uid="uid://c0dy8tonf4xig" path="res://addons/ez_transitions/shaders/scroll_shader.gdshader" id="1_4v1lf"]
 [ext_resource type="Texture2D" uid="uid://ujutctmbt2ax" path="res://addons/ez_transitions/images/checkerboard_texture.png" id="2_fymo8"]
 [ext_resource type="Texture2D" uid="uid://dovx338ff7u7n" path="res://addons/ez_transitions/images/plugin_icon.svg" id="3_3etxp"]
 [ext_resource type="FontFile" uid="uid://cjhjf5pqxtcqs" path="res://addons/ez_transitions/fonts/mini_pixel-7.ttf" id="4_q67u8"]
-[ext_resource type="Script" path="res://addons/ez_transitions/objects/main_container/basic_settings_script.gd" id="5_2hvyf"]
-[ext_resource type="Theme" uid="uid://djuojj8aridg" path="res://addons/ez_transitions/themes/main_theme.tres" id="5_l8ou1"]
-[ext_resource type="Script" path="res://addons/ez_transitions/objects/transition_overlay/transition_overlay_script.gd" id="6_d4a4f"]
-[ext_resource type="Script" path="res://addons/ez_transitions/objects/main_container/editor_control_script.gd" id="6_jbowr"]
-[ext_resource type="Shader" path="res://addons/ez_transitions/shaders/transition_shader.gdshader" id="7_go6qa"]
+[ext_resource type="Script" uid="uid://b0twin7qdlkw0" path="res://addons/ez_transitions/objects/main_container/basic_settings_script.gd" id="5_2hvyf"]
+[ext_resource type="Theme" uid="uid://73cldr0feoq" path="res://addons/ez_transitions/themes/main_theme.tres" id="5_l8ou1"]
+[ext_resource type="Script" uid="uid://dh7gvw55m7kdd" path="res://addons/ez_transitions/objects/transition_overlay/transition_overlay_script.gd" id="6_d4a4f"]
+[ext_resource type="Script" uid="uid://be64p3en4glys" path="res://addons/ez_transitions/objects/main_container/editor_control_script.gd" id="6_jbowr"]
+[ext_resource type="Shader" uid="uid://baqo4k8l3fios" path="res://addons/ez_transitions/shaders/transition_shader.gdshader" id="7_go6qa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hbqyv"]
 shader = ExtResource("1_4v1lf")
