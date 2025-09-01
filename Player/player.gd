@@ -382,6 +382,3 @@ func change_area(area_num):
 			bgs[i].modulate = Color(1, 1, 1, 1)
 		else:
 			bgs[i].modulate = Color(1, 1, 1, 0)
-
-
-

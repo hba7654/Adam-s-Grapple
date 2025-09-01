@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://qlskttl1wjr7"]
 
-[ext_resource type="Script" path="res://addons/EasyMenus/Scripts/options_menu_controller.gd" id="1_h6k46"]
-[ext_resource type="Script" path="res://addons/EasyMenus/Scripts/follow_focus_center.gd" id="2_l3n3h"]
+[ext_resource type="Script" uid="uid://cmam7i4ord5wo" path="res://addons/EasyMenus/Scripts/options_menu_controller.gd" id="1_h6k46"]
+[ext_resource type="Script" uid="uid://b8pj15nqcfr7p" path="res://addons/EasyMenus/Scripts/follow_focus_center.gd" id="2_l3n3h"]
 [ext_resource type="PackedScene" uid="uid://dyfwp0vhgfjd7" path="res://addons/EasyMenus/Nodes/slider_w_labels.tscn" id="3_xghjq"]
-[ext_resource type="Script" path="res://addons/EasyMenus/Scripts/option_button_input_propagator.gd" id="4_02jwa"]
+[ext_resource type="Script" uid="uid://cts6advxeok1c" path="res://addons/EasyMenus/Scripts/option_button_input_propagator.gd" id="4_02jwa"]
 [ext_resource type="PackedScene" uid="uid://cqniig2ks0xs2" path="res://addons/EasyMenus/Nodes/gamepad_closable.tscn" id="5_k4nlh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x77mt"]
@@ -152,8 +152,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Smooth out edges of 2D objects"
-item_count = 4
 selected = 0
+item_count = 4
 popup/item_0/text = "Off"
 popup/item_0/id = 0
 popup/item_1/text = "2x"
@@ -178,8 +178,8 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 tooltip_text = "Smooths out edges of 3D objects"
-item_count = 4
 selected = 0
+item_count = 4
 popup/item_0/text = "Off"
 popup/item_0/id = 0
 popup/item_1/text = "2x"

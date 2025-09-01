@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bre5o2y11kobn"]
 
-[ext_resource type="Script" path="res://Player/player.gd" id="1_5nkeb"]
+[ext_resource type="Script" uid="uid://d2u4il3lnt0bj" path="res://Player/player.gd" id="1_5nkeb"]
 [ext_resource type="Texture2D" uid="uid://cpq0l8jyisn07" path="res://icon.svg" id="2_u5a2c"]
 [ext_resource type="Texture2D" uid="uid://c110se5b1om1p" path="res://assets/player-art/Sprite-AdamBody-Outline.png" id="4_2npmx"]
 [ext_resource type="Texture2D" uid="uid://cmb0lu43tqugk" path="res://assets/player-art/Sprite-RightLeg-Outline.png" id="6_bpn4f"]
